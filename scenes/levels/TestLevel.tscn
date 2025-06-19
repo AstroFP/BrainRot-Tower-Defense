@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://mxl1dxm5khkf"]
+
+[ext_resource type="Texture2D" uid="uid://476xknmhmeto" path="res://assets/sprites/TestBackgroundSprite.png" id="1_86d4f"]
+
+[sub_resource type="Curve2D" id="Curve2D_86d4f"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_86d4f")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_86d4f")
