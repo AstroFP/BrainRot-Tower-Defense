@@ -1,18 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://4ma2pna2ag6o"]
+[gd_scene load_steps=5 format=3 uid="uid://4ma2pna2ag6o"]
 
-[ext_resource type="Script" path="res://scenes/levels/HungryHippo.gd" id="1_ddlyg"]
-[ext_resource type="Texture2D" uid="uid://cjmyyku3i6ijs" path="res://assets/sprites/MC_Fabian3.png" id="2_it2yc"]
+[ext_resource type="Script" uid="uid://bs8os8ovowscb" path="res://scripts/HungryHippo.gd" id="1_xfphi"]
+[ext_resource type="Texture2D" uid="uid://cjmyyku3i6ijs" path="res://assets/sprites/MC_Fabian3.png" id="2_5ofek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irg8o"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1fga"]
+size = Vector2(128, 128)
+
 [node name="HungryHippo" type="CharacterBody2D"]
-position = Vector2(0, 6.10352e-05)
-script = ExtResource("1_ddlyg")
+script = ExtResource("1_xfphi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("2_it2yc")
+texture = ExtResource("2_5ofek")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_irg8o")
+
+[node name="HealthManager" type="Node2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="HurtBoxCollider" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -6.10352e-05)
+shape = SubResource("RectangleShape2D_c1fga")
