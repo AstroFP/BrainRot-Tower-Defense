@@ -20,4 +20,3 @@ curve = SubResource("Curve2D_86d4f")
 [node name="GameManager" parent="." instance=ExtResource("2_w20ko")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
