@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://4ma2pna2ag6o"]
+
+[ext_resource type="Script" path="res://scenes/levels/HungryHippo.gd" id="1_ddlyg"]
+[ext_resource type="Texture2D" uid="uid://cjmyyku3i6ijs" path="res://assets/sprites/MC_Fabian3.png" id="2_it2yc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irg8o"]
+size = Vector2(128, 128)
+
+[node name="HungryHippo" type="CharacterBody2D"]
+position = Vector2(0, 6.10352e-05)
+script = ExtResource("1_ddlyg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_it2yc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_irg8o")
