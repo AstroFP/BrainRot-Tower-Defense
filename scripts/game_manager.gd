@@ -27,11 +27,11 @@ func _ready():
 	if paths.is_empty():
 		printerr("No paths set on the level!")
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if current_wave <= max_waves:
 		if Input.is_action_pressed("play"):
 			if !wave_in_progress:
-				spawn_wave(paths,current_wave-1)
+				spawn_wave(current_wave-1)
 				current_wave += 1
 				
 	for path in paths:  
@@ -47,7 +47,7 @@ func _physics_process(delta):
 		
 	
 
-func spawn_wave(paths,wave_num):
+func spawn_wave(wave_num):
 	wave_in_progress = true
 	wave_spawning_in_progress = true
 	var patterns = unpack_enemies_pattern(waves[wave_num])
