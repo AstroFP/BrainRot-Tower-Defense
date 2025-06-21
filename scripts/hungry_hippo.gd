@@ -5,10 +5,15 @@ extends CharacterBody2D
 
 @export var move_speed := 75.0
 
+var rng = RandomNumberGenerator.new()
+
 func _ready():
-	#remote_transform_2d.remote_path = self.get_path()
-	position = Vector2(0,0)
+	var random_pos_offset = rng.randf_range(-100,100)
+	position = Vector2(0,random_pos_offset)
 	
 func _physics_process(delta): 
 	path_follow.progress += move_speed * delta
+	
+	if path_follow.progress_ratio >= 1.0:
+		get_parent().queue_free()
 	

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq0lm83k5jalb"]
+
+[ext_resource type="Texture2D" uid="uid://oak6prvucehq" path="res://assets/sprites/nig.PNG" id="1_dvnpx"]
+[ext_resource type="Script" uid="uid://813n1uieffou" path="res://scripts/game_manager.gd" id="3_q0jxe"]
+
+[sub_resource type="Curve2D" id="Curve2D_86d4f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1110, -556, 189.249, -41.8075, -189.249, 41.8075, 821, -386, 120.136, -86.7646, -120.136, 86.7646, -753, -373, 0, 0, 0, 0, -833, 676)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_dnkg4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 323, 614, -196.189, -500.722, 196.189, 500.722, -439, 315, -212.295, 27.8179, 212.295, -27.8179, 95, -61, 0, 0, 0, 0, 1066, -126)
+}
+point_count = 4
+
+[node name="TestLevel2" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("1_dvnpx")
+
+[node name="Path" type="Path2D" parent="."]
+position = Vector2(-72, -7)
+curve = SubResource("Curve2D_86d4f")
+
+[node name="Path2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_dnkg4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("3_q0jxe")
+metadata/_custom_type_script = "uid://813n1uieffou"
