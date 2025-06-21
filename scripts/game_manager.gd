@@ -17,15 +17,21 @@ var wave_in_progress = false
 var all_paths_empty = true
 var wave_spawning_in_progress = false
 
+var rng := RandomNumberGenerator.new()
+
 func _ready():
-	paths = [get_node("../Path")]
+	for path in get_parent().get_children():
+		if is_instance_of(path, Path2D):
+			paths.append(path)
 	
+	if paths.is_empty():
+		printerr("No paths set on the level!")
 	
 func _physics_process(delta):
 	if current_wave <= max_waves:
 		if Input.is_action_pressed("play"):
 			if !wave_in_progress:
-				spawn_wave(paths[0],current_wave-1)
+				spawn_wave(paths,current_wave-1)
 				current_wave += 1
 				
 	for path in paths:  
@@ -41,7 +47,7 @@ func _physics_process(delta):
 		
 	
 
-func spawn_wave(path,wave_num):
+func spawn_wave(paths,wave_num):
 	wave_in_progress = true
 	wave_spawning_in_progress = true
 	var patterns = unpack_enemies_pattern(waves[wave_num])
@@ -50,8 +56,13 @@ func spawn_wave(path,wave_num):
 		for batch in pattern:
 			for enemy_number in batch[0]:
 				var enemy_to_spawn = wave_info.enemies[batch[1]].instantiate()
-				path.add_child(enemy_to_spawn)
+				
+				# for now its random but should be changed to be predefined in the future
+				var random_path_idx = rng.randi_range(0,len(paths)-1)
+				paths[random_path_idx].add_child(enemy_to_spawn)
+				
 				await get_tree().create_timer(waves[wave_num]["enemy_spawn_delay"]).timeout
+			await get_tree().create_timer(waves[wave_num]["enemy_batch_spawn_delay"]).timeout
 		await get_tree().create_timer(waves[wave_num]["enemy_pattern_spawn_delay"]).timeout
 	
 	wave_spawning_in_progress = false
