@@ -4,7 +4,6 @@ extends Node2D
 const PATH_FOLLOW = preload("res://prefabs/enemies/path_follow.tscn")
 #@onready var path = $"../Path"
 var paths
-var can_spawn_enemy = true
 
 var wave_info := WaveInfo.new()
 
@@ -21,7 +20,7 @@ func _ready():
 	spawn_wave(paths[0],current_wave-1)
 	
 func _physics_process(delta):
-	can_spawn_enemy = true
+	pass
 
 func spawn_enemies():
 	for i in range(5):
