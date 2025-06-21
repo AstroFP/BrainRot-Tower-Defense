@@ -14,3 +14,6 @@ func _ready():
 func _physics_process(delta): 
 	path_follow.progress += move_speed * delta
 	
+	if path_follow.progress_ratio >= 1.0:
+		get_parent().queue_free()
+	

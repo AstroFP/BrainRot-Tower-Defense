@@ -7,28 +7,37 @@ var paths
 
 var wave_info := WaveInfo.new()
 
+var wave_in_progress = false
+
 var waves = wave_info.waves
 var current_wave = wave_info.current_wave
 var max_waves = wave_info.max_waves
 
+var all_paths_empty = true
+var wave_spawning_in_progress = false
+
 func _ready():
 	paths = [get_node("../Path")]
-	#var hungry_hippo = PATH_FOLLOW.instantiate()
-	#hungry_hippo.get_node("HungryHippo").move_speed = 200.0
-	#path.add_child(hungry_hippo)
-	#spawn_enemies()
-	spawn_wave(paths[0],current_wave-1)
+	
 	
 func _physics_process(delta):
-	pass
-
-func spawn_enemies():
-	for i in range(5):
-		paths[0].add_child(PATH_FOLLOW.instantiate())
-		await get_tree().create_timer(0.5).timeout
-
+	if current_wave <= max_waves:
+		if Input.is_action_pressed("play"):
+			if !wave_in_progress:
+				spawn_wave(paths[0],current_wave-1)
+				
+	for path in paths:
+		if path.get_child_count() > 0:
+			all_paths_empty = false
+			break
+	
+	if all_paths_empty && !wave_spawning_in_progress:
+		wave_in_progress = false
+	
 
 func spawn_wave(path,wave_num):
+	wave_in_progress = true
+	wave_spawning_in_progress = true
 	var patterns = unpack_enemies_pattern(waves[wave_num])
 	
 	for pattern in patterns:
@@ -37,7 +46,9 @@ func spawn_wave(path,wave_num):
 			path.add_child(enemy_to_spawn)
 			await get_tree().create_timer(waves[wave_num]["enemy_spawn_delay"]).timeout
 		await get_tree().create_timer(waves[wave_num]["enemy_pattern_spawn_delay"]).timeout
-
+	
+	current_wave += 1
+	wave_spawning_in_progress = false
 
 func unpack_enemies_pattern(wave):
 	var enemies_patterns_list = wave['enemies_pattern'].split("_")
