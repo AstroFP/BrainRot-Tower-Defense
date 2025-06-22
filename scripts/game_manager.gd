@@ -74,8 +74,8 @@ func unpack_enemies_pattern(wave):
 		patterns.append([])
 		var enemies_patterns = pattern.split(".")
 		for enemy_pattern in enemies_patterns:
-			var number = int(enemy_pattern.substr(0,enemy_pattern.length() - 1))
+			var enemy_number = int(enemy_pattern.substr(0,enemy_pattern.length() - 1))
 			var type = enemy_pattern.substr(enemy_pattern.length() - 1, 1) 
-			patterns[len(patterns)-1].append([number,type])
+			patterns[len(patterns)-1].append([enemy_number,type])
 		
 	return patterns

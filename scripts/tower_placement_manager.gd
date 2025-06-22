@@ -43,7 +43,6 @@ func _process(delta):
 				spawned_tower.place_tower()
 				tower_selected = ""
 				spawned_tower = null
-				print("tower placed")
 		
 func _input(event):
 	if event is InputEventScreenTouch || event is InputEventScreenDrag:
@@ -60,7 +59,7 @@ func _input(event):
 		dragging_velocity = event.relative
 		
 	if is_dragging:
-		touch_position = event.position * get_canvas_transform() # this took me like an hour to figure out 🙃 #update: I don't need that shit 👌😎🔫
+		touch_position = event.position * get_canvas_transform() # this took me like an hour to figure out 🙃
 		
 		
 func _on_v_box_container_mouse_entered():

@@ -13,6 +13,8 @@ var is_placed = false
 enum placement {valid = 0, invalid = 1}
 var placement_state = placement.valid
 
+var colliding_towers:=[]
+
 func _ready():
 	# set attack radius
 	var attack_radius = CircleShape2D.new()
@@ -65,15 +67,19 @@ func update_attack_range_display_color_to_invalid():
 
 
 func toggle_attack_range_display():
-	attack_range_display.visible = false if true else false
+	attack_range_display.visible = false if true else true
+
 
 func _on_hitbox_area_entered(area):
-	if area.get_name() == "Hitbox" && !is_placed:
+	if area.is_in_group("TowerHitbox") && !is_placed:
+		colliding_towers.append(area)
 		placement_state = placement.invalid
 		update_attack_range_display_color_to_invalid()
-		
+
 
 func _on_hitbox_area_exited(area):
-	if area.get_name() == "Hitbox" && !is_placed:
-		placement_state = placement.valid
-		update_attack_range_display_color_to_valid()
+	if area.is_in_group("TowerHitbox") && !is_placed:
+		colliding_towers.pop_at(colliding_towers.find(area))
+		if colliding_towers.is_empty():
+			placement_state = placement.valid
+			update_attack_range_display_color_to_valid()

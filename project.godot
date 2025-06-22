@@ -32,6 +32,10 @@ folder_colors={
 "res://scripts/": "pink"
 }
 
+[global_group]
+
+TowerHitbox="Group for area2D nodes serving as hitboxes for towers"
+
 [input]
 
 play={
