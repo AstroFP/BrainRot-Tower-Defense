@@ -1,5 +1,5 @@
 class_name GameManager
-extends Node2D
+extends Node
 
 # array of paths on the level
 var paths: Array

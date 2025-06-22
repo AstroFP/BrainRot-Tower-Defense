@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TowerStats" load_steps=3 format=3 uid="uid://b66hya4spt8sj"]
+
+[ext_resource type="Script" uid="uid://dvdcvjd7do71g" path="res://scripts/resources/tower_stats.gd" id="1_x3s63"]
+[ext_resource type="Texture2D" uid="uid://cvlpotj0jx37a" path="res://assets/sprites/villager.png" id="2_m5euk"]
+
+[resource]
+script = ExtResource("1_x3s63")
+texture = ExtResource("2_m5euk")
+price = 0
+damage = 1
+pierce = 1
+attack_radius = 500.0
+metadata/_custom_type_script = "uid://dvdcvjd7do71g"
