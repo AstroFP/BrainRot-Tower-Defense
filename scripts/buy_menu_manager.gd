@@ -13,6 +13,7 @@ var towers:= [
 
 signal selected_tower(tower: TowerStats)
 
+
 # tower buy buttons
 @onready var buy_tower_btn_1 = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerList/BuyMenuTowerListRow1/TowerBuyBanner/BuyTowerBtn1
 @onready var buy_tower_btn_2 = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerList/BuyMenuTowerListRow1/TowerBuyBanner2/BuyTowerBtn2

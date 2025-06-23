@@ -34,8 +34,6 @@ func _ready():
 	# set sprite texture
 	tower_sprite.texture = tower_stats.texture
 	
-	tower_sprite.z_index = 999
-	
 	# rescale tower
 	var texture_size = tower_sprite.texture.get_size()
 	var desired_size = texture_size * scale_factor

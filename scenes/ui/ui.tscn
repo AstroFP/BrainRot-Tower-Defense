@@ -1,12 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=15 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
 [ext_resource type="Texture2D" uid="uid://c0pl5vdswgvae" path="res://assets/sprites/villager_icon.png" id="2_f5cxw"]
 [ext_resource type="Texture2D" uid="uid://bj5xhmcswkn2" path="res://assets/sprites/arch-linux_icon.png" id="3_aac20"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f5cxw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5kmx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dwhk"]
 
@@ -17,8 +15,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jcn1r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aac20"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uegxj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y220t"]
 
@@ -148,7 +144,6 @@ horizontal_alignment = 1
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_g5kmx")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_0dwhk")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_pfayw")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_7vp6q")
@@ -183,7 +178,6 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_uegxj")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_y220t")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_4kltc")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_hl07w")

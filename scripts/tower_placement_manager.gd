@@ -15,7 +15,7 @@ var touch_position: Vector2
 
 # parameters and flag for tower spawning
 var tower : PackedScene = preload("res://scenes/tower.tscn")
-var tower_selected: TowerStats
+var tower_selected: TowerStats = null
 var spawned_tower: Tower
 var is_tower_ready_to_spawn = false
 
@@ -27,7 +27,7 @@ var screen_rect : Rect2
 func _ready():
 	tower_buy_menu = ui_canvas.find_child("TowerBuyMenu")
 	playable_area = ui_canvas.find_child("PlayableArea")
-	ui_canvas.find_child("TowerBuyMenuWrapper").connect("selected_tower",_on_tower_buy_menu_wrapper_selected_tower)
+	ui_canvas.find_child("TowerBuyMenuWrapper").connect("selected_tower",_on_selected_tower)
 
 	# calculate side margins for clamping tower placement
 	var playable_screen_aspect_ratio := 16.0/9.0
@@ -78,7 +78,7 @@ func _process(_delta):
 
 
 func _input(event):
-	if event is InputEventScreenTouch || event is InputEventScreenDrag:
+	if event is InputEventScreenDrag || event is InputEventScreenTouch:
 		var pos = event.position
 		is_touching_inside_play_area = playable_area.get_global_rect().has_point(pos)
 		is_touching_buy_menu = tower_buy_menu.get_global_rect().has_point(pos)
@@ -91,6 +91,11 @@ func _input(event):
 	if is_tower_ready_to_spawn && !is_touching_buy_menu:
 		tower_buy_menu.visible = false
 		spawn_tower()
+		
+	if is_tower_ready_to_spawn && !is_touching_inside_play_area:
+		tower_selected = null
+		is_tower_ready_to_spawn = false
+		tower_buy_menu.visible = true
 	
 	if event is InputEventScreenTouch:
 		is_dragging = event.is_pressed()
@@ -111,6 +116,6 @@ func spawn_tower():
 		is_tower_ready_to_spawn = false
 
 
-func _on_tower_buy_menu_wrapper_selected_tower(tower_stats):
+func _on_selected_tower(tower_stats):
 	tower_selected = tower_stats
 	is_tower_ready_to_spawn = true
