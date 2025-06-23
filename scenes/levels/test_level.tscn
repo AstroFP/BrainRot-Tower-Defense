@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://txfxh2a7blna" path="res://assets/sprites/TestBackgroundSprite.png" id="1_yautc"]
 [ext_resource type="Script" uid="uid://813n1uieffou" path="res://scripts/game_manager.gd" id="2_yautc"]
-[ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/ui_manager.gd" id="4_v45ci"]
+[ext_resource type="PackedScene" uid="uid://dx21gmg74ok58" path="res://scenes/ui/ui.tscn" id="4_v45ci"]
 [ext_resource type="Script" uid="uid://b8mfeebciipi4" path="res://scripts/tower_placement_manager.gd" id="5_48ne7"]
 
 [sub_resource type="Curve2D" id="Curve2D_86d4f"]
@@ -35,46 +35,4 @@ position = Vector2(1770, 0)
 script = ExtResource("5_48ne7")
 metadata/_custom_type_script = "uid://b8mfeebciipi4"
 
-[node name="UICanvas" type="CanvasLayer" parent="."]
-
-[node name="UI" type="Control" parent="UICanvas"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_v45ci")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvas/UI"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="UICanvas/UI/VBoxContainer"]
-z_index = -1
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 24
-text = "test_tower1"
-
-[node name="Button2" type="Button" parent="UICanvas/UI/VBoxContainer"]
-z_index = -1
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 24
-text = "test_tower2"
-
-[connection signal="selected_tower" from="UICanvas/UI" to="TowerPlacementManager" method="_on_ui_selected_tower"]
-[connection signal="mouse_entered" from="UICanvas/UI/VBoxContainer" to="TowerPlacementManager" method="_on_v_box_container_mouse_entered"]
-[connection signal="mouse_exited" from="UICanvas/UI/VBoxContainer" to="TowerPlacementManager" method="_on_v_box_container_mouse_exited"]
-[connection signal="button_down" from="UICanvas/UI/VBoxContainer/Button" to="UICanvas/UI" method="_on_button_button_down"]
-[connection signal="pressed" from="UICanvas/UI/VBoxContainer/Button" to="UICanvas/UI" method="_on_button_pressed"]
-[connection signal="button_down" from="UICanvas/UI/VBoxContainer/Button2" to="UICanvas/UI" method="_on_button_2_button_down"]
-[connection signal="pressed" from="UICanvas/UI/VBoxContainer/Button2" to="UICanvas/UI" method="_on_button_2_pressed"]
+[node name="UICanvas" parent="." instance=ExtResource("4_v45ci")]

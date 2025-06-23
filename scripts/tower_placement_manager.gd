@@ -1,8 +1,7 @@
 class_name TowerPlacementManager
 extends Node2D
 
-@onready var camera_2d = $"../Camera2D"
-@onready var v_box_container = $"../UICanvas/UI/VBoxContainer"
+@onready var ui_canvas = $"../UICanvas"
 
 # parameters and flags for screen input
 var is_touching_buy_menu := false
@@ -19,9 +18,12 @@ var tower_selected: TowerStats
 var spawned_tower: Tower
 var is_tower_ready_to_spawn = false
 
+var tower_buy_menu: MarginContainer
 
 func _ready():
-	pass
+	
+	tower_buy_menu = ui_canvas.find_child("TowerBuyMenu")
+	ui_canvas.find_child("TowerBuyMenuWrapper").connect("selected_tower",_on_tower_buy_menu_wrapper_selected_tower)
 
 
 func _process(_delta):
@@ -52,18 +54,21 @@ func _process(_delta):
 				spawned_tower.place_tower()
 				tower_selected = null
 				spawned_tower = null
+				tower_buy_menu.visible = true
 
 
 func _input(event):
 	if event is InputEventScreenTouch || event is InputEventScreenDrag:
 		var pos = event.position
-		is_touching_buy_menu = v_box_container.get_global_rect().has_point(pos)
+		is_touching_buy_menu = tower_buy_menu.get_global_rect().has_point(pos)
 	
 	if is_touching_buy_menu && spawned_tower:
 		spawned_tower.queue_free()
 		tower_selected = null
-	
+		tower_buy_menu.visible = true
+		
 	if is_tower_ready_to_spawn && !is_touching_buy_menu:
+		tower_buy_menu.visible = false
 		spawn_tower()
 	
 	if event is InputEventScreenTouch:
@@ -76,16 +81,16 @@ func _input(event):
 		touch_position = event.position * get_canvas_transform() # this took me like an hour to figure out 🙃
 
 
-func _on_ui_selected_tower(tower_stats):
-	tower_selected = tower_stats
-	is_tower_ready_to_spawn = true
-
-
 func spawn_tower():
 	if tower_selected && is_dragging:
 		print("Tower spawned!")
 		spawned_tower = tower.instantiate()
 		spawned_tower.tower_stats = tower_selected
 		get_tree().root.add_child(spawned_tower)
-		spawned_tower.global_position = get_global_mouse_position()
+		spawned_tower.global_position = touch_position
 		is_tower_ready_to_spawn = false
+
+
+func _on_tower_buy_menu_wrapper_selected_tower(tower_stats):
+	tower_selected = tower_stats
+	is_tower_ready_to_spawn = true
