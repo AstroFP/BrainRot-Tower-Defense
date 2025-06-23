@@ -30,6 +30,6 @@ curve = SubResource("Curve2D_dnkg4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="GameManager" type="Node2D" parent="."]
+[node name="GameManager" type="Node" parent="."]
 script = ExtResource("3_q0jxe")
 metadata/_custom_type_script = "uid://813n1uieffou"

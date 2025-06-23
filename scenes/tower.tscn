@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://byr5wrajar67m"]
+
+[ext_resource type="Script" uid="uid://cee76wl24loru" path="res://scripts/tower.gd" id="1_2x682"]
+[ext_resource type="Shader" uid="uid://pa5l42fbsi14" path="res://assets/shaders/tower_attack_radius_display_shader.gdshader" id="2_ay4al"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7j8ug"]
+radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay4al"]
+shader = ExtResource("2_ay4al")
+shader_parameter/fill_color = Color(1, 0.280178, 0.142634, 0.588235)
+shader_parameter/border_color = Color(1, 0, 0, 0.588235)
+shader_parameter/border_thickness = 0.03
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ktxwe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay4al"]
+radius = 2.0
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_2x682")
+
+[node name="TowerSprite" type="Sprite2D" parent="."]
+z_index = 1
+
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="AttackRangeHitbox" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_7j8ug")
+
+[node name="AttackRangeDisplay" type="Sprite2D" parent="AttackRange/AttackRangeHitbox"]
+material = SubResource("ShaderMaterial_ay4al")
+texture = SubResource("CanvasTexture_ktxwe")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["TowerCollidable", "TowerHitbox"]]
+
+[node name="HitboxCollisionBox" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_ay4al")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
