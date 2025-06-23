@@ -1,18 +1,13 @@
 class_name TowerPlacementManager
 extends Node2D
 
-# TODO:
-# Add collision to path
-# Add obstacle collision
-
-# *Add functionality to click on the placed towers (for now just to display attack range)
-
 @onready var camera_2d = $"../Camera2D"
 @onready var v_box_container = $"../UICanvas/UI/VBoxContainer"
 
 # parameters and flags for screen input
 var is_touching_buy_menu := false
 var is_dragging := false
+var dragging_locked := false
 var dragging_velocity := Vector2.ZERO
 var max_slow_distance := 400.0
 var min_dragging_speed_scale:= 0.2
@@ -29,22 +24,30 @@ func _ready():
 	pass
 
 
-func _process(delta):
+func _process(_delta):
 	if spawned_tower:
 		var dragging_speed_scale:float
-		var node_rect = Rect2(spawned_tower.global_position - spawned_tower.tower_sprite.texture.get_size()*0.5*spawned_tower.scale,
-			spawned_tower.tower_sprite.texture.get_size() * spawned_tower.scale)
+		var half_size = spawned_tower.tower_sprite.texture.get_size()*spawned_tower.tower_sprite.get_scale() * 0.5
+		var node_rect = Rect2(
+			spawned_tower.global_position - half_size,
+			spawned_tower.tower_sprite.texture.get_size()*spawned_tower.tower_sprite.get_scale()
+			)
 			
-		var distance = spawned_tower.global_position.distance_to(touch_position)
-		if node_rect.has_point(touch_position):
+		if node_rect.has_point(touch_position) && !dragging_locked:
+			dragging_locked = true
+			
+		if dragging_locked:
 			dragging_speed_scale = 1.0
 		else:
+			var closest_ponit = touch_position.clamp(node_rect.position, node_rect.position+node_rect.size)
+			var distance = touch_position.distance_to(closest_ponit)
 			dragging_speed_scale = clamp(1.0 - (distance / max_slow_distance),min_dragging_speed_scale,1.0)
 		
 		spawned_tower.global_position += dragging_velocity * dragging_speed_scale
 		dragging_velocity = Vector2.ZERO
 		
 		if !is_dragging:
+			dragging_locked = false
 			if spawned_tower.placement_state == 0:
 				spawned_tower.place_tower()
 				tower_selected = null
@@ -73,8 +76,8 @@ func _input(event):
 		touch_position = event.position * get_canvas_transform() # this took me like an hour to figure out 🙃
 
 
-func _on_ui_selected_tower(tower):
-	tower_selected = tower
+func _on_ui_selected_tower(tower_stats):
+	tower_selected = tower_stats
 	is_tower_ready_to_spawn = true
 
 

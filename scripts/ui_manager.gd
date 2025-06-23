@@ -12,7 +12,7 @@ signal selected_tower(tower: TowerStats)
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 

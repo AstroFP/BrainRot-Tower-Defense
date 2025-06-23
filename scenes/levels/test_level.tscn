@@ -19,6 +19,11 @@ texture = ExtResource("1_yautc")
 [node name="Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_86d4f")
 
+[node name="PathHitbox" type="Area2D" parent="Path" groups=["TowerCollidable"]]
+
+[node name="PathHitboxCollisionBox" type="CollisionPolygon2D" parent="Path/PathHitbox"]
+polygon = PackedVector2Array(800, -545, 725, -452, 636, -413, 326, -415, 79, -413, -95, -363, -166, -295, -175, -214, -119, -114, -27, -34, 76, 23, 109, 79, 94, 155, 32, 223, -162, 255, -358, 217, -485, 207, -670, 238, -783, 272, -899, 330, -958, 404, -1083, 508, -938, 623, -910, 541, -825, 481, -694, 403, -517, 360, -337, 354, -159, 376, 24, 368, 225, 319, 277, 242, 285, 128, 241, -1, 156, -83, 91, -176, 91, -268, 202, -302, 441, -291, 646, -278, 862, -333, 964, -425, 1112, -571, 955, -762)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="GameManager" type="Node" parent="."]

@@ -32,7 +32,7 @@ shape = SubResource("CircleShape2D_7j8ug")
 material = SubResource("ShaderMaterial_ay4al")
 texture = SubResource("CanvasTexture_ktxwe")
 
-[node name="Hitbox" type="Area2D" parent="." groups=["TowerHitbox"]]
+[node name="Hitbox" type="Area2D" parent="." groups=["TowerCollidable", "TowerHitbox"]]
 
 [node name="HitboxCollisionBox" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_ay4al")

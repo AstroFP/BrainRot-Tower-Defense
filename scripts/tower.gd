@@ -1,6 +1,9 @@
 class_name Tower
 extends Node2D
 
+# TODO:
+# *Add functionality to click on the placed towers (for now just to display attack range)
+
 @export var tower_stats: TowerStats
 
 @onready var tower_sprite = $TowerSprite
@@ -52,7 +55,7 @@ func _ready():
 	set_physics_process(false)
 	#process_mode = Node.PROCESS_MODE_DISABLED
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 
@@ -65,8 +68,8 @@ func place_tower():
 
 func update_attak_range_display_size():
 	var texture_size = attack_range_display.get_texture().get_size()
-	var scale_factor = (tower_stats.attack_radius * 2.0) / texture_size.x
-	attack_range_display.scale = Vector2(scale_factor, scale_factor)
+	var attack_range_scale_factor = (tower_stats.attack_radius * 2.0) / texture_size.x
+	attack_range_display.scale = Vector2(attack_range_scale_factor, attack_range_scale_factor)
 
 
 func update_attack_range_display_color_to_valid():
@@ -84,14 +87,14 @@ func toggle_attack_range_display():
 
 
 func _on_hitbox_area_entered(area):
-	if area.is_in_group("TowerHitbox") && !is_placed:
+	if area.is_in_group("TowerCollidable") && !is_placed:
 		colliding_towers.append(area)
 		placement_state = placement.invalid
 		update_attack_range_display_color_to_invalid()
 
 
 func _on_hitbox_area_exited(area):
-	if area.is_in_group("TowerHitbox") && !is_placed:
+	if area.is_in_group("TowerCollidable") && !is_placed:
 		colliding_towers.pop_at(colliding_towers.find(area))
 		if colliding_towers.is_empty():
 			placement_state = placement.valid
