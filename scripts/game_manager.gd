@@ -34,8 +34,8 @@ func _physics_process(_delta):
 				spawn_wave(current_wave-1)
 				current_wave += 1
 				
-	for path in paths:  
-		if path.get_child_count() > 0:
+	for path in paths:   
+		if path.get_child_count() > 1:
 			all_paths_empty = false
 			break
 		else:

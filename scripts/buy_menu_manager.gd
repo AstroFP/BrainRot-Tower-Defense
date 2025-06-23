@@ -1,6 +1,10 @@
 class_name BuyMenuManager
 extends Control
 
+#TODO:
+# Scrolling in towers list
+# Load towers dynamicly to ui   
+
 # towers
 var towers:= [
 	preload("res://resources/test_tower.tres"),

@@ -1,9 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bncs3ty5546u5"]
+[gd_scene load_steps=9 format=3 uid="uid://bncs3ty5546u5"]
 
 [ext_resource type="Texture2D" uid="uid://txfxh2a7blna" path="res://assets/sprites/TestBackgroundSprite.png" id="1_yautc"]
 [ext_resource type="Script" uid="uid://813n1uieffou" path="res://scripts/game_manager.gd" id="2_yautc"]
 [ext_resource type="PackedScene" uid="uid://dx21gmg74ok58" path="res://scenes/ui/ui.tscn" id="4_v45ci"]
 [ext_resource type="Script" uid="uid://b8mfeebciipi4" path="res://scripts/tower_placement_manager.gd" id="5_48ne7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v45ci"]
+size = Vector2(1000, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48ne7"]
+size = Vector2(10, 14.915)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v45ci"]
+size = Vector2(1920, 206)
 
 [sub_resource type="Curve2D" id="Curve2D_86d4f"]
 _data = {
@@ -15,6 +24,39 @@ point_count = 6
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_yautc")
+
+[node name="OutOfScreenColliders" type="Node2D" parent="."]
+
+[node name="FillerOutOfScreenTexture" type="Sprite2D" parent="OutOfScreenColliders"]
+z_index = 999
+position = Vector2(-1460, 0)
+texture = SubResource("PlaceholderTexture2D_v45ci")
+
+[node name="FillerOutOfScreenHitbox" type="Area2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture" groups=["TowerCollidable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture/FillerOutOfScreenHitbox"]
+scale = Vector2(100, 100)
+shape = SubResource("RectangleShape2D_48ne7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture/FillerOutOfScreenHitbox"]
+position = Vector2(1460, -643)
+shape = SubResource("RectangleShape2D_v45ci")
+
+[node name="FillerOutOfScreenTexture2" type="Sprite2D" parent="OutOfScreenColliders"]
+z_index = 999
+position = Vector2(1460, 0)
+texture = SubResource("PlaceholderTexture2D_v45ci")
+
+[node name="FillerOutOfScreenHitbox" type="Area2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture2" groups=["TowerCollidable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture2/FillerOutOfScreenHitbox"]
+position = Vector2(0, 0.500009)
+scale = Vector2(100, 100)
+shape = SubResource("RectangleShape2D_48ne7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture2/FillerOutOfScreenHitbox"]
+position = Vector2(-1460, 643)
+shape = SubResource("RectangleShape2D_v45ci")
 
 [node name="Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_86d4f")
