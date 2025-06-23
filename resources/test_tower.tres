@@ -7,7 +7,7 @@
 script = ExtResource("1_x3s63")
 name = "test tower"
 texture = ExtResource("2_m5euk")
-price = 0
+price = 175
 damage = 1
 pierce = 1
 attack_radius = 350.0
