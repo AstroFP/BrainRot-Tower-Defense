@@ -9,12 +9,13 @@ func _ready() -> void:
 		max_value = parent.max_health
 		min_value = parent.min_health
 		parent.health_changed.connect(_on_health_changed)
+		parent.max_health_changed.connect(_on_max_health_changed)
 	else:
 		push_error("parent for healthbar is wrong!")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -24,3 +25,7 @@ func _on_health_changed(new_health_value):
 		visible = false
 	else:
 		visible = true
+
+
+func _on_max_health_changed(new_max_health_value):
+	max_value = new_max_health_value
