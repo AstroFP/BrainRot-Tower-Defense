@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TowerStats" load_steps=3 format=3 uid="uid://qf4c6jiteyni"]
+
+[ext_resource type="Script" uid="uid://dvdcvjd7do71g" path="res://scripts/resources/tower_stats.gd" id="1_3geqb"]
+[ext_resource type="Texture2D" uid="uid://duyjhs74of41d" path="res://assets/sprites/Arch-Linux-Logo.png" id="2_vame7"]
+
+[resource]
+script = ExtResource("1_3geqb")
+name = "test tower 2"
+texture = ExtResource("2_vame7")
+price = 0
+damage = 1
+pierce = 1
+attack_radius = 500.0
+metadata/_custom_type_script = "uid://dvdcvjd7do71g"

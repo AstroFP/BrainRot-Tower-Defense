@@ -15,6 +15,9 @@ var placement_state = placement.valid
 
 var colliding_towers:=[]
 
+var scale_factor := 0.15
+var min_scale_size := Vector2(128,128)
+
 func _ready():
 	# set attack radius
 	var attack_radius = CircleShape2D.new()
@@ -27,12 +30,21 @@ func _ready():
 	
 	# set sprite texture
 	tower_sprite.texture = tower_stats.texture
-	#tower_sprite.scale = Vector2(.25,.25)
+	
+	# rescale tower
+	var texture_size = tower_sprite.texture.get_size()
+	var desired_size = texture_size * scale_factor
+	if desired_size.x < min_scale_size.x || desired_size.y < min_scale_size.y:
+		var min_scale_x = min_scale_size.x / texture_size.x
+		var min_scale_y = min_scale_size.y / texture_size.y
+		tower_sprite.scale = Vector2(min_scale_x, min_scale_y)
+	else:
+		tower_sprite.scale = Vector2(scale_factor,scale_factor)
 	
 	# set hitbox size
 	var hitbox_radius = CapsuleShape2D.new()
-	hitbox_radius.radius = tower_sprite.texture.get_size().x 
-	hitbox_radius.height = tower_sprite.texture.get_size().y 
+	hitbox_radius.radius = texture_size.x * tower_sprite.get_scale().x
+	hitbox_radius.height = texture_size.y * tower_sprite.get_scale().y
 	hitbox_collision_box.shape = hitbox_radius
 	
 	# disable AI
@@ -49,6 +61,7 @@ func place_tower():
 	set_process(true)
 	set_physics_process(true)
 	toggle_attack_range_display()
+
 
 func update_attak_range_display_size():
 	var texture_size = attack_range_display.get_texture().get_size()
