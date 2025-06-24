@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TowerStats" load_steps=3 format=3 uid="uid://cw30jwjtqyba8"]
+
+[ext_resource type="Script" uid="uid://dvdcvjd7do71g" path="res://scripts/resources/tower_stats.gd" id="1_5xrst"]
+[ext_resource type="Texture2D" uid="uid://s0cpl0pr3byk" path="res://assets/sprites/lena.png" id="1_wy7ex"]
+
+[resource]
+script = ExtResource("1_5xrst")
+name = "Lena"
+texture = ExtResource("1_wy7ex")
+icon = ExtResource("1_wy7ex")
+price = 500
+damage = 1
+pierce = 1
+attack_radius = 750.0
+metadata/_custom_type_script = "uid://dvdcvjd7do71g"

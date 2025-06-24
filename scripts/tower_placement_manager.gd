@@ -7,7 +7,7 @@ extends Node2D
 var is_touching_inside_play_area := false
 var is_touching_buy_menu := false
 var is_dragging := false
-var dragging_locked := false
+var dragging_speed_capped := false
 var dragging_velocity := Vector2.ZERO
 var max_slow_distance := 400.0
 var min_dragging_speed_scale:= 0.2
@@ -45,20 +45,20 @@ func _process(_delta):
 	if spawned_tower:
 		var dragging_speed_scale:float
 		var tower_half_size = spawned_tower.tower_sprite.texture.get_size()*spawned_tower.tower_sprite.get_scale() * 0.5
-		var node_rect = Rect2(
+		var spawned_tower_rect = Rect2(
 			spawned_tower.global_position - tower_half_size,
 			spawned_tower.tower_sprite.texture.get_size()*spawned_tower.tower_sprite.get_scale()
 			)
 			
-		if node_rect.has_point(touch_position) && !dragging_locked:
-			dragging_locked = true
+		if spawned_tower_rect.has_point(touch_position) && !dragging_speed_capped:
+			dragging_speed_capped = true
 			
-		if dragging_locked:
+		if dragging_speed_capped:
 			dragging_speed_scale = 1.0
 		else:
-			var closest_ponit = touch_position.clamp(node_rect.position, node_rect.position+node_rect.size)
-			var distance = touch_position.distance_to(closest_ponit)
-			dragging_speed_scale = clamp(1.0 - (distance / max_slow_distance),min_dragging_speed_scale,1.0)
+			var tower_closest_ponit_to_touch = touch_position.clamp(spawned_tower_rect.position, spawned_tower_rect.position+spawned_tower_rect.size)
+			var distance_to_closest_point = touch_position.distance_to(tower_closest_ponit_to_touch)
+			dragging_speed_scale = clamp(1.0 - (distance_to_closest_point / max_slow_distance),min_dragging_speed_scale,1.0)
 		
 		spawned_tower.global_position += dragging_velocity * dragging_speed_scale
 		
@@ -69,7 +69,7 @@ func _process(_delta):
 		dragging_velocity = Vector2.ZERO
 		
 		if !is_dragging:
-			dragging_locked = false
+			dragging_speed_capped = false
 			if spawned_tower.placement_state == 0:
 				spawned_tower.place_tower()
 				tower_selected = null
@@ -103,7 +103,7 @@ func _input(event):
 	elif event is InputEventScreenDrag && is_dragging:
 		dragging_velocity = event.relative
 	
-	if is_dragging:
+	if is_dragging && event is InputEventScreenTouch || event is InputEventScreenDrag:
 		touch_position = event.position * get_canvas_transform() # this took me like an hour to figure out 🙃
 
 

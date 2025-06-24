@@ -1,6 +1,8 @@
 class_name GameManager
 extends Node
 
+@export var game_rules: GameRules
+
 # array of paths on the level
 var paths: Array
 
@@ -19,6 +21,8 @@ var wave_spawning_in_progress = false
 
 var rng := RandomNumberGenerator.new()
 
+@onready var ui_canvas = $"../UICanvas"
+
 func _ready():
 	for path in get_parent().get_children():
 		if is_instance_of(path, Path2D):
@@ -26,6 +30,9 @@ func _ready():
 	
 	if paths.is_empty():
 		printerr("No paths set on the level!")
+	
+	# give ui available towers
+	ui_canvas.find_child("TowerBuyMenuWrapper").towers = game_rules.available_towers
 	
 func _physics_process(_delta):
 	if current_wave <= max_waves:

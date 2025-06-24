@@ -1,22 +1,12 @@
 class_name BuyMenuManager
 extends Control
 
-#TODO:
-# Scrolling in towers list
-# Load towers dynamicly to ui   
-
-# towers
-var towers:= [
-	preload("res://resources/test_tower.tres"),
-	preload("res://resources/test_tower2.tres")
-]
-
 signal selected_tower(tower: TowerStats)
 
+# towers
+var towers: Array[TowerStats]
 
-# tower buy buttons
-@onready var buy_tower_btn_1 = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerList/BuyMenuTowerListRow1/TowerBuyBanner/BuyTowerBtn1
-@onready var buy_tower_btn_2 = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerList/BuyMenuTowerListRow1/TowerBuyBanner2/BuyTowerBtn2
+var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 
 
 # menu toggle button
@@ -25,13 +15,13 @@ signal selected_tower(tower: TowerStats)
 @onready var tower_buy_menu = $TowerBuyMenu
 @onready var playable_area = $"../PlayableArea"
 @onready var tower_name_label = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/TowerNameLabel
-@onready var buy_menu_tower_list = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerList
+@onready var buy_menu_tower_list = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
 
 
 func _ready():
 	tower_buy_menu.visible = false
-	set_tower_prices()
-
+	setup_buy_menu()
+	
 
 func _process(_delta):
 	pass
@@ -42,26 +32,11 @@ func _input(event):
 		var pos = event.position
 		if playable_area.get_global_rect().has_point(pos) && !tower_buy_menu.get_global_rect().has_point(pos) && !toggle_tower_buy_menu_btn.get_global_rect().has_point(pos):
 			tower_buy_menu.visible = false
+	
 
-
-func _on_buy_tower_btn_1_button_down():
-	emit_signal("selected_tower",towers[0])
-	update_tower_name_label_text(towers[0])
-
-
-func _on_buy_tower_btn_1_pressed():
-	emit_signal("selected_tower",towers[0])
-	update_tower_name_label_text(towers[0])
-
-
-func _on_buy_tower_btn_2_button_down():
-	emit_signal("selected_tower",towers[1])
-	update_tower_name_label_text(towers[1])
-
-
-func _on_buy_tower_btn_2_pressed():
-	emit_signal("selected_tower",towers[1])
-	update_tower_name_label_text(towers[1])
+func _on_buy_tower_button_pressed(tower:TowerStats):
+	emit_signal("selected_tower", tower)
+	update_tower_name_label_text(tower)
 
 
 func _on_toggle_tower_buy_menu_btn_pressed():
@@ -75,7 +50,25 @@ func update_tower_name_label_text(tower_stats:TowerStats):
 	tower_name_label.text = tower_stats.name
 
 
-func set_tower_prices():
-	var price_labels = buy_menu_tower_list.find_children("TowerPriceLabel", "Label")
-	for i in range(len(price_labels)):
-		price_labels[i].text = str(towers[i].price)
+# buyTowerBtn should be a class with a tower connected to it
+func setup_buy_menu():
+	var buy_menu_tower_list_row = create_buy_menu_tower_list_row()
+	
+	for i in range(len(towers)):
+		var loaded_tower_buy_banner = tower_buy_banner.instantiate() as TowerBuyBanner
+		loaded_tower_buy_banner.tower = towers[i].duplicate()
+		loaded_tower_buy_banner.connect("buy_button_pressed",_on_buy_tower_button_pressed)
+		
+		# create new list row after inserting 2 banners to the previou one
+		if i % 2 == 0 && i != 0:
+			buy_menu_tower_list_row = create_buy_menu_tower_list_row()
+		
+		buy_menu_tower_list_row.add_child(loaded_tower_buy_banner)
+
+
+func create_buy_menu_tower_list_row():
+	var buy_menu_tower_list_row = HBoxContainer.new()
+	buy_menu_tower_list_row.add_theme_constant_override("separation",10)
+	buy_menu_tower_list_row.name = "BuyMenuTowerListRow"
+	buy_menu_tower_list.add_child(buy_menu_tower_list_row)
+	return buy_menu_tower_list_row
