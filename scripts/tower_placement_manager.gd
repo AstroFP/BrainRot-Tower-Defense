@@ -6,6 +6,7 @@ extends Node2D
 # parameters and flags for screen input
 var is_touching_inside_play_area := false
 var is_touching_buy_menu := false
+var is_touching_toggle_buy_menu_btn := false
 var is_dragging := false
 var dragging_speed_capped := false
 var dragging_velocity := Vector2.ZERO
@@ -21,12 +22,14 @@ var is_tower_ready_to_spawn = false
 
 var tower_buy_menu: MarginContainer
 var playable_area: MarginContainer
+var toggle_buy_menu_btn: Button
 
 var screen_rect : Rect2
 
 func _ready():
 	tower_buy_menu = ui_canvas.find_child("TowerBuyMenu")
 	playable_area = ui_canvas.find_child("PlayableArea")
+	toggle_buy_menu_btn = ui_canvas.find_child("ToggleTowerBuyMenuBtn")
 	ui_canvas.find_child("TowerBuyMenuWrapper").connect("selected_tower",_on_selected_tower)
 
 	# calculate side margins for clamping tower placement
@@ -82,6 +85,7 @@ func _input(event):
 		var pos = event.position
 		is_touching_inside_play_area = playable_area.get_global_rect().has_point(pos)
 		is_touching_buy_menu = tower_buy_menu.get_global_rect().has_point(pos)
+		is_touching_toggle_buy_menu_btn = toggle_buy_menu_btn.get_global_rect().has_point(pos)
 	
 	if  (is_touching_buy_menu || !is_touching_inside_play_area) && spawned_tower:
 		spawned_tower.queue_free()
@@ -96,7 +100,12 @@ func _input(event):
 		tower_selected = null
 		is_tower_ready_to_spawn = false
 		tower_buy_menu.visible = true
-	
+		
+	if is_tower_ready_to_spawn && is_touching_toggle_buy_menu_btn:
+		tower_selected = null
+		is_tower_ready_to_spawn = false
+		tower_buy_menu.visible = true
+		
 	if event is InputEventScreenTouch:
 		is_dragging = event.is_pressed()
 		dragging_velocity = Vector2.ZERO

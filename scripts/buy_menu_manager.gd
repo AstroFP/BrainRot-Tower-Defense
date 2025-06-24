@@ -20,6 +20,7 @@ var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 
 func _ready():
 	tower_buy_menu.visible = false
+	tower_name_label.text = ""
 	setup_buy_menu()
 	
 
