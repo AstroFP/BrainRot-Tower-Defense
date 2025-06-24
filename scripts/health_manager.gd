@@ -1,5 +1,9 @@
 extends Node2D
 
+#TODO
+#test all added features
+#delete/comment out the testing button
+
 signal health_changed(new_health_value)
 signal max_health_changed(new_max_health_value)
 signal dead
@@ -7,13 +11,19 @@ signal dead
 var max_health := 200
 var min_health := 0
 var current_health
-
+var button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	current_health = max_health *0.5
+	current_health = max_health*0.2
 	health_changed.emit(current_health)
-
+	
+	button = get_tree().root.get_node("TestLevel").get_node("TestButton")
+	if button:
+		print_debug(button)
+	else:
+		print_debug("XD")
+	button.pressed.connect(_on_button_pressed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -48,6 +58,7 @@ func heal(heal_ammount):
 	else:
 		current_health += heal_ammount
 	
+	print_debug("Current health %d" % self.current_health)
 	health_changed.emit(current_health)
 
 
@@ -70,3 +81,7 @@ func set_new_max_health(new_max_health):
 func reset_health():
 	current_health = max_health
 	health_changed.emit(current_health)
+
+
+func _on_button_pressed():
+	self.set_new_max_health(-500)
