@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://nfqwu8d60de0"]
+
+[ext_resource type="Script" uid="uid://wvork5parv5" path="res://scripts/ui/tower_buy_banner.gd" id="1_cxih7"]
+[ext_resource type="Texture2D" uid="uid://c0pl5vdswgvae" path="res://assets/sprites/villager_icon.png" id="2_sky8o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f5cxw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5kmx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dwhk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfayw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vp6q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uegxj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aac20"]
+
+[node name="TowerBuyBanner" type="PanelContainer"]
+custom_minimum_size = Vector2(150, 0)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f5cxw")
+script = ExtResource("1_cxih7")
+
+[node name="TowerBuyBannerItems" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TowerIcon" type="TextureRect" parent="TowerBuyBannerItems"]
+z_index = -1
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("2_sky8o")
+expand_mode = 1
+
+[node name="TowerPriceLabel" type="Label" parent="TowerBuyBannerItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "debug"
+horizontal_alignment = 1
+
+[node name="BuyTowerBtn" type="Button" parent="."]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g5kmx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0dwhk")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_pfayw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7vp6q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uegxj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_aac20")
+icon_alignment = 1
+
+[connection signal="button_down" from="BuyTowerBtn" to="." method="_on_buy_tower_btn_button_down"]
+[connection signal="pressed" from="BuyTowerBtn" to="." method="_on_buy_tower_btn_pressed"]

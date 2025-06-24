@@ -17,7 +17,7 @@ void fragment() {
 
     // Inner and outer thresholds
     float inner = radius - border_thickness;
-    
+
     // Blend between fill and border based on distance
     if (dist > radius) {
         discard; // Fully outside the circle

@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx21gmg74ok58"]
+
+[ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
+
+[node name="UICanvas" type="CanvasLayer"]
+
+[node name="UIContainer" type="AspectRatioContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+stretch_mode = 1
+
+[node name="UI" type="Control" parent="UIContainer"]
+layout_mode = 2
+
+[node name="PlayableArea" type="MarginContainer" parent="UIContainer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TowerUpgradeMenu" type="MarginContainer" parent="UIContainer/UI"]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 300.0
+grow_vertical = 2
+
+[node name="TowerUpgradeMenuItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenu"]
+layout_mode = 2
+
+[node name="TowerUpgradeMenuBg" type="ColorRect" parent="UIContainer/UI/TowerUpgradeMenu"]
+layout_mode = 2
+color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[node name="TowerBuyMenuWrapper" type="HBoxContainer" parent="UIContainer/UI"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0239
+offset_right = -0.0239258
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 15
+script = ExtResource("1_u7n8c")
+
+[node name="ToggleTowerBuyMenuBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper"]
+custom_minimum_size = Vector2(15, 150)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TowerBuyMenu" type="MarginContainer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
+z_index = 1
+layout_mode = 2
+
+[node name="TowerBuyMenuBg" type="ColorRect" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu"]
+z_index = -1
+layout_mode = 2
+color = Color(0.560955, 0.560955, 0.560955, 1)
+
+[node name="TowerBuyMenyItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="TowerBuyMenuItems" type="VBoxContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TowerNameLabel" type="Label" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "debug"
+horizontal_alignment = 1
+
+[node name="BuyMenuTowerScroll" type="ScrollContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="BuyMenuTowerList" type="VBoxContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerScroll"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 10
+
+[connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
