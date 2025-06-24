@@ -1,10 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://4ma2pna2ag6o"]
+[gd_scene load_steps=9 format=3 uid="uid://4ma2pna2ag6o"]
 
 [ext_resource type="Script" uid="uid://bs8os8ovowscb" path="res://scripts/hungry_hippo.gd" id="1_xfphi"]
 [ext_resource type="Texture2D" uid="uid://cjmyyku3i6ijs" path="res://assets/sprites/MC_Fabian3.png" id="2_5ofek"]
+[ext_resource type="Script" uid="uid://dyuhky0t2ol1d" path="res://scripts/health_bar.gd" id="3_2rrt5"]
+[ext_resource type="Script" uid="uid://btf3lllkclbrn" path="res://scripts/health_manager.gd" id="3_op0gg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irg8o"]
 size = Vector2(128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1fga"]
+bg_color = Color(0.901961, 0.282353, 0.231373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rrt5"]
+bg_color = Color(0.203922, 0.682353, 0.0352941, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1fga"]
 size = Vector2(128, 128)
@@ -20,6 +28,17 @@ texture = ExtResource("2_5ofek")
 shape = SubResource("RectangleShape2D_irg8o")
 
 [node name="HealthManager" type="Node2D" parent="."]
+script = ExtResource("3_op0gg")
+
+[node name="HealthBar" type="ProgressBar" parent="HealthManager"]
+offset_left = -64.0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 79.0
+theme_override_styles/background = SubResource("StyleBoxFlat_c1fga")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2rrt5")
+show_percentage = false
+script = ExtResource("3_2rrt5")
 
 [node name="HurtBox" type="Area2D" parent="."]
 
