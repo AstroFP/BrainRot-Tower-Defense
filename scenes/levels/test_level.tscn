@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bncs3ty5546u5"]
+[gd_scene load_steps=6 format=3 uid="uid://bncs3ty5546u5"]
 
 [ext_resource type="Texture2D" uid="uid://txfxh2a7blna" path="res://assets/sprites/TestBackgroundSprite.png" id="1_yautc"]
 [ext_resource type="Script" uid="uid://813n1uieffou" path="res://scripts/game_manager.gd" id="2_yautc"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/ui_manager.gd" id="4_v45ci"]
-[ext_resource type="Texture2D" uid="uid://sshd0s2r5tan" path="res://assets/sprites/roman-dmowski-jozef-pilsudski.jpg" id="5_6xh4u"]
 [ext_resource type="Script" uid="uid://b8mfeebciipi4" path="res://scripts/tower_placement_manager.gd" id="5_48ne7"]
-[ext_resource type="Script" uid="uid://cp1y5mn3sbxjl" path="res://scripts/test_button.gd" id="6_cyt5c"]
 
 [sub_resource type="Curve2D" id="Curve2D_86d4f"]
 _data = {
@@ -72,12 +70,6 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 24
 text = "test_tower2"
-
-[node name="TestButton" type="TouchScreenButton" parent="."]
-position = Vector2(-931, -296)
-scale = Vector2(0.765766, 0.476)
-texture_normal = ExtResource("5_6xh4u")
-script = ExtResource("6_cyt5c")
 
 [connection signal="selected_tower" from="UICanvas/UI" to="TowerPlacementManager" method="_on_ui_selected_tower"]
 [connection signal="mouse_entered" from="UICanvas/UI/VBoxContainer" to="TowerPlacementManager" method="_on_v_box_container_mouse_entered"]
