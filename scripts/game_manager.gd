@@ -47,13 +47,14 @@ func _ready():
 	level_resources.current_lives = game_rules.starting_lives
 	level_resources.currnet_cash = game_rules.starting_cash
 	
-func _physics_process(_delta):
+func _process(_delta):
 	if current_wave <= max_waves:
 		if Input.is_action_pressed("play"):
 			if !wave_in_progress:
 				spawn_wave(current_wave-1)
 				current_wave += 1
-				
+	
+	# check if wave in progress
 	for path in paths:   
 		if path.get_child_count() > 1:
 			all_paths_empty = false
@@ -65,6 +66,9 @@ func _physics_process(_delta):
 	if all_paths_empty && !wave_spawning_in_progress:
 		wave_in_progress = false
 		
+	if Input.is_action_just_pressed("add_cash"):
+		level_resources.currnet_cash += 100
+		ui.resources_panel.update_money_count(level_resources.currnet_cash)
 	
 func spawn_wave(wave_num):
 	wave_in_progress = true
@@ -117,4 +121,4 @@ func setup_game_level():
 
 func _on_selected_tower_placed(tower: TowerStats):
 	level_resources.currnet_cash -= tower.price
-	ui.resources_panel.update_money_count(-tower.price)
+	ui.resources_panel.update_money_count(level_resources.currnet_cash)

@@ -5,6 +5,7 @@ signal selected_tower(tower: TowerStats)
 
 # towers
 var towers: Array[TowerStats]
+var tower_banners: Array[TowerBuyBanner]
 
 var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 
@@ -68,6 +69,7 @@ func setup_buy_menu_towers():
 			buy_menu_tower_list_row = create_buy_menu_tower_list_row()
 		
 		buy_menu_tower_list_row.add_child(loaded_tower_buy_banner)
+		tower_banners.append(loaded_tower_buy_banner)
 
 
 func create_buy_menu_tower_list_row():
@@ -76,3 +78,8 @@ func create_buy_menu_tower_list_row():
 	buy_menu_tower_list_row.name = "BuyMenuTowerListRow"
 	buy_menu_tower_list.add_child(buy_menu_tower_list_row)
 	return buy_menu_tower_list_row
+
+
+func _on_available_money_changed(available_money: int):
+	for tower_banner in tower_banners:
+		tower_banner.update_banner_display(available_money)

@@ -1,6 +1,8 @@
 class_name ResourcesPanel
 extends MarginContainer
 
+signal available_money_changed(available_money: int)
+
 @onready var money_icon = $ResourcesPanelItems/MoneyDisplayPanel/MoneyDisplayPanelItems/MoneyIcon
 @onready var health_icon = $ResourcesPanelItems/HealthDisplayPanel/HealthDisplayPanelItems/HealthIcon
 
@@ -12,21 +14,23 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 func setup_resources_panel(starting_health_count: int, starting_cash_count: int):
 	health_count.text = str(starting_health_count)
 	money_count.text = str(starting_cash_count)
+	emit_signal("available_money_changed", starting_cash_count)
 
 
 func update_health_count(amount: int):
-	health_count.text = str(int(health_count.text) + amount)
+	health_count.text = str(amount)
 
 
 func update_money_count(amount: int):
-	money_count.text = str(int(money_count.text) + amount)
+	money_count.text = str(amount)
+	emit_signal("available_money_changed", amount)
 
 
 func update_health_icon(texture: Texture2D):
