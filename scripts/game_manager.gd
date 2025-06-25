@@ -21,7 +21,13 @@ var wave_spawning_in_progress = false
 
 var rng := RandomNumberGenerator.new()
 
-@onready var ui_canvas = $"../UICanvas"
+# ui
+var ui_scene = preload("res://scenes/ui/ui.tscn")
+var ui: UIManager
+
+# tower placement manager
+var tower_placement_manager_component = preload("res://scenes/tower_placement_manager.tscn")
+var tower_placement_manager : TowerPlacementManager
 
 func _ready():
 	for path in get_parent().get_children():
@@ -31,8 +37,10 @@ func _ready():
 	if paths.is_empty():
 		printerr("No paths set on the level!")
 	
-	# give ui available towers
-	ui_canvas.find_child("TowerBuyMenuWrapper").towers = game_rules.available_towers
+	# setup the game level
+	setup_game_level()
+	
+	# 
 	
 func _physics_process(_delta):
 	if current_wave <= max_waves:
@@ -53,7 +61,6 @@ func _physics_process(_delta):
 		wave_in_progress = false
 		
 	
-
 func spawn_wave(wave_num):
 	wave_in_progress = true
 	wave_spawning_in_progress = true
@@ -86,3 +93,17 @@ func unpack_enemies_pattern(wave):
 			patterns[len(patterns)-1].append([enemy_number,type])
 		
 	return patterns
+
+func setup_ui():
+	ui = ui_scene.instantiate()
+	ui.find_child("TowerBuyMenuWrapper").towers = game_rules.available_towers
+	add_child(ui)
+	
+func setup_tower_placement_manager():
+	tower_placement_manager = tower_placement_manager_component.instantiate()
+	tower_placement_manager.ui = ui
+	add_child(tower_placement_manager)
+
+func setup_game_level():
+	setup_ui()
+	setup_tower_placement_manager()

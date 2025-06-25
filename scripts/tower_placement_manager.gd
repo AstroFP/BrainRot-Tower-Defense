@@ -1,8 +1,6 @@
 class_name TowerPlacementManager
 extends Node2D
 
-@onready var ui_canvas = $"../UICanvas"
-
 # parameters and flags for screen input
 var is_touching_inside_play_area := false
 var is_touching_buy_menu := false
@@ -20,17 +18,22 @@ var tower_selected: TowerStats = null
 var spawned_tower: Tower
 var is_tower_ready_to_spawn = false
 
+var screen_rect : Rect2
+
+var ui: UIManager
 var tower_buy_menu: MarginContainer
 var playable_area: MarginContainer
 var toggle_buy_menu_btn: Button
 
-var screen_rect : Rect2
-
 func _ready():
-	tower_buy_menu = ui_canvas.find_child("TowerBuyMenu")
-	playable_area = ui_canvas.find_child("PlayableArea")
-	toggle_buy_menu_btn = ui_canvas.find_child("ToggleTowerBuyMenuBtn")
-	ui_canvas.find_child("TowerBuyMenuWrapper").connect("selected_tower",_on_selected_tower)
+	
+	# link ui elements
+	tower_buy_menu = ui.find_child("TowerBuyMenu")
+	playable_area = ui.find_child("PlayableArea")
+	toggle_buy_menu_btn = ui.find_child("ToggleTowerBuyMenuBtn")
+	
+	# connect selected tower signal
+	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower",_on_selected_tower)
 
 	# calculate side margins for clamping tower placement
 	var playable_screen_aspect_ratio := 16.0/9.0
