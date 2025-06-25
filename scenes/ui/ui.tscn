@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=6 format=3 uid="uid://dx21gmg74ok58"]
 
+[ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
+[ext_resource type="Script" uid="uid://cydr451m3h3lq" path="res://scenes/ui/resources_panel.gd" id="3_0dwhk"]
+[ext_resource type="Texture2D" uid="uid://ckok8l2ekcfew" path="res://assets/sprites/ui/heart.png" id="3_g5kmx"]
+[ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="5_0dwhk"]
 
 [node name="UICanvas" type="CanvasLayer"]
+script = ExtResource("1_f5cxw")
 
 [node name="UIContainer" type="AspectRatioContainer" parent="."]
 anchors_preset = 15
@@ -97,4 +102,71 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 10
 
+[node name="ResourcesPanel" type="MarginContainer" parent="UIContainer/UI"]
+custom_minimum_size = Vector2(700, 75)
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("3_0dwhk")
+
+[node name="ResourcesPanelBg" type="ColorRect" parent="UIContainer/UI/ResourcesPanel"]
+layout_mode = 2
+color = Color(0.396078, 0.396078, 0.396078, 0.784314)
+
+[node name="ResourcesPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel"]
+layout_mode = 2
+
+[node name="HealthDisplayPanel" type="MarginContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HealthDisplayPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/HealthDisplayPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HealthIcon" type="TextureRect" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/HealthDisplayPanel/HealthDisplayPanelItems"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("3_g5kmx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthCount" type="Label" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/HealthDisplayPanel/HealthDisplayPanelItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "debug"
+
+[node name="MoneyDisplayPanel" type="MarginContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MoneyDisplayPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/MoneyDisplayPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MoneyIcon" type="TextureRect" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/MoneyDisplayPanel/MoneyDisplayPanelItems"]
+texture_filter = 4
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_0dwhk")
+expand_mode = 1
+
+[node name="MoneyCount" type="Label" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/MoneyDisplayPanel/MoneyDisplayPanelItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "debug"
+
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
+[connection signal="available_money_changed" from="UIContainer/UI/ResourcesPanel" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_available_money_changed"]

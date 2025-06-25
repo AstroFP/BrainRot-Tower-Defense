@@ -1,6 +1,8 @@
 class_name Tower
 extends Node2D
 
+signal tower_placed(tower:TowerStats)
+
 # TODO:
 # *Add functionality to click on the placed towers (for now just to display attack range)
 
@@ -64,6 +66,7 @@ func place_tower():
 	set_process(true)
 	set_physics_process(true)
 	toggle_attack_range_display()
+	emit_signal("tower_placed",tower_stats)
 
 
 func update_attak_range_display_size():

@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bncs3ty5546u5"]
+[gd_scene load_steps=8 format=3 uid="uid://bncs3ty5546u5"]
 
 [ext_resource type="Texture2D" uid="uid://txfxh2a7blna" path="res://assets/sprites/TestBackgroundSprite.png" id="1_yautc"]
 [ext_resource type="Script" uid="uid://813n1uieffou" path="res://scripts/game_manager.gd" id="2_yautc"]
 [ext_resource type="Resource" uid="uid://cegu47iexc80f" path="res://resources/normal_difficulty.tres" id="3_48ne7"]
-[ext_resource type="PackedScene" uid="uid://dx21gmg74ok58" path="res://scenes/ui/ui.tscn" id="4_v45ci"]
-[ext_resource type="Script" uid="uid://b8mfeebciipi4" path="res://scripts/tower_placement_manager.gd" id="5_48ne7"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v45ci"]
 size = Vector2(1000, 1080)
@@ -73,10 +71,3 @@ polygon = PackedVector2Array(800, -545, 725, -452, 636, -413, 326, -415, 79, -41
 script = ExtResource("2_yautc")
 game_rules = ExtResource("3_48ne7")
 metadata/_custom_type_script = "uid://813n1uieffou"
-
-[node name="TowerPlacementManager" type="Node2D" parent="."]
-position = Vector2(1770, 0)
-script = ExtResource("5_48ne7")
-metadata/_custom_type_script = "uid://b8mfeebciipi4"
-
-[node name="UICanvas" parent="." instance=ExtResource("4_v45ci")]

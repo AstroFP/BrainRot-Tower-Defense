@@ -21,7 +21,16 @@ var wave_spawning_in_progress = false
 
 var rng := RandomNumberGenerator.new()
 
-@onready var ui_canvas = $"../UICanvas"
+# ui
+var ui_scene = preload("res://scenes/ui/ui.tscn")
+var ui: UIManager
+
+# tower placement manager
+var tower_placement_manager_component = preload("res://scenes/tower_placement_manager.tscn")
+var tower_placement_manager : TowerPlacementManager
+
+# level resources
+var level_resources = LevelResources.new()
 
 func _ready():
 	for path in get_parent().get_children():
@@ -31,16 +40,21 @@ func _ready():
 	if paths.is_empty():
 		printerr("No paths set on the level!")
 	
-	# give ui available towers
-	ui_canvas.find_child("TowerBuyMenuWrapper").towers = game_rules.available_towers
+	# setup the game level
+	setup_game_level()
 	
-func _physics_process(_delta):
+	# setup starting resources
+	level_resources.current_lives = game_rules.starting_lives
+	level_resources.currnet_cash = game_rules.starting_cash
+	
+func _process(_delta):
 	if current_wave <= max_waves:
 		if Input.is_action_pressed("play"):
 			if !wave_in_progress:
 				spawn_wave(current_wave-1)
 				current_wave += 1
-				
+	
+	# check if wave in progress
 	for path in paths:   
 		if path.get_child_count() > 1:
 			all_paths_empty = false
@@ -52,8 +66,10 @@ func _physics_process(_delta):
 	if all_paths_empty && !wave_spawning_in_progress:
 		wave_in_progress = false
 		
+	if Input.is_action_just_pressed("add_cash"):
+		level_resources.currnet_cash += 100
+		ui.resources_panel.update_money_count(level_resources.currnet_cash)
 	
-
 func spawn_wave(wave_num):
 	wave_in_progress = true
 	wave_spawning_in_progress = true
@@ -86,3 +102,23 @@ func unpack_enemies_pattern(wave):
 			patterns[len(patterns)-1].append([enemy_number,type])
 		
 	return patterns
+
+func setup_ui():
+	ui = ui_scene.instantiate()
+	ui.game_rules = game_rules
+	add_child(ui)
+	
+func setup_tower_placement_manager():
+	tower_placement_manager = tower_placement_manager_component.instantiate()
+	tower_placement_manager.ui = ui
+	tower_placement_manager.connect("selected_tower_placed",_on_selected_tower_placed)
+	add_child(tower_placement_manager)
+
+func setup_game_level():
+	setup_ui()
+	setup_tower_placement_manager()
+ 
+
+func _on_selected_tower_placed(tower: TowerStats):
+	level_resources.currnet_cash -= tower.price
+	ui.resources_panel.update_money_count(level_resources.currnet_cash)
