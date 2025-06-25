@@ -21,7 +21,6 @@ var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 func _ready():
 	tower_buy_menu.visible = false
 	tower_name_label.text = ""
-	setup_buy_menu()
 	
 
 func _process(_delta):
@@ -51,8 +50,12 @@ func update_tower_name_label_text(tower_stats:TowerStats):
 	tower_name_label.text = tower_stats.name
 
 
+func setup_buy_menu(towers_stats_list:Array[TowerStats]):
+	towers = towers_stats_list
+	setup_buy_menu_towers()
+
 # buyTowerBtn should be a class with a tower connected to it
-func setup_buy_menu():
+func setup_buy_menu_towers():
 	var buy_menu_tower_list_row = create_buy_menu_tower_list_row()
 	
 	for i in range(len(towers)):

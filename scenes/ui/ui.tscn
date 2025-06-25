@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=6 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
+[ext_resource type="Script" uid="uid://cydr451m3h3lq" path="res://scenes/ui/resources_panel.gd" id="3_0dwhk"]
 [ext_resource type="Texture2D" uid="uid://bg1rv6uagivq6" path="res://assets/sprites/ui/heart.png" id="3_g5kmx"]
 [ext_resource type="Texture2D" uid="uid://da73ihqbrou6y" path="res://assets/sprites/ui/rotcoin.png" id="4_0dwhk"]
 
@@ -110,10 +111,11 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+script = ExtResource("3_0dwhk")
 
 [node name="ResourcesPanelBg" type="ColorRect" parent="UIContainer/UI/ResourcesPanel"]
 layout_mode = 2
-color = Color(0.396889, 0.396889, 0.396889, 1)
+color = Color(0.396078, 0.396078, 0.396078, 0.784314)
 
 [node name="ResourcesPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel"]
 layout_mode = 2

@@ -29,6 +29,9 @@ var ui: UIManager
 var tower_placement_manager_component = preload("res://scenes/tower_placement_manager.tscn")
 var tower_placement_manager : TowerPlacementManager
 
+# level resources
+var level_resources = LevelResources.new()
+
 func _ready():
 	for path in get_parent().get_children():
 		if is_instance_of(path, Path2D):
@@ -40,7 +43,9 @@ func _ready():
 	# setup the game level
 	setup_game_level()
 	
-	# 
+	# setup starting resources
+	level_resources.current_lives = game_rules.starting_lives
+	level_resources.currnet_cash = game_rules.starting_cash
 	
 func _physics_process(_delta):
 	if current_wave <= max_waves:
@@ -96,14 +101,20 @@ func unpack_enemies_pattern(wave):
 
 func setup_ui():
 	ui = ui_scene.instantiate()
-	ui.find_child("TowerBuyMenuWrapper").towers = game_rules.available_towers
+	ui.game_rules = game_rules
 	add_child(ui)
 	
 func setup_tower_placement_manager():
 	tower_placement_manager = tower_placement_manager_component.instantiate()
 	tower_placement_manager.ui = ui
+	tower_placement_manager.connect("selected_tower_placed",_on_selected_tower_placed)
 	add_child(tower_placement_manager)
 
 func setup_game_level():
 	setup_ui()
 	setup_tower_placement_manager()
+ 
+
+func _on_selected_tower_placed(tower: TowerStats):
+	level_resources.currnet_cash -= tower.price
+	ui.resources_panel.update_money_count(-tower.price)

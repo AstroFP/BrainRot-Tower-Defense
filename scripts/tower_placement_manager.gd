@@ -1,6 +1,8 @@
 class_name TowerPlacementManager
 extends Node2D
 
+signal selected_tower_placed(tower)
+
 # parameters and flags for screen input
 var is_touching_inside_play_area := false
 var is_touching_buy_menu := false
@@ -123,6 +125,7 @@ func spawn_tower():
 	if tower_selected && is_dragging:
 		spawned_tower = tower.instantiate()
 		spawned_tower.tower_stats = tower_selected.duplicate()
+		spawned_tower.connect("tower_placed",_on_tower_placed)
 		get_tree().root.add_child(spawned_tower)
 		spawned_tower.global_position = touch_position
 		is_tower_ready_to_spawn = false
@@ -131,3 +134,7 @@ func spawn_tower():
 func _on_selected_tower(tower_stats):
 	tower_selected = tower_stats
 	is_tower_ready_to_spawn = true
+
+
+func _on_tower_placed(tower_stats):
+	emit_signal("selected_tower_placed",tower_stats)
