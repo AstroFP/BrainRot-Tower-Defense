@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://en7ofcxe2k0v"]
+
+[ext_resource type="Script" uid="uid://dt5v8mahpfkcy" path="res://scripts/combat_manager_scripts/cappuccino_assassino_combat_manager.gd" id="1_culo8"]
+
+[node name="CappuccinoCombatManager" type="Node2D"]
+script = ExtResource("1_culo8")

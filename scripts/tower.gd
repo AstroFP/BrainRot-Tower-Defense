@@ -57,6 +57,7 @@ func _ready():
 	set_physics_process(false)
 	#process_mode = Node.PROCESS_MODE_DISABLED
 
+
 func _physics_process(_delta):
 	pass
 
@@ -66,6 +67,14 @@ func place_tower():
 	set_process(true)
 	set_physics_process(true)
 	toggle_attack_range_display()
+	
+	#Add a CombatManager scene from resources
+	#We take the scene out of a dictionary stored in tower_stats.gd
+	#We refer to the entry of that dictionary by using an combat_manager_type variable (also from tower_stats.gd)
+	var combat_manager_scene_path =  tower_stats.COMBAT_MANAGER_SCENES[tower_stats.combat_manager_type]
+	var combat_manager_scene = load(combat_manager_scene_path)
+	add_child(combat_manager_scene.instantiate())
+	
 	emit_signal("tower_placed",tower_stats)
 
 
