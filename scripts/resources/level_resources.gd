@@ -14,9 +14,9 @@ var max_cash := 999_999_999
 var currnet_cash: int
 
 func update_current_lives(amount: int):
-	current_lives += clamp(amount, min_lives, max_lives)
+	current_lives += clamp(amount, min_lives-1, max_lives+1)
 	if current_lives <= min_lives:
 		emit_signal("game_over")
 
 func update_current_cash(amount: int):
-	currnet_cash += clamp(amount, min_cash, max_cash)
+	currnet_cash += clamp(amount, min_cash-1, max_cash+1)

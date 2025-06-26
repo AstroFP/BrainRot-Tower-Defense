@@ -24,6 +24,9 @@ var scale_factor := 0.15
 var min_scale_size := Vector2(128,128)
 
 func _ready():
+	# setup process mode
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	
 	# set attack radius
 	var attack_radius = CircleShape2D.new()
 	attack_radius.radius = tower_stats.attack_radius
