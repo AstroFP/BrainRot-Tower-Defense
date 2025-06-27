@@ -51,7 +51,7 @@ func _ready():
 	
 	# setup starting resources
 	level_resources.current_lives = game_rules.starting_lives
-	level_resources.currnet_cash = game_rules.starting_cash
+	level_resources.current_cash = game_rules.starting_cash
 	level_resources.connect("game_over",_on_game_over)
 	
 	
@@ -74,9 +74,18 @@ func _process(_delta):
 	if all_paths_empty && !wave_spawning_in_progress:
 		wave_in_progress = false
 		
-	if Input.is_action_just_pressed("add_cash"):
-		level_resources.currnet_cash += 100
-		ui.resources_panel.update_money_count(level_resources.currnet_cash)
+	if Input.is_action_just_pressed("add_cash"): # d
+		level_resources.update_current_cash(100)
+		ui.resources_panel.update_money_count(level_resources.current_cash)
+	
+	if Input.is_action_just_pressed("add_lives"): # o
+		level_resources.update_current_lives(10)
+		ui.update_health_count(level_resources.current_lives)
+	
+	if Input.is_action_just_pressed("sub_lives"): # p
+		level_resources.update_current_lives(-10)
+		ui.update_health_count(level_resources.current_lives)
+	
 	
 func spawn_wave(wave_num):
 	wave_in_progress = true
@@ -102,6 +111,7 @@ func spawn_wave(wave_num):
 	
 	wave_spawning_in_progress = false
 
+
 func unpack_enemies_pattern(wave):
 	var enemies_patterns_list = wave['enemies_pattern'].split("_")
 	var patterns = [] # [((),(),...),...]
@@ -115,28 +125,49 @@ func unpack_enemies_pattern(wave):
 		
 	return patterns
 
+
 func setup_ui():
 	ui = ui_scene.instantiate()
 	ui.game_rules = game_rules
-	add_child(ui)
-	
+	add_child(ui)	
+
+
 func setup_tower_placement_manager():
 	tower_placement_manager = tower_placement_manager_component.instantiate()
 	tower_placement_manager.ui = ui
 	tower_placement_manager.connect("selected_tower_placed",_on_selected_tower_placed)
 	add_child(tower_placement_manager)
 
+
 func setup_game_level():
 	setup_ui()
 	setup_tower_placement_manager()
  
+
+func pause_game():
+	# disable game loops in game manager
+	set_process(false)
+	set_physics_process(false)
+	 
+	# pause the game
+	get_tree().paused = true 
+
+
+func unpause_game():
+	# enable game loops in game manager
+	set_process(true)
+	set_physics_process(true)
+	
+	# unpause the game
+	get_tree().paused = false
+
 
 # signal handlers
 
 # substract money on tower placed
 func _on_selected_tower_placed(tower: TowerStats):
 	level_resources.update_current_cash(-tower.price)
-	ui.update_money_count(level_resources.currnet_cash)
+	ui.update_money_count(level_resources.current_cash)
 
 # substract health on enemy reached end of track
 func _on_enemy_end_of_track_reached(damage:int):
@@ -147,23 +178,3 @@ func _on_enemy_end_of_track_reached(damage:int):
 func _on_game_over():
 	ui.show_game_over_panel(current_wave)
 	pause_game()
-
-
-func pause_game():
-	# disable game loops in game manager
-	set_process(false)
-	set_physics_process(false)
-	 
-	# pause the game
-	get_tree().paused = true 
-
-func unpause_game():
-	# enable game loops in game manager
-	set_process(true)
-	set_physics_process(true)
-	
-	# unpause the game
-	get_tree().paused = false
-
-	
-	

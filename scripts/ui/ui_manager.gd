@@ -1,7 +1,7 @@
 class_name UIManager
 extends CanvasLayer
 
-signal money_count_changed(amount:int)
+#signal money_count_changed(amount:int)
 
 @onready var tower_buy_menu_wrapper = $UIContainer/UI/TowerBuyMenuWrapper
 @onready var resources_panel = $UIContainer/UI/ResourcesPanel

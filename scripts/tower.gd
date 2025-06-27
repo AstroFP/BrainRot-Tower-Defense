@@ -76,6 +76,7 @@ func update_attak_range_display_size():
 	var texture_size = attack_range_display.get_texture().get_size()
 	var attack_range_scale_factor = (tower_stats.attack_radius * 2.0) / texture_size.x
 	attack_range_display.scale = Vector2(attack_range_scale_factor, attack_range_scale_factor)
+	attack_range_display.material.set_shader_parameter("border_thickness",8.0/tower_stats.attack_radius)
 
 
 func update_attack_range_display_color_to_valid():

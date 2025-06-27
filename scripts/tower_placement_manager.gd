@@ -24,7 +24,7 @@ var screen_rect : Rect2
 
 var ui: UIManager
 var tower_buy_menu: MarginContainer
-var playable_area: MarginContainer
+var playable_area: MarginContainer 
 var toggle_buy_menu_btn: Button
 
 func _ready():

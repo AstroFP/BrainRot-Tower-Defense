@@ -10,6 +10,6 @@
 script = ExtResource("2_ew7nv")
 game_rule_name = "Normal"
 starting_cash = 500
-starting_lives = 1
+starting_lives = 50
 available_towers = Array[ExtResource("1_e63qq")]([ExtResource("2_shvfw"), ExtResource("3_veqo5"), ExtResource("4_7d725")])
 metadata/_custom_type_script = "uid://ddp7g1d618mdv"

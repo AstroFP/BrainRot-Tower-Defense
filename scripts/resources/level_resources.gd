@@ -11,12 +11,20 @@ var current_lives: int
 # cash
 var min_cash := -999_999_999 # if we'd like to have a functionality to get in debt else set to 0
 var max_cash := 999_999_999
-var currnet_cash: int
+var current_cash: int
 
 func update_current_lives(amount: int):
-	current_lives += clamp(amount, min_lives-1, max_lives+1)
+	current_lives += amount
+	if current_lives > max_lives:
+		current_lives = max_lives
+	
 	if current_lives <= min_lives:
 		emit_signal("game_over")
 
 func update_current_cash(amount: int):
-	currnet_cash += clamp(amount, min_cash-1, max_cash+1)
+	current_cash += amount
+	if current_cash > max_cash:
+		current_cash = max_cash
+	
+	if current_cash < min_cash:
+		current_cash = min_cash
