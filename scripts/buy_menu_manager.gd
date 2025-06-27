@@ -20,6 +20,9 @@ var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 
 
 func _ready():
+	# setup process mode
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	
 	tower_buy_menu.visible = false
 	tower_name_label.text = ""
 	

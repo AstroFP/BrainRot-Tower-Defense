@@ -31,5 +31,5 @@ const HUNGRY_HIPPO = preload("res://prefabs/enemies/path_follow.tscn")
 	},
 ]
 
-@export var current_wave := 1
+@export var current_wave := 0
 var max_waves := len(waves)

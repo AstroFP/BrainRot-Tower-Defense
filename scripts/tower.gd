@@ -24,6 +24,9 @@ var scale_factor := 0.15
 var min_scale_size := Vector2(128,128)
 
 func _ready():
+	# setup process mode
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	
 	# set attack radius
 	var attack_radius = CircleShape2D.new()
 	attack_radius.radius = tower_stats.attack_radius
@@ -73,6 +76,7 @@ func update_attak_range_display_size():
 	var texture_size = attack_range_display.get_texture().get_size()
 	var attack_range_scale_factor = (tower_stats.attack_radius * 2.0) / texture_size.x
 	attack_range_display.scale = Vector2(attack_range_scale_factor, attack_range_scale_factor)
+	attack_range_display.material.set_shader_parameter("border_thickness",8.0/tower_stats.attack_radius)
 
 
 func update_attack_range_display_color_to_valid():
