@@ -1,32 +1,51 @@
 extends Node2D
 
-var detection_range
-var tower_stats : TowerStats
-var tower
-
+var detection_area : Area2D
 var enemies_in_range := []
-#var targetting_style
-#var current_target
+var enemies_in_range_path_progressions := []
+var tower_stats : TowerStats
+var tower : Node2D
+var timer : Timer
+
+enum targetting_styles{
+	first,
+	last,
+	close
+}
+var current_targetting_style := targetting_styles.close
+var current_target
+
 
 func _ready() -> void:
 	tower = get_parent()
 	tower_stats = tower.tower_stats
-	detection_range = tower.get_node("AttackRange")
+	detection_area = tower.get_node("AttackRange")
+	
+	timer = get_parent().get_parent().get_node("TowerTick")
 	
 	#parsing the current enemies in range
-	parse_initial_enemies_in_range(detection_range.get_overlapping_bodies())
+	parse_initial_enemies_in_range(detection_area.get_overlapping_bodies())
 	
 	#connecting to signals
-	#body entered/exited will be used to update the enemies_in_range array
-	detection_range.body_entered.connect(_on_body_entered)
-	detection_range.body_exited.connect(_on_body_exited)
+	#body entered/exited are used to update the enemies_in_range array
+	detection_area.body_entered.connect(_on_body_entered)
+	detection_area.body_exited.connect(_on_body_exited)
+	timer.timeout.connect(_on_timer_tick)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
 
+func _on_timer_tick():
+	if enemies_in_range.is_empty():
+		return
+	else:
+		update_target()
+
+
+#				!---- Section 1----!
+# !----handling updating enemies_in_range array---!
 func parse_initial_enemies_in_range(overlapping_bodies):
 	for body in overlapping_bodies:
 		if body is HungryHippo:
@@ -45,10 +64,65 @@ func _on_body_exited(body):
 		enemies_in_range.erase(body)
 
 
+
+#			!---- Section 2----!
+#!---- choosing a current tower target ----!
+
+#the default targetting style is 'first', call this to change the current_targetting_style
+#buttons in tower gui will be calling this most likely
+func change_current_targetting_style(new_targetting_style : targetting_styles):
+	current_targetting_style = new_targetting_style
+
+#based on current_targetting_style chooses a correct target
 func update_target():
-	pass
-	#match targetting_style:
-		#"first":
-			#pass
-		#_:
-			#pass
+	match current_targetting_style:
+		targetting_styles.first:
+			current_target = choose_first_enemy()
+		targetting_styles.last:
+			current_target = choose_last_enemy()
+		targetting_styles.close:
+			current_target = choose_closest_enemy()
+			print_debug(current_target)
+		_:
+			printerr("impossible targetting style is set")
+
+
+func choose_first_enemy() -> HungryHippo:
+	var first_enemy : HungryHippo = null
+	var max_progress: float = -INF
+	var progress
+	
+	for enemy in enemies_in_range:
+		progress = enemy.get_parent().progress
+		if progress > max_progress:
+			max_progress = progress
+			first_enemy = enemy
+	
+	return first_enemy
+
+
+func choose_last_enemy() -> HungryHippo:
+	var last_enemy : HungryHippo = null
+	var min_progress: float = INF
+	var progress
+	
+	for enemy in enemies_in_range:
+		progress = enemy.get_parent().progress
+		if progress < min_progress:
+			min_progress = progress
+			last_enemy = enemy
+	return last_enemy
+
+
+func choose_closest_enemy() -> HungryHippo:
+	var closest_enemy : HungryHippo = null
+	var min_distance: float = INF
+	var distance
+	
+	for enemy in enemies_in_range:
+		distance = global_position.distance_to(enemy.global_position)
+		if distance < min_distance:
+			min_distance = distance
+			closest_enemy = enemy
+	
+	return closest_enemy

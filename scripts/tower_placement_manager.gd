@@ -126,7 +126,7 @@ func spawn_tower():
 		spawned_tower = tower.instantiate()
 		spawned_tower.tower_stats = tower_selected.duplicate()
 		spawned_tower.connect("tower_placed",_on_tower_placed)
-		get_tree().root.add_child(spawned_tower)
+		get_parent().get_parent().get_node("Towers").add_child(spawned_tower)
 		spawned_tower.global_position = touch_position
 		is_tower_ready_to_spawn = false
 
