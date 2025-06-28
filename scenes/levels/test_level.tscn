@@ -73,7 +73,3 @@ game_rules = ExtResource("3_48ne7")
 metadata/_custom_type_script = "uid://813n1uieffou"
 
 [node name="Towers" type="Node2D" parent="."]
-
-[node name="TowerTick" type="Timer" parent="Towers"]
-wait_time = 0.4
-autostart = true

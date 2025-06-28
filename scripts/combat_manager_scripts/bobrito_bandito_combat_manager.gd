@@ -5,7 +5,6 @@ var enemies_in_range := []
 var enemies_in_range_path_progressions := []
 var tower_stats : TowerStats
 var tower : Node2D
-var timer : Timer
 
 enum targetting_styles{
 	first,
@@ -21,8 +20,6 @@ func _ready() -> void:
 	tower_stats = tower.tower_stats
 	detection_area = tower.get_node("AttackRange")
 	
-	timer = get_parent().get_parent().get_node("TowerTick")
-	
 	#parsing the current enemies in range
 	parse_initial_enemies_in_range(detection_area.get_overlapping_bodies())
 	
@@ -30,22 +27,23 @@ func _ready() -> void:
 	#body entered/exited are used to update the enemies_in_range array
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
-	timer.timeout.connect(_on_timer_tick)
 
-
-func _process(_delta: float) -> void:
-	pass
-
-
-func _on_timer_tick():
-	print_debug(enemies_in_range.size())
-	if enemies_in_range.is_empty():
-		return
-	else:
-		update_target()
-		#setting a healthmanager that can be called to deal damage to the target
-		var current_target_hm = current_target.get_node("HealthManager")
-		current_target_hm.take_damage(10)
+var time_accumulated : float = 0
+func _process(delta: float) -> void:
+	time_accumulated += delta
+	
+	#happens every 0.5 sec, temporarily hardcoded
+	if time_accumulated > 0.5:
+		print_debug(enemies_in_range.size())
+		if enemies_in_range.is_empty():
+			pass
+		else:
+			update_target()
+			#setting a healthmanager that can be called to deal damage to the target
+			var current_target_hm = current_target.get_node("HealthManager")
+			current_target_hm.take_damage(10)
+		
+		time_accumulated = 0.0
 
 
 #				!---- Section 1----!
@@ -138,4 +136,4 @@ func choose_closest_enemy() -> HungryHippo:
 	return closest_enemy
 
 #	  !---- Section 3----!
-#!---- Actual Combat Logic ----!
+#!---- Actual Combat functionalities ----!
