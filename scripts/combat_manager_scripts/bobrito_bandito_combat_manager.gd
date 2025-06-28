@@ -12,7 +12,7 @@ enum targetting_styles{
 	last,
 	close
 }
-var current_targetting_style := targetting_styles.close
+var current_targetting_style := targetting_styles.first
 var current_target
 
 
@@ -38,10 +38,14 @@ func _process(_delta: float) -> void:
 
 
 func _on_timer_tick():
+	print_debug(enemies_in_range.size())
 	if enemies_in_range.is_empty():
 		return
 	else:
 		update_target()
+		#setting a healthmanager that can be called to deal damage to the target
+		var current_target_hm = current_target.get_node("HealthManager")
+		current_target_hm.take_damage(10)
 
 
 #				!---- Section 1----!
@@ -50,20 +54,27 @@ func parse_initial_enemies_in_range(overlapping_bodies):
 	for body in overlapping_bodies:
 		if body is HungryHippo:
 			enemies_in_range.append(body)
+			body.get_node("HealthManager").dead.connect(_on_enemy_dead)
 
 
 func _on_body_entered(body):
 	if body is HungryHippo:
 		enemies_in_range.append(body)
+		body.get_node("HealthManager").dead.connect(_on_enemy_dead)
 
 
 #this should handle bodies that get freed(), aka when body will be dead
 #note: may need a custom signal for death in case we need to animate death which could cause latency issues
 func _on_body_exited(body):
 	if body is HungryHippo:
+		body.get_node("HealthManager").dead.disconnect(_on_enemy_dead)
 		enemies_in_range.erase(body)
 
 
+func _on_enemy_dead(body):
+	if body is HungryHippo:
+		body.get_node("HealthManager").dead.disconnect(_on_enemy_dead)
+		enemies_in_range.erase(body)
 
 #			!---- Section 2----!
 #!---- choosing a current tower target ----!
@@ -82,7 +93,6 @@ func update_target():
 			current_target = choose_last_enemy()
 		targetting_styles.close:
 			current_target = choose_closest_enemy()
-			print_debug(current_target)
 		_:
 			printerr("impossible targetting style is set")
 
@@ -126,3 +136,6 @@ func choose_closest_enemy() -> HungryHippo:
 			closest_enemy = enemy
 	
 	return closest_enemy
+
+#	  !---- Section 3----!
+#!---- Actual Combat Logic ----!

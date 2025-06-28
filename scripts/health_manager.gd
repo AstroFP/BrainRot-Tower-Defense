@@ -2,7 +2,7 @@ extends Node2D
 
 signal health_changed(new_health_value)
 signal max_health_changed(new_max_health_value)
-signal dead
+signal dead(body)
 
 var max_health := 200
 var min_health := 0
@@ -29,7 +29,13 @@ func take_damage(damage_ammount):
 	if(current_health <= damage_ammount):
 		#for consistency sake we keep health at min not at random negative number
 		current_health = min_health
-		dead.emit()
+		dead.emit(self.get_parent())
+		
+		#TEMPORARTY, i wanted a small "animation" for when a node is dying
+		get_parent().is_moving = false
+		await get_tree().create_timer(5.0).timeout
+		get_parent().get_parent().free() 
+		return
 	else:
 		current_health -= damage_ammount
 	
