@@ -11,7 +11,7 @@ var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 
 
 # menu toggle button
-@onready var toggle_tower_buy_menu_btn = $ToggleTowerBuyMenuBtn
+@onready var toggle_tower_buy_menu_btn = $RightMenuBtnContainer/ToggleTowerBuyMenuBtn
 
 @onready var tower_buy_menu = $TowerBuyMenu
 @onready var playable_area = $"../PlayableArea"

@@ -2,10 +2,13 @@ class_name UIManager
 extends CanvasLayer
 
 #signal money_count_changed(amount:int)
+signal play_btn_pressed
 
 @onready var tower_buy_menu_wrapper = $UIContainer/UI/TowerBuyMenuWrapper
 @onready var resources_panel = $UIContainer/UI/ResourcesPanel
 @onready var game_over_panel = $UIContainer/UI/GameOverPanel
+@onready var play_btn = $UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn
+@onready var pause_menu = $UIContainer/UI/PauseMenu
 
 var game_rules: GameRules
 
@@ -33,3 +36,8 @@ func update_health_count(amount: int):
 
 func show_game_over_panel(waves_survived: int):
 	game_over_panel.show_game_over_panel(waves_survived)
+
+
+# signal handlers
+func _on_play_btn_pressed():
+	emit_signal("play_btn_pressed")

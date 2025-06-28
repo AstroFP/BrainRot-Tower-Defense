@@ -56,12 +56,6 @@ func _ready():
 	
 	
 func _process(_delta):
-	if current_wave < max_waves:
-		if Input.is_action_pressed("play"):
-			if !wave_in_progress:
-				spawn_wave(current_wave-1)
-				current_wave += 1
-	
 	# check if wave in progress
 	for path in paths:   
 		if path.get_child_count() > 1:
@@ -129,6 +123,7 @@ func unpack_enemies_pattern(wave):
 func setup_ui():
 	ui = ui_scene.instantiate()
 	ui.game_rules = game_rules
+	ui.connect("play_btn_pressed",_on_play_btn_pressed)
 	add_child(ui)	
 
 
@@ -178,3 +173,10 @@ func _on_enemy_end_of_track_reached(damage:int):
 func _on_game_over():
 	ui.show_game_over_panel(current_wave)
 	pause_game()
+
+
+func _on_play_btn_pressed():
+	if current_wave < max_waves:
+			if !wave_in_progress:
+				spawn_wave(current_wave-1)
+				current_wave += 1
