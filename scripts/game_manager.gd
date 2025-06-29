@@ -67,6 +67,7 @@ func _process(_delta):
 	
 	if all_paths_empty && !wave_spawning_in_progress:
 		wave_in_progress = false
+		ui.change_play_btn_icon_to_play()
 		
 	if Input.is_action_just_pressed("add_cash"): # d
 		level_resources.update_current_cash(100)
@@ -178,5 +179,7 @@ func _on_game_over():
 func _on_play_btn_pressed():
 	if current_wave < max_waves:
 			if !wave_in_progress:
+				ui.change_play_btn_icon_to_fast_forward()
 				spawn_wave(current_wave-1)
 				current_wave += 1
+				

@@ -31,11 +31,20 @@ func _process(_delta):
 func update_money_count(amount: int):
 	resources_panel.update_money_count(amount)
 
+
 func update_health_count(amount: int):
 	resources_panel.update_health_count(amount)
 
+
 func show_game_over_panel(waves_survived: int):
 	game_over_panel.show_game_over_panel(waves_survived)
+
+
+func change_play_btn_icon_to_play():
+	play_btn.change_icon_to_play()
+
+func change_play_btn_icon_to_fast_forward():
+	play_btn.change_icon_to_fast_forwad()
 
 
 # signal handlers

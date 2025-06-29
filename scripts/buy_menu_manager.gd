@@ -17,6 +17,8 @@ var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 @onready var playable_area = $"../PlayableArea"
 @onready var tower_name_label = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/TowerNameLabel
 @onready var buy_menu_tower_list = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
+@onready var pause_btn = $RightMenuBtnContainer/PauseBtn
+@onready var play_btn = $RightMenuBtnContainer/PlayBtn
 
 
 func _ready():
@@ -34,7 +36,7 @@ func _process(_delta):
 func _input(event):
 	if event is InputEventScreenTouch:
 		var pos = event.position
-		if playable_area.get_global_rect().has_point(pos) && !tower_buy_menu.get_global_rect().has_point(pos) && !toggle_tower_buy_menu_btn.get_global_rect().has_point(pos):
+		if playable_area.get_global_rect().has_point(pos) && !tower_buy_menu.get_global_rect().has_point(pos) && !toggle_tower_buy_menu_btn.get_global_rect().has_point(pos) && !pause_btn.get_global_rect().has_point(pos) && !play_btn.get_global_rect().has_point(pos):
 			tower_buy_menu.visible = false
 	
 
