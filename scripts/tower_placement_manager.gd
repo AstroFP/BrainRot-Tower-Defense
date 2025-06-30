@@ -24,15 +24,22 @@ var screen_rect : Rect2
 
 var ui: UIManager
 var tower_buy_menu: MarginContainer
-var playable_area: MarginContainer
+var playable_area: MarginContainer 
 var toggle_buy_menu_btn: Button
+var pause_menu_btn: Button
+var play_btn: Button
 
 func _ready():
+	# setup process mode
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	
 	# link ui elements
 	tower_buy_menu = ui.find_child("TowerBuyMenu")
 	playable_area = ui.find_child("PlayableArea")
 	toggle_buy_menu_btn = ui.find_child("ToggleTowerBuyMenuBtn")
+	pause_menu_btn = ui.find_child("PauseBtn")
+	play_btn = ui.find_child("PlayBtn")
+	
 	
 	# connect selected tower signal
 	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower",_on_selected_tower)
@@ -82,7 +89,7 @@ func _process(_delta):
 				spawned_tower.place_tower()
 				tower_selected = null
 				spawned_tower = null
-				tower_buy_menu.visible = true
+				show_right_ui_menu()
 
 
 func _input(event):
@@ -90,26 +97,26 @@ func _input(event):
 		var pos = event.position
 		is_touching_inside_play_area = playable_area.get_global_rect().has_point(pos)
 		is_touching_buy_menu = tower_buy_menu.get_global_rect().has_point(pos)
-		is_touching_toggle_buy_menu_btn = toggle_buy_menu_btn.get_global_rect().has_point(pos)
+		is_touching_toggle_buy_menu_btn = toggle_buy_menu_btn.get_global_rect().has_point(pos) || pause_menu_btn.get_global_rect().has_point(pos) || play_btn.get_global_rect().has_point(pos)
 	
 	if  (is_touching_buy_menu || !is_touching_inside_play_area) && spawned_tower:
 		spawned_tower.queue_free()
 		tower_selected = null
-		tower_buy_menu.visible = true
+		show_right_ui_menu()
 	
 	if is_tower_ready_to_spawn && !is_touching_buy_menu:
-		tower_buy_menu.visible = false
+		hide_right_ui_menu()
 		spawn_tower()
 		
 	if is_tower_ready_to_spawn && !is_touching_inside_play_area:
 		tower_selected = null
 		is_tower_ready_to_spawn = false
-		tower_buy_menu.visible = true
+		show_right_ui_menu()
 		
 	if is_tower_ready_to_spawn && is_touching_toggle_buy_menu_btn:
 		tower_selected = null
 		is_tower_ready_to_spawn = false
-		tower_buy_menu.visible = true
+		show_right_ui_menu()
 		
 	if event is InputEventScreenTouch:
 		is_dragging = event.is_pressed()
@@ -126,7 +133,9 @@ func spawn_tower():
 		spawned_tower = tower.instantiate()
 		spawned_tower.tower_stats = tower_selected.duplicate()
 		spawned_tower.connect("tower_placed",_on_tower_placed)
+    
 		get_parent().get_parent().get_node("Towers").add_child(spawned_tower)
+
 		spawned_tower.global_position = touch_position
 		is_tower_ready_to_spawn = false
 
@@ -138,3 +147,13 @@ func _on_selected_tower(tower_stats):
 
 func _on_tower_placed(tower_stats):
 	emit_signal("selected_tower_placed",tower_stats)
+
+func hide_right_ui_menu():
+	tower_buy_menu.visible = false
+	play_btn.visible = false
+	pause_menu_btn.visible = false
+	
+func show_right_ui_menu():
+	tower_buy_menu.visible = true
+	play_btn.visible = true
+	pause_menu_btn.visible = true

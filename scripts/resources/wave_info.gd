@@ -30,6 +30,3 @@ const HUNGRY_HIPPO = preload("res://prefabs/enemies/path_follow.tscn")
 		"enemy_pattern_spawn_delay":0.0
 	},
 ]
-
-@export var current_wave := 1
-var max_waves := len(waves)
