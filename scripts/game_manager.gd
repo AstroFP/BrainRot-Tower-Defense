@@ -11,8 +11,8 @@ var wave_info := WaveInfo.new()
 
 # set wave info to local vars
 var waves = wave_info.waves
-var current_wave = wave_info.current_wave
-var max_waves = wave_info.max_waves
+var current_wave: int
+var max_waves: int
 
 # boolean flags for wave management
 var wave_in_progress = false
@@ -47,6 +47,8 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	# setup the game level
+	current_wave = game_rules.start_wave - 1
+	max_waves = game_rules.last_wave
 	setup_game_level()
 	
 	# setup starting resources
@@ -56,12 +58,6 @@ func _ready():
 	
 	
 func _process(_delta):
-	if current_wave < max_waves:
-		if Input.is_action_pressed("play"):
-			if !wave_in_progress:
-				spawn_wave(current_wave-1)
-				current_wave += 1
-	
 	# check if wave in progress
 	for path in paths:   
 		if path.get_child_count() > 1:
@@ -73,6 +69,7 @@ func _process(_delta):
 	
 	if all_paths_empty && !wave_spawning_in_progress:
 		wave_in_progress = false
+		ui.change_play_btn_icon_to_play()
 		
 	if Input.is_action_just_pressed("add_cash"): # d
 		level_resources.update_current_cash(100)
@@ -129,7 +126,12 @@ func unpack_enemies_pattern(wave):
 func setup_ui():
 	ui = ui_scene.instantiate()
 	ui.game_rules = game_rules
-	add_child(ui)	
+	ui.connect("play_btn_pressed",_on_play_btn_pressed)
+	ui.connect("pause_game",_on_game_pause)
+	ui.connect("unpause_game",_on_game_unpause)
+	add_child(ui)
+	
+	ui.update_wave_display(game_rules.start_wave)	
 
 
 func setup_tower_placement_manager():
@@ -177,4 +179,22 @@ func _on_enemy_end_of_track_reached(damage:int):
 # handle game over
 func _on_game_over():
 	ui.show_game_over_panel(current_wave)
+	ui.toggle_paused_background_overlay()
 	pause_game()
+
+
+func _on_play_btn_pressed():
+	if current_wave < max_waves:
+			if !wave_in_progress:
+				ui.change_play_btn_icon_to_fast_forward()
+				spawn_wave(current_wave)
+				current_wave += 1
+				ui.update_wave_display(current_wave)
+
+
+func _on_game_pause():
+	pause_game()
+
+
+func _on_game_unpause():
+	unpause_game()
