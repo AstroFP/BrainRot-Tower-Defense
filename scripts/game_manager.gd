@@ -11,8 +11,8 @@ var wave_info := WaveInfo.new()
 
 # set wave info to local vars
 var waves = wave_info.waves
-var current_wave = wave_info.current_wave
-var max_waves = wave_info.max_waves
+var current_wave: int
+var max_waves: int
 
 # boolean flags for wave management
 var wave_in_progress = false
@@ -47,6 +47,8 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	# setup the game level
+	current_wave = game_rules.start_wave - 1
+	max_waves = game_rules.last_wave
 	setup_game_level()
 	
 	# setup starting resources
@@ -127,7 +129,9 @@ func setup_ui():
 	ui.connect("play_btn_pressed",_on_play_btn_pressed)
 	ui.connect("pause_game",_on_game_pause)
 	ui.connect("unpause_game",_on_game_unpause)
-	add_child(ui)	
+	add_child(ui)
+	
+	ui.update_wave_display(game_rules.start_wave)	
 
 
 func setup_tower_placement_manager():
@@ -183,8 +187,9 @@ func _on_play_btn_pressed():
 	if current_wave < max_waves:
 			if !wave_in_progress:
 				ui.change_play_btn_icon_to_fast_forward()
-				spawn_wave(current_wave-1)
+				spawn_wave(current_wave)
 				current_wave += 1
+				ui.update_wave_display(current_wave)
 
 
 func _on_game_pause():
