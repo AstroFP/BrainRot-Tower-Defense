@@ -71,3 +71,5 @@ polygon = PackedVector2Array(800, -545, 725, -452, 636, -413, 326, -415, 79, -41
 script = ExtResource("2_yautc")
 game_rules = ExtResource("3_48ne7")
 metadata/_custom_type_script = "uid://813n1uieffou"
+
+[node name="Towers" type="Node2D" parent="."]
