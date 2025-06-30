@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=13 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -6,8 +6,14 @@
 [ext_resource type="Script" uid="uid://cpyc1d248rktr" path="res://scripts/ui/play_btn.gd" id="3_7vp6q"]
 [ext_resource type="Texture2D" uid="uid://ckok8l2ekcfew" path="res://assets/sprites/ui/heart.png" id="3_g5kmx"]
 [ext_resource type="Texture2D" uid="uid://dlk8a52y78vmp" path="res://assets/sprites/ui/play_btn.png" id="3_jcn1r"]
+[ext_resource type="Texture2D" uid="uid://bi4lfvv0eww03" path="res://assets/sprites/ui/options_btn.png" id="3_y220t"]
 [ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="5_0dwhk"]
 [ext_resource type="Script" uid="uid://ct5j6a4vnfb62" path="res://scripts/ui/game_over_panel.gd" id="6_pfayw"]
+[ext_resource type="Script" uid="uid://dechlfp15kj8m" path="res://scripts/ui/pause_menu.gd" id="9_uegxj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y220t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kltc"]
 
 [node name="UICanvas" type="CanvasLayer"]
 script = ExtResource("1_f5cxw")
@@ -69,11 +75,15 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 20
 
 [node name="PauseBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "pause"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y220t")
+icon = ExtResource("3_y220t")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ToggleTowerBuyMenuBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
 custom_minimum_size = Vector2(15, 150)
@@ -86,6 +96,7 @@ custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4kltc")
 icon = ExtResource("3_jcn1r")
 flat = true
 icon_alignment = 1
@@ -272,27 +283,30 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 28
 text = "Exit to menu"
 
-[node name="PauseMenu" type="MarginContainer" parent="UIContainer/UI"]
-visible = false
-custom_minimum_size = Vector2(800, 500)
+[node name="PauseMenuWrapper" type="MarginContainer" parent="UIContainer/UI"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("9_uegxj")
 
-[node name="PauseMenuBg" type="ColorRect" parent="UIContainer/UI/PauseMenu"]
+[node name="PauseMenuBgFade" type="ColorRect" parent="UIContainer/UI/PauseMenuWrapper"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="PauseMenu" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper"]
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PauseMenuBg" type="ColorRect" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu"]
 layout_mode = 2
 color = Color(0.585062, 0.585062, 0.585062, 1)
 
-[node name="PauseMenuItemsWrapper" type="MarginContainer" parent="UIContainer/UI/PauseMenu/PauseMenuBg"]
+[node name="PauseMenuItemsWrapper" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -301,10 +315,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 40
 
-[node name="PauseMenuItems" type="VBoxContainer" parent="UIContainer/UI/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper"]
+[node name="PauseMenuItems" type="VBoxContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper"]
 layout_mode = 2
 
-[node name="PauseMenuHeader" type="Label" parent="UIContainer/UI/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
+[node name="PauseMenuHeader" type="Label" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -315,11 +329,20 @@ text = "Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="UIContainer/UI/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
+[node name="HSeparator" type="HSeparator" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="PlayAgainBtn" type="Button" parent="UIContainer/UI/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
+[node name="ContinueBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
+clip_contents = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 28
+text = "Continue"
+
+[node name="PlayAgainBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -327,7 +350,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 28
 text = "Play again"
 
-[node name="ReplayLastWaveBtn" type="Button" parent="UIContainer/UI/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
+[node name="ReplayLastWaveBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -335,7 +358,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 28
 text = "Replay last wave"
 
-[node name="ExitBtn" type="Button" parent="UIContainer/UI/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
+[node name="ExitBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -343,9 +366,14 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 28
 text = "Exit to menu"
 
+[connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
 [connection signal="available_money_changed" from="UIContainer/UI/ResourcesPanel" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_available_money_changed"]
 [connection signal="pressed" from="UIContainer/UI/GameOverPanel/GameOverPanelBg/GameOverPanelItemsWrapper/GameOverPanelItems/PlayAgainBtn" to="UIContainer/UI/GameOverPanel" method="_on_play_again_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/GameOverPanel/GameOverPanelBg/GameOverPanelItemsWrapper/GameOverPanelItems/ReplayLastWaveBtn" to="UIContainer/UI/GameOverPanel" method="_on_replay_last_wave_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/GameOverPanel/GameOverPanelBg/GameOverPanelItemsWrapper/GameOverPanelItems/Exitbtn" to="UIContainer/UI/GameOverPanel" method="_on_exitbtn_pressed"]
+[connection signal="pause_menu_closed" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_closed"]
+[connection signal="pause_menu_opened" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_opened"]
+[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems/ContinueBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems/PlayAgainBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_play_again_btn_pressed"]

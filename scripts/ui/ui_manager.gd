@@ -3,12 +3,17 @@ extends CanvasLayer
 
 #signal money_count_changed(amount:int)
 signal play_btn_pressed
+signal pause_game
+signal unpause_game
 
 @onready var tower_buy_menu_wrapper = $UIContainer/UI/TowerBuyMenuWrapper
 @onready var resources_panel = $UIContainer/UI/ResourcesPanel
 @onready var game_over_panel = $UIContainer/UI/GameOverPanel
 @onready var play_btn = $UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn
-@onready var pause_menu = $UIContainer/UI/PauseMenu
+@onready var pause_menu_wrapper = $UIContainer/UI/PauseMenuWrapper
+@onready var pause_btn = $UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn
+
+
 
 var game_rules: GameRules
 
@@ -22,7 +27,8 @@ func _ready():
 	
 	# setup resources panel
 	resources_panel.setup_resources_panel(game_rules.starting_lives, game_rules.starting_cash)
-
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
@@ -43,6 +49,7 @@ func show_game_over_panel(waves_survived: int):
 func change_play_btn_icon_to_play():
 	play_btn.change_icon_to_play()
 
+
 func change_play_btn_icon_to_fast_forward():
 	play_btn.change_icon_to_fast_forwad()
 
@@ -50,3 +57,15 @@ func change_play_btn_icon_to_fast_forward():
 # signal handlers
 func _on_play_btn_pressed():
 	emit_signal("play_btn_pressed")
+
+
+func _on_pause_btn_pressed():
+	pause_menu_wrapper.show_pause_menu()
+
+
+func _on_pause_menu_opened():
+	emit_signal("pause_game")
+
+
+func _on_pause_menu_closed():
+	emit_signal("unpause_game")

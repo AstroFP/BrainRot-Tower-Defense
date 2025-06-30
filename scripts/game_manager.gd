@@ -125,6 +125,8 @@ func setup_ui():
 	ui = ui_scene.instantiate()
 	ui.game_rules = game_rules
 	ui.connect("play_btn_pressed",_on_play_btn_pressed)
+	ui.connect("pause_game",_on_game_pause)
+	ui.connect("unpause_game",_on_game_unpause)
 	add_child(ui)	
 
 
@@ -182,4 +184,11 @@ func _on_play_btn_pressed():
 				ui.change_play_btn_icon_to_fast_forward()
 				spawn_wave(current_wave-1)
 				current_wave += 1
-				
+
+
+func _on_game_pause():
+	pause_game()
+
+
+func _on_game_unpause():
+	unpause_game()
