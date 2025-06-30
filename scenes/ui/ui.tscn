@@ -18,6 +18,16 @@
 [node name="UICanvas" type="CanvasLayer"]
 script = ExtResource("1_f5cxw")
 
+[node name="PausedBackgroundOverlay" type="ColorRect" parent="."]
+visible = false
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
 [node name="UIContainer" type="AspectRatioContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -209,6 +219,7 @@ text = "debug"
 
 [node name="GameOverPanel" type="MarginContainer" parent="UIContainer/UI"]
 visible = false
+z_index = 1
 custom_minimum_size = Vector2(800, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -284,6 +295,8 @@ theme_override_font_sizes/font_size = 28
 text = "Exit to menu"
 
 [node name="PauseMenuWrapper" type="MarginContainer" parent="UIContainer/UI"]
+visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -291,10 +304,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_uegxj")
-
-[node name="PauseMenuBgFade" type="ColorRect" parent="UIContainer/UI/PauseMenuWrapper"]
-layout_mode = 2
-color = Color(0, 0, 0, 0.392157)
 
 [node name="PauseMenu" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper"]
 custom_minimum_size = Vector2(800, 500)
@@ -376,4 +385,4 @@ text = "Exit to menu"
 [connection signal="pause_menu_closed" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_closed"]
 [connection signal="pause_menu_opened" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_opened"]
 [connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems/ContinueBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_continue_btn_pressed"]
-[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems/PlayAgainBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_play_again_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems/PlayAgainBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_pause_menu_play_again_btn_pressed"]

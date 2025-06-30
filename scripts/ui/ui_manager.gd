@@ -12,8 +12,7 @@ signal unpause_game
 @onready var play_btn = $UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn
 @onready var pause_menu_wrapper = $UIContainer/UI/PauseMenuWrapper
 @onready var pause_btn = $UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn
-
-
+@onready var paused_background_overlay = $PausedBackgroundOverlay
 
 var game_rules: GameRules
 
@@ -28,6 +27,9 @@ func _ready():
 	# setup resources panel
 	resources_panel.setup_resources_panel(game_rules.starting_lives, game_rules.starting_cash)
 	
+	# hide paused bg overlay
+	paused_background_overlay.visible = false
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -64,8 +66,17 @@ func _on_pause_btn_pressed():
 
 
 func _on_pause_menu_opened():
+	toggle_paused_background_overlay()
 	emit_signal("pause_game")
 
 
 func _on_pause_menu_closed():
+	toggle_paused_background_overlay()
 	emit_signal("unpause_game")
+
+
+func toggle_paused_background_overlay():
+	if paused_background_overlay.visible:
+		paused_background_overlay.visible = false
+	else:
+		paused_background_overlay.visible = true

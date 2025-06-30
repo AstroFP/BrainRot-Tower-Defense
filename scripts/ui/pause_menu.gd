@@ -21,6 +21,9 @@ func _process(_delta):
 
 
 func _input(event):
+	if !visible:
+		return
+		
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			touch_start_time = Time.get_ticks_msec() / 1000.0
@@ -31,14 +34,14 @@ func _input(event):
 			if duration < hold_threshold:
 				if !pause_menu.get_global_rect().has_point(event.position):
 						hide_pause_menu()
-	
-	
+
+
 # Pause menu buttons pressed handling
 func _on_continue_btn_pressed():
 	hide_pause_menu()
 
 
-func _on_play_again_btn_pressed():
+func _on_pause_menu_play_again_btn_pressed():
 	get_tree().reload_current_scene()
 
 
