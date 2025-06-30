@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 	
 	#happens every 0.5 sec, temporarily hardcoded
 	if time_accumulated > 0.5:
-		print_debug(enemies_in_range.size())
+		#print_debug(enemies_in_range.size())
 		if enemies_in_range.is_empty():
 			pass
 		else:
@@ -65,14 +65,13 @@ func _on_body_entered(body):
 #note: may need a custom signal for death in case we need to animate death which could cause latency issues
 func _on_body_exited(body):
 	if body is HungryHippo:
-		body.get_node("HealthManager").dead.disconnect(_on_enemy_dead)
 		enemies_in_range.erase(body)
 
 
 func _on_enemy_dead(body):
 	if body is HungryHippo:
-		body.get_node("HealthManager").dead.disconnect(_on_enemy_dead)
 		enemies_in_range.erase(body)
+
 
 #			!---- Section 2----!
 #!---- choosing a current tower target ----!

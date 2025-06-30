@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GameRules" load_steps=6 format=3 uid="uid://cegu47iexc80f"]
 
 [ext_resource type="Script" uid="uid://dvdcvjd7do71g" path="res://scripts/resources/tower_stats.gd" id="1_e63qq"]
-[ext_resource type="Script" path="res://scripts/resources/game_rules.gd" id="2_ew7nv"]
+[ext_resource type="Script" uid="uid://ddp7g1d618mdv" path="res://scripts/resources/game_rules.gd" id="2_ew7nv"]
 [ext_resource type="Resource" uid="uid://b66hya4spt8sj" path="res://resources/towers/test_tower.tres" id="2_shvfw"]
 [ext_resource type="Resource" uid="uid://qf4c6jiteyni" path="res://resources/towers/test_tower2.tres" id="3_veqo5"]
 [ext_resource type="Resource" uid="uid://cw30jwjtqyba8" path="res://resources/towers/test_tower3.tres" id="4_7d725"]

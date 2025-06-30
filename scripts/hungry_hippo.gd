@@ -24,6 +24,5 @@ func _physics_process(delta):
 	if is_moving == true:
 		path_follow.progress += move_speed * delta
 		if path_follow.progress_ratio >= 1.0:
-      emit_signal("end_of_track_reached",1)
+			emit_signal("end_of_track_reached",1)
 			get_parent().queue_free()
-
