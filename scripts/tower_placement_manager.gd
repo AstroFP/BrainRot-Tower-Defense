@@ -19,6 +19,7 @@ var tower : PackedScene = preload("res://scenes/tower.tscn")
 var tower_selected: TowerStats = null
 var spawned_tower: Tower
 var is_tower_ready_to_spawn = false
+var selected_banner: TowerBuyBanner = null
 
 var screen_rect : Rect2
 
@@ -42,7 +43,8 @@ func _ready():
 	
 	
 	# connect selected tower signal
-	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower",_on_selected_tower)
+	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower_pressed",_on_selected_tower_pressed)
+	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower_down",_on_selected_tower_down)
 
 	# calculate side margins for clamping tower placement
 	var playable_screen_aspect_ratio := 16.0/9.0
@@ -138,12 +140,28 @@ func spawn_tower():
 
 		spawned_tower.global_position = touch_position
 		is_tower_ready_to_spawn = false
+		
+		if selected_banner:
+			selected_banner.update_banner_selection_info()
+			selected_banner = null
 
 
-func _on_selected_tower(tower_stats):
-	tower_selected = tower_stats
-	is_tower_ready_to_spawn = true
+func _on_selected_tower_pressed(tower_stats: TowerStats, banner: TowerBuyBanner):
+	if !banner.is_disabled && banner.is_selected:
+		tower_selected = tower_stats
+		is_tower_ready_to_spawn = true
+	else:
+		tower_selected = null
+		is_tower_ready_to_spawn = false
 
+func _on_selected_tower_down(tower_stats: TowerStats, banner: TowerBuyBanner):
+	if !banner.is_disabled:
+		tower_selected = tower_stats
+		is_tower_ready_to_spawn = true
+		selected_banner = banner
+	else:
+		tower_selected = null
+		is_tower_ready_to_spawn = false
 
 func _on_tower_placed(tower_stats):
 	emit_signal("selected_tower_placed",tower_stats)

@@ -13,4 +13,4 @@ starting_cash = 500
 starting_lives = 50
 start_wave = 1
 last_wave = 3
-available_towers = Array[ExtResource("1_e63qq")]([ExtResource("2_shvfw"), ExtResource("3_veqo5"), ExtResource("4_7d725")])
+available_towers = Array[ExtResource("1_e63qq")]([ExtResource("2_shvfw"), ExtResource("3_veqo5"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725")])

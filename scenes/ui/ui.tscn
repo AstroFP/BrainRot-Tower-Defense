@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=17 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -7,12 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://ckok8l2ekcfew" path="res://assets/sprites/ui/heart.png" id="3_g5kmx"]
 [ext_resource type="Texture2D" uid="uid://dlk8a52y78vmp" path="res://assets/sprites/ui/play_btn.png" id="3_jcn1r"]
 [ext_resource type="Texture2D" uid="uid://bi4lfvv0eww03" path="res://assets/sprites/ui/options_btn.png" id="3_y220t"]
+[ext_resource type="Texture2D" uid="uid://2uwiipyws4g3" path="res://assets/sprites/ui/buy_menu_toggle_btn.png" id="4_hl07w"]
 [ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="5_0dwhk"]
 [ext_resource type="Script" uid="uid://ct5j6a4vnfb62" path="res://scripts/ui/game_over_panel.gd" id="6_pfayw"]
+[ext_resource type="Script" uid="uid://br72ugcth0srs" path="res://scripts/ui/buy_menu_tower_list.gd" id="7_swkix"]
 [ext_resource type="Script" uid="uid://dechlfp15kj8m" path="res://scripts/ui/pause_menu.gd" id="9_uegxj"]
 [ext_resource type="Script" uid="uid://b7mng3q4amihb" path="res://scripts/ui/wave_display.gd" id="11_4kltc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y220t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl07w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kltc"]
 
@@ -101,6 +105,10 @@ custom_minimum_size = Vector2(15, 150)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hl07w")
+icon = ExtResource("4_hl07w")
+flat = true
+icon_alignment = 1
 
 [node name="PlayBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
 custom_minimum_size = Vector2(80, 80)
@@ -144,13 +152,15 @@ horizontal_alignment = 1
 [node name="BuyMenuTowerScroll" type="ScrollContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems"]
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
 [node name="BuyMenuTowerList" type="VBoxContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerScroll"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_constants/separation = 10
+theme_override_constants/separation = 6
+script = ExtResource("7_swkix")
 
 [node name="ResourcesPanel" type="MarginContainer" parent="UIContainer/UI"]
 custom_minimum_size = Vector2(700, 75)
