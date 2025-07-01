@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://bncs3ty5546u5"]
+
+[ext_resource type="Texture2D" uid="uid://txfxh2a7blna" path="res://assets/sprites/TestBackgroundSprite.png" id="1_yautc"]
+[ext_resource type="Script" uid="uid://813n1uieffou" path="res://scripts/game_manager.gd" id="2_yautc"]
+[ext_resource type="Resource" uid="uid://cegu47iexc80f" path="res://resources/normal_difficulty.tres" id="3_48ne7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v45ci"]
+size = Vector2(1000, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48ne7"]
+size = Vector2(10, 14.915)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v45ci"]
+size = Vector2(1920, 206)
+
+[sub_resource type="Curve2D" id="Curve2D_86d4f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 981, -636, 132.149, -97.4433, -132.149, 97.4433, 815, -417, 120.136, -86.7646, -120.136, 86.7646, 42, -310, 33.371, -170.859, -33.371, 170.859, 190, 184, 208.235, -13.3484, -208.235, 13.3484, -555, 280, 0, 0, 0, 0, -1081, 581)
+}
+point_count = 6
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_yautc")
+
+[node name="OutOfScreenColliders" type="Node2D" parent="."]
+
+[node name="FillerOutOfScreenTexture" type="Sprite2D" parent="OutOfScreenColliders"]
+z_index = 999
+position = Vector2(-1460, 0)
+texture = SubResource("PlaceholderTexture2D_v45ci")
+
+[node name="FillerOutOfScreenHitbox" type="Area2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture" groups=["TowerCollidable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture/FillerOutOfScreenHitbox"]
+scale = Vector2(100, 100)
+shape = SubResource("RectangleShape2D_48ne7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture/FillerOutOfScreenHitbox"]
+position = Vector2(1460, -643)
+shape = SubResource("RectangleShape2D_v45ci")
+
+[node name="FillerOutOfScreenTexture2" type="Sprite2D" parent="OutOfScreenColliders"]
+z_index = 999
+position = Vector2(1460, 0)
+texture = SubResource("PlaceholderTexture2D_v45ci")
+
+[node name="FillerOutOfScreenHitbox" type="Area2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture2" groups=["TowerCollidable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture2/FillerOutOfScreenHitbox"]
+position = Vector2(0, 0.500009)
+scale = Vector2(100, 100)
+shape = SubResource("RectangleShape2D_48ne7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OutOfScreenColliders/FillerOutOfScreenTexture2/FillerOutOfScreenHitbox"]
+position = Vector2(-1460, 643)
+shape = SubResource("RectangleShape2D_v45ci")
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_86d4f")
+
+[node name="PathHitbox" type="Area2D" parent="Path" groups=["TowerCollidable"]]
+
+[node name="PathHitboxCollisionBox" type="CollisionPolygon2D" parent="Path/PathHitbox"]
+polygon = PackedVector2Array(800, -545, 725, -452, 636, -413, 326, -415, 79, -413, -95, -363, -166, -295, -175, -214, -119, -114, -27, -34, 76, 23, 109, 79, 94, 155, 32, 223, -162, 255, -358, 217, -485, 207, -670, 238, -783, 272, -899, 330, -958, 404, -1083, 508, -938, 623, -910, 541, -825, 481, -694, 403, -517, 360, -337, 354, -159, 376, 24, 368, 225, 319, 277, 242, 285, 128, 241, -1, 156, -83, 91, -176, 91, -268, 202, -302, 441, -291, 646, -278, 862, -333, 964, -425, 1112, -571, 955, -762)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("2_yautc")
+game_rules = ExtResource("3_48ne7")
+metadata/_custom_type_script = "uid://813n1uieffou"
+
+[node name="Towers" type="Node2D" parent="."]
