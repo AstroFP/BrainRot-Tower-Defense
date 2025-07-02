@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=21 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -19,6 +19,44 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl07w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kltc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swkix"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hc5d0"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 0.196078)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_hc5d0"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_swkix")
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_hc5d0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3vwu"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 0.196078)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="UICanvas" type="CanvasLayer"]
 script = ExtResource("1_f5cxw")
@@ -80,13 +118,12 @@ offset_left = -20.0239
 offset_right = -0.0239258
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/separation = 15
 script = ExtResource("1_u7n8c")
 
 [node name="RightMenuBtnContainer" type="MarginContainer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
 layout_mode = 2
 theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 20
 
 [node name="PauseBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
@@ -101,7 +138,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ToggleTowerBuyMenuBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
-custom_minimum_size = Vector2(15, 150)
+custom_minimum_size = Vector2(45, 150)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
@@ -122,30 +159,36 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_7vp6q")
 
-[node name="TowerBuyMenu" type="MarginContainer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
+[node name="TowerBuyMenu" type="PanelContainer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
 z_index = 1
 layout_mode = 2
+theme = SubResource("Theme_hc5d0")
 
 [node name="TowerBuyMenuBg" type="ColorRect" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu"]
+visible = false
 z_index = -1
 layout_mode = 2
 color = Color(0.560955, 0.560955, 0.560955, 1)
 
 [node name="TowerBuyMenyItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 20
 
 [node name="TowerBuyMenuItems" type="VBoxContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TowerNameLabel" type="Label" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems"]
+[node name="TowerNameLabelWrapper" type="PanelContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n3vwu")
+
+[node name="TowerNameLabel" type="Label" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/TowerNameLabelWrapper"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 32
 text = "debug"
 horizontal_alignment = 1
 
@@ -161,6 +204,11 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 6
 script = ExtResource("7_swkix")
+
+[node name="TowerInfoBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Info"
 
 [node name="ResourcesPanel" type="MarginContainer" parent="UIContainer/UI"]
 custom_minimum_size = Vector2(700, 75)

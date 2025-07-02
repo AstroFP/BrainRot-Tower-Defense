@@ -24,7 +24,7 @@ var selected_banner: TowerBuyBanner = null
 var screen_rect : Rect2
 
 var ui: UIManager
-var tower_buy_menu: MarginContainer
+var tower_buy_menu: PanelContainer
 var playable_area: MarginContainer 
 var toggle_buy_menu_btn: Button
 var pause_menu_btn: Button
@@ -154,6 +154,7 @@ func _on_selected_tower_pressed(tower_stats: TowerStats, banner: TowerBuyBanner)
 		tower_selected = null
 		is_tower_ready_to_spawn = false
 
+
 func _on_selected_tower_down(tower_stats: TowerStats, banner: TowerBuyBanner):
 	if !banner.is_disabled:
 		tower_selected = tower_stats
@@ -163,14 +164,20 @@ func _on_selected_tower_down(tower_stats: TowerStats, banner: TowerBuyBanner):
 		tower_selected = null
 		is_tower_ready_to_spawn = false
 
+
 func _on_tower_placed(tower_stats):
 	emit_signal("selected_tower_placed",tower_stats)
+	# idk whether we want this or not
+	#ui.reset_buy_menu_tower_label()
+	#ui.reset_buy_menu_selection_outline()
+
 
 func hide_right_ui_menu():
 	tower_buy_menu.visible = false
 	play_btn.visible = false
 	pause_menu_btn.visible = false
-	
+
+
 func show_right_ui_menu():
 	tower_buy_menu.visible = true
 	play_btn.visible = true

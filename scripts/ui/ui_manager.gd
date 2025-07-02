@@ -14,6 +14,7 @@ signal unpause_game
 @onready var pause_btn = $UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn
 @onready var paused_background_overlay = $PausedBackgroundOverlay
 @onready var wave_display = $UIContainer/UI/WaveDisplay
+@onready var buy_menu_tower_list = $UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
 
 var game_rules: GameRules
 
@@ -59,6 +60,15 @@ func change_play_btn_icon_to_fast_forward():
 
 func update_wave_display(wave_number: int):
 	wave_display.update_wave_display(wave_number)
+
+
+func reset_buy_menu_tower_label():
+	tower_buy_menu_wrapper.reset_tower_name_label_text()
+
+
+func reset_buy_menu_selection_outline():
+	buy_menu_tower_list.reset_selection()
+
 
 # signal handlers
 func _on_play_btn_pressed():

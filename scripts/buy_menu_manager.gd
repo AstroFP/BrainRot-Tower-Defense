@@ -16,10 +16,10 @@ var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 
 @onready var tower_buy_menu = $TowerBuyMenu
 @onready var playable_area = $"../PlayableArea"
-@onready var tower_name_label = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/TowerNameLabel
 @onready var buy_menu_tower_list = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
 @onready var pause_btn = $RightMenuBtnContainer/PauseBtn
 @onready var play_btn = $RightMenuBtnContainer/PlayBtn
+@onready var tower_name_label = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/TowerNameLabelWrapper/TowerNameLabel
 
 
 func _ready():
