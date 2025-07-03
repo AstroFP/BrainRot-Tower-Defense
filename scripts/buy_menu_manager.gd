@@ -22,15 +22,14 @@ var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 @onready var tower_name_label = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/TowerNameLabelWrapper/TowerNameLabel
 @onready var animation_player = $AnimationPlayer
 
-var open_animation_duration = 0.5
-var base_scale_vec = Vector2.ONE
+var current_tower_name := ""
 
 func _ready():
 	# setup process mode
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	
 	tower_buy_menu.visible = false
-	tower_name_label.text = ""
+	tower_name_label.text = current_tower_name
 	
 	
 func _process(_delta):
@@ -90,11 +89,17 @@ func _on_banner_pressed(banner: TowerBuyBanner):
 
 
 func update_tower_name_label_text(tower_stats:TowerStats):
+	current_tower_name = tower_stats.name
 	tower_name_label.text = tower_stats.name
 
 
 func reset_tower_name_label_text():
 	tower_name_label.text = ""
+	current_tower_name = ""
+
+
+func load_tower_name_label_text():
+	tower_name_label.text = current_tower_name
 
 
 func setup_buy_menu(towers_stats_list:Array[TowerStats]):
