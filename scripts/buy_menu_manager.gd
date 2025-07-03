@@ -20,7 +20,10 @@ var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 @onready var pause_btn = $RightMenuBtnContainer/PauseBtn
 @onready var play_btn = $RightMenuBtnContainer/PlayBtn
 @onready var tower_name_label = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/TowerNameLabelWrapper/TowerNameLabel
+@onready var animation_player = $AnimationPlayer
 
+var open_animation_duration = 0.5
+var base_scale_vec = Vector2.ONE
 
 func _ready():
 	# setup process mode
@@ -29,7 +32,7 @@ func _ready():
 	tower_buy_menu.visible = false
 	tower_name_label.text = ""
 	
-
+	
 func _process(_delta):
 	pass
 
@@ -38,22 +41,22 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		var pos = event.position
 		
-		if !playable_area.get_global_rect().has_point(pos):
-			return
+		#if !playable_area.get_global_rect().has_point(pos):
+			#return
+			#
+		#if tower_buy_menu.get_global_rect().has_point(pos):
+			#return
+		#
+		#if toggle_tower_buy_menu_btn.get_global_rect().has_point(pos):
+			#return
+		#
+		#if pause_btn.get_global_rect().has_point(pos):
+			#return
+		#
+		#if  play_btn.get_global_rect().has_point(pos):
+			#return
 			
-		if tower_buy_menu.get_global_rect().has_point(pos):
-			return
-		
-		if toggle_tower_buy_menu_btn.get_global_rect().has_point(pos):
-			return
-		
-		if pause_btn.get_global_rect().has_point(pos):
-			return
-		
-		if  play_btn.get_global_rect().has_point(pos):
-			return
-			
-		tower_buy_menu.visible = false
+		#tower_buy_menu.visible = false
 		
 		#if playable_area.get_global_rect().has_point(pos) && !tower_buy_menu.get_global_rect().has_point(pos) && !toggle_tower_buy_menu_btn.get_global_rect().has_point(pos) && !pause_btn.get_global_rect().has_point(pos) && !play_btn.get_global_rect().has_point(pos):
 			#tower_buy_menu.visible = false
@@ -74,9 +77,13 @@ func _on_buy_tower_button_down(tower: TowerStats, banner: TowerBuyBanner):
 
 func _on_toggle_tower_buy_menu_btn_pressed():
 	if tower_buy_menu.visible:
-		tower_buy_menu.visible = false
+		animation_player.play("close")
+		#tower_buy_menu.visible = false
 	else:
-		tower_buy_menu.visible= true
+		#tower_buy_menu.visible= true
+		animation_player.play("open")
+
+
 
 func _on_banner_pressed(banner: TowerBuyBanner):
 	update_tower_name_label_text(banner.tower)

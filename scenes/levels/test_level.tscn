@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bncs3ty5546u5"]
+[gd_scene load_steps=9 format=3 uid="uid://bncs3ty5546u5"]
 
 [ext_resource type="Texture2D" uid="uid://txfxh2a7blna" path="res://assets/sprites/TestBackgroundSprite.png" id="1_yautc"]
 [ext_resource type="Script" uid="uid://813n1uieffou" path="res://scripts/game_manager.gd" id="2_yautc"]
 [ext_resource type="Resource" uid="uid://cegu47iexc80f" path="res://resources/normal_difficulty.tres" id="3_48ne7"]
+[ext_resource type="Script" uid="uid://ju2h5ycbma88" path="res://scripts/fps_meter.gd" id="4_v45ci"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v45ci"]
 size = Vector2(1000, 1080)
@@ -73,3 +74,14 @@ game_rules = ExtResource("3_48ne7")
 metadata/_custom_type_script = "uid://813n1uieffou"
 
 [node name="Towers" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -910.0
+offset_top = -357.0
+offset_right = -629.0
+offset_bottom = -202.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 40
+text = "FPS: "
+script = ExtResource("4_v45ci")

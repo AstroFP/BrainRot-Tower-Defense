@@ -14,6 +14,7 @@ var tower: TowerStats
 var is_disabled = false
 var is_selected = false
 
+
 func _ready():
 	setup_banner()
 
