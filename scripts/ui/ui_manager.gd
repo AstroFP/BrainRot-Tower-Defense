@@ -14,7 +14,7 @@ signal unpause_game
 @onready var pause_btn = $UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn
 @onready var paused_background_overlay = $PausedBackgroundOverlay
 @onready var wave_display = $UIContainer/UI/WaveDisplay
-@onready var buy_menu_tower_list = $UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
+@onready var buy_menu_tower_list = $UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/InnerBG/TowerBuyMenuItemsMargins/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
 
 var game_rules: GameRules
 

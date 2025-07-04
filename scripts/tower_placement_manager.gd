@@ -13,6 +13,10 @@ var dragging_velocity := Vector2.ZERO
 var max_slow_distance := 400.0
 var min_dragging_speed_scale:= 0.2
 var touch_position: Vector2
+var touch_start_time := 0.0
+var is_holding := false
+var hold_threshold := 0.3
+
 
 # parameters and flag for tower spawning
 var tower : PackedScene = preload("res://scenes/tower.tscn")
@@ -45,6 +49,7 @@ func _ready():
 	# connect selected tower signal
 	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower_pressed",_on_selected_tower_pressed)
 	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower_down",_on_selected_tower_down)
+	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower_up",_on_selected_tower_up)
 
 	# calculate side margins for clamping tower placement
 	var playable_screen_aspect_ratio := 16.0/9.0
@@ -165,6 +170,12 @@ func _on_selected_tower_down(tower_stats: TowerStats, banner: TowerBuyBanner):
 		is_tower_ready_to_spawn = true
 		selected_banner = banner
 	else:
+		tower_selected = null
+		is_tower_ready_to_spawn = false
+
+
+func _on_selected_tower_up(banner: TowerBuyBanner):
+	if !is_dragging && !banner.is_selected:
 		tower_selected = null
 		is_tower_ready_to_spawn = false
 

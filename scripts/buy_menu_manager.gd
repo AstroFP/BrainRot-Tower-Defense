@@ -3,6 +3,7 @@ extends Control
 
 signal selected_tower_pressed(tower: TowerStats)
 signal selected_tower_down(tower: TowerStats)
+signal selected_tower_up(tower: TowerBuyBanner)
 
 # towers
 var towers: Array[TowerStats]
@@ -16,11 +17,11 @@ var tower_buy_banner = preload("res://scenes/ui/tower_buy_banner.tscn")
 
 @onready var tower_buy_menu = $TowerBuyMenu
 @onready var playable_area = $"../PlayableArea"
-@onready var buy_menu_tower_list = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
+@onready var buy_menu_tower_list = $TowerBuyMenu/TowerBuyMenyItemsWrapper/InnerBG/TowerBuyMenuItemsMargins/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
 @onready var pause_btn = $RightMenuBtnContainer/PauseBtn
 @onready var play_btn = $RightMenuBtnContainer/PlayBtn
-@onready var tower_name_label = $TowerBuyMenu/TowerBuyMenyItemsWrapper/TowerBuyMenuItems/TowerNameLabelWrapper/TowerNameLabel
 @onready var buy_menu_animation_player = $BuyMenuAnimationPlayer
+@onready var tower_name_label = $TowerBuyMenu/TowerBuyMenyItemsWrapper/InnerBG/TowerBuyMenuItemsMargins/TowerBuyMenuItems/TowerNameLabelWrapper/TowerNameLabel
 
 var current_tower_name := ""
 
@@ -76,6 +77,10 @@ func _on_buy_tower_button_down(tower: TowerStats, banner: TowerBuyBanner):
 	emit_signal("selected_tower_down",tower, banner)
 
 
+func _on_buy_tower_button_up(banner:TowerBuyBanner):
+	emit_signal("selected_tower_up", banner)
+
+
 func _on_toggle_tower_buy_menu_btn_pressed():
 	if tower_buy_menu.visible:
 		buy_menu_animation_player.play("close")
@@ -116,7 +121,9 @@ func setup_buy_menu_towers():
 		loaded_tower_buy_banner.tower = towers[i].duplicate()
 		loaded_tower_buy_banner.connect("buy_button_pressed", _on_buy_tower_button_pressed.bind(loaded_tower_buy_banner))
 		loaded_tower_buy_banner.connect("buy_button_down", _on_buy_tower_button_down.bind(loaded_tower_buy_banner))
+		loaded_tower_buy_banner.connect("buy_button_up", _on_buy_tower_button_up.bind(loaded_tower_buy_banner))
 		loaded_tower_buy_banner.connect("banner_selected",  _on_banner_pressed.bind(loaded_tower_buy_banner))
+		
 		
 		# create new list row after inserting 2 banners to the previou one
 		if i % 2 == 0 && i != 0:

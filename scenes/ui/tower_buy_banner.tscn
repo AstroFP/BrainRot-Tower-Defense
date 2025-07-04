@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://nfqwu8d60de0"]
 
 [ext_resource type="Script" uid="uid://wvork5parv5" path="res://scripts/ui/tower_buy_banner.gd" id="1_cxih7"]
-[ext_resource type="Texture2D" uid="uid://6k6pixemopxp" path="res://assets/sprites/ui/buy_menu_banner.png" id="2_6bey2"]
 [ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="3_w7bcc"]
 [ext_resource type="Texture2D" uid="uid://dn5pemf7xudiw" path="res://assets/sprites/ui/bobrito_icon.png" id="4_6bey2"]
 [ext_resource type="Shader" uid="uid://ryregunc7t7j" path="res://assets/shaders/gray_scale_shader.gdshader" id="4_w7bcc"]
+[ext_resource type="Texture2D" uid="uid://weqgdxtvhqix" path="res://assets/sprites/ui/Banner_s.png" id="5_w7bcc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7bcc"]
 resource_local_to_scene = true
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(1, 0.988235, 0.960784, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -37,7 +37,6 @@ shader_parameter/grayscale_amount = 0.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aac20"]
 
 [node name="TowerBuyBanner" type="PanelContainer"]
-custom_minimum_size = Vector2(150, 0)
 offset_right = 166.0
 offset_bottom = 200.0
 mouse_filter = 2
@@ -74,6 +73,7 @@ stretch_mode = 5
 
 [node name="TowerPriceLabel" type="Label" parent="TowerBuyBannerItemsWrapper/TowerBuyBannerItems/TowerPriceTagWrapper/TowerPriceTag"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.988235, 0.960784, 1)
 theme_override_font_sizes/font_size = 24
 text = "debug"
 horizontal_alignment = 1
@@ -94,6 +94,7 @@ expand_mode = 1
 [node name="BuyTowerBtn" type="Button" parent="TowerBuyBannerItemsWrapper"]
 z_index = -1
 material = SubResource("ShaderMaterial_w7bcc")
+custom_minimum_size = Vector2(158, 192)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
@@ -104,8 +105,10 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_pfayw")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_7vp6q")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_uegxj")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_aac20")
-icon = ExtResource("2_6bey2")
+icon = ExtResource("5_w7bcc")
 icon_alignment = 1
+expand_icon = true
 
 [connection signal="button_down" from="TowerBuyBannerItemsWrapper/BuyTowerBtn" to="." method="_on_buy_tower_btn_button_down"]
+[connection signal="button_up" from="TowerBuyBannerItemsWrapper/BuyTowerBtn" to="." method="_on_buy_tower_btn_button_up"]
 [connection signal="pressed" from="TowerBuyBannerItemsWrapper/BuyTowerBtn" to="." method="_on_buy_tower_btn_pressed"]

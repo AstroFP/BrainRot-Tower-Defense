@@ -3,6 +3,7 @@ extends PanelContainer
 
 signal buy_button_pressed(tower_stats: TowerStats)
 signal buy_button_down(tower_stats: TowerStats)
+signal buy_button_up
 signal banner_pressed
 signal banner_selected
 
@@ -89,3 +90,7 @@ func _on_buy_tower_btn_pressed():
 
 func _on_buy_tower_btn_button_down():
 	emit_signal("buy_button_down",tower)
+
+
+func _on_buy_tower_btn_button_up():
+	emit_signal("buy_button_up")
