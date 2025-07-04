@@ -105,20 +105,24 @@ func _input(event):
 		spawned_tower.queue_free()
 		tower_selected = null
 		show_right_ui_menu()
+		
 	
 	if is_tower_ready_to_spawn && !is_touching_buy_menu:
 		hide_right_ui_menu()
 		spawn_tower()
+		
 		
 	if is_tower_ready_to_spawn && !is_touching_inside_play_area:
 		tower_selected = null
 		is_tower_ready_to_spawn = false
 		show_right_ui_menu()
 		
+		
 	if is_tower_ready_to_spawn && is_touching_toggle_buy_menu_btn:
 		tower_selected = null
 		is_tower_ready_to_spawn = false
 		show_right_ui_menu()
+		
 		
 	if event is InputEventScreenTouch:
 		is_dragging = event.is_pressed()
@@ -182,3 +186,4 @@ func show_right_ui_menu():
 	tower_buy_menu.visible = true
 	play_btn.visible = true
 	pause_menu_btn.visible = true
+	
