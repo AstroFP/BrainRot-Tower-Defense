@@ -32,6 +32,7 @@ var tower_placement_manager : TowerPlacementManager
 # level resources
 var level_resources : = LevelResources.new()
 
+
 func _ready():
 	# if the scene was reloaded unpause it
 	unpause_game()

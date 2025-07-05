@@ -1,13 +1,32 @@
-[gd_scene load_steps=10 format=3 uid="uid://nfqwu8d60de0"]
+[gd_scene load_steps=15 format=3 uid="uid://nfqwu8d60de0"]
 
 [ext_resource type="Script" uid="uid://wvork5parv5" path="res://scripts/ui/tower_buy_banner.gd" id="1_cxih7"]
-[ext_resource type="Texture2D" uid="uid://c0pl5vdswgvae" path="res://assets/sprites/villager_icon.png" id="2_sky8o"]
+[ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="3_w7bcc"]
+[ext_resource type="Texture2D" uid="uid://dn5pemf7xudiw" path="res://assets/sprites/ui/bobrito_icon.png" id="4_6bey2"]
+[ext_resource type="Shader" uid="uid://ryregunc7t7j" path="res://assets/shaders/gray_scale_shader.gdshader" id="4_w7bcc"]
+[ext_resource type="Texture2D" uid="uid://weqgdxtvhqix" path="res://assets/sprites/ui/Banner_s.png" id="5_w7bcc"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f5cxw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7bcc"]
+resource_local_to_scene = true
+bg_color = Color(1, 0.988235, 0.960784, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0803"]
+resource_local_to_scene = true
+shader = ExtResource("4_w7bcc")
+shader_parameter/grayscale_amount = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7bcc"]
+resource_local_to_scene = true
+shader = ExtResource("4_w7bcc")
+shader_parameter/grayscale_amount = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5kmx"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dwhk"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bey2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfayw"]
 
@@ -18,38 +37,78 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aac20"]
 
 [node name="TowerBuyBanner" type="PanelContainer"]
-custom_minimum_size = Vector2(150, 0)
+offset_right = 166.0
+offset_bottom = 200.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_f5cxw")
+theme_override_styles/panel = SubResource("StyleBoxFlat_w7bcc")
 script = ExtResource("1_cxih7")
 
-[node name="TowerBuyBannerItems" type="VBoxContainer" parent="."]
+[node name="TowerBuyBannerItemsWrapper" type="MarginContainer" parent="."]
+z_index = 1
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TowerBuyBannerItems" type="VBoxContainer" parent="TowerBuyBannerItemsWrapper"]
 layout_mode = 2
 
-[node name="TowerIcon" type="TextureRect" parent="TowerBuyBannerItems"]
-z_index = -1
-custom_minimum_size = Vector2(150, 150)
+[node name="TowerPriceTagWrapper" type="MarginContainer" parent="TowerBuyBannerItemsWrapper/TowerBuyBannerItems"]
 layout_mode = 2
-texture = ExtResource("2_sky8o")
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 0
+
+[node name="TowerPriceTag" type="HBoxContainer" parent="TowerBuyBannerItemsWrapper/TowerBuyBannerItems/TowerPriceTagWrapper"]
+layout_mode = 2
+
+[node name="TowerPriceRotcoinIcon" type="TextureRect" parent="TowerBuyBannerItemsWrapper/TowerBuyBannerItems/TowerPriceTagWrapper/TowerPriceTag"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+texture = ExtResource("3_w7bcc")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="TowerPriceLabel" type="Label" parent="TowerBuyBannerItems"]
+[node name="TowerPriceLabel" type="Label" parent="TowerBuyBannerItemsWrapper/TowerBuyBannerItems/TowerPriceTagWrapper/TowerPriceTag"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.988235, 0.960784, 1)
 theme_override_font_sizes/font_size = 24
 text = "debug"
 horizontal_alignment = 1
 
-[node name="BuyTowerBtn" type="Button" parent="."]
+[node name="TowerIconWrapper" type="MarginContainer" parent="TowerBuyBannerItemsWrapper/TowerBuyBannerItems"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TowerIcon" type="TextureRect" parent="TowerBuyBannerItemsWrapper/TowerBuyBannerItems/TowerIconWrapper"]
+material = SubResource("ShaderMaterial_q0803")
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_6bey2")
+expand_mode = 1
+
+[node name="BuyTowerBtn" type="Button" parent="TowerBuyBannerItemsWrapper"]
+z_index = -1
+material = SubResource("ShaderMaterial_w7bcc")
+custom_minimum_size = Vector2(158, 192)
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g5kmx")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_0dwhk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6bey2")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_pfayw")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_7vp6q")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_uegxj")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_aac20")
+icon = ExtResource("5_w7bcc")
 icon_alignment = 1
+expand_icon = true
 
-[connection signal="button_down" from="BuyTowerBtn" to="." method="_on_buy_tower_btn_button_down"]
-[connection signal="pressed" from="BuyTowerBtn" to="." method="_on_buy_tower_btn_pressed"]
+[connection signal="button_down" from="TowerBuyBannerItemsWrapper/BuyTowerBtn" to="." method="_on_buy_tower_btn_button_down"]
+[connection signal="button_up" from="TowerBuyBannerItemsWrapper/BuyTowerBtn" to="." method="_on_buy_tower_btn_button_up"]
+[connection signal="pressed" from="TowerBuyBannerItemsWrapper/BuyTowerBtn" to="." method="_on_buy_tower_btn_pressed"]

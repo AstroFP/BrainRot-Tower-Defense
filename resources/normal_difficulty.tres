@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvdcvjd7do71g" path="res://scripts/resources/tower_stats.gd" id="1_e63qq"]
 [ext_resource type="Script" uid="uid://ddp7g1d618mdv" path="res://scripts/resources/game_rules.gd" id="2_ew7nv"]
-[ext_resource type="Resource" uid="uid://b66hya4spt8sj" path="res://resources/towers/test_tower.tres" id="2_shvfw"]
+[ext_resource type="Resource" uid="uid://b66hya4spt8sj" path="res://resources/towers/bobritto_bandito.tres" id="2_shvfw"]
 [ext_resource type="Resource" uid="uid://qf4c6jiteyni" path="res://resources/towers/test_tower2.tres" id="3_veqo5"]
 [ext_resource type="Resource" uid="uid://cw30jwjtqyba8" path="res://resources/towers/test_tower3.tres" id="4_7d725"]
 
@@ -13,4 +13,4 @@ starting_cash = 500
 starting_lives = 50
 start_wave = 1
 last_wave = 3
-available_towers = Array[ExtResource("1_e63qq")]([ExtResource("2_shvfw"), ExtResource("3_veqo5"), ExtResource("4_7d725")])
+available_towers = Array[ExtResource("1_e63qq")]([ExtResource("2_shvfw"), ExtResource("3_veqo5"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725"), ExtResource("4_7d725")])

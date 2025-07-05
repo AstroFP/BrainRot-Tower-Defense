@@ -13,17 +13,22 @@ var dragging_velocity := Vector2.ZERO
 var max_slow_distance := 400.0
 var min_dragging_speed_scale:= 0.2
 var touch_position: Vector2
+var touch_start_time := 0.0
+var is_holding := false
+var hold_threshold := 0.3
+
 
 # parameters and flag for tower spawning
 var tower : PackedScene = preload("res://scenes/tower.tscn")
 var tower_selected: TowerStats = null
 var spawned_tower: Tower
 var is_tower_ready_to_spawn = false
+var selected_banner: TowerBuyBanner = null
 
 var screen_rect : Rect2
 
 var ui: UIManager
-var tower_buy_menu: MarginContainer
+var tower_buy_menu: PanelContainer
 var playable_area: MarginContainer 
 var toggle_buy_menu_btn: Button
 var pause_menu_btn: Button
@@ -42,7 +47,9 @@ func _ready():
 	
 	
 	# connect selected tower signal
-	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower",_on_selected_tower)
+	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower_pressed",_on_selected_tower_pressed)
+	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower_down",_on_selected_tower_down)
+	ui.find_child("TowerBuyMenuWrapper").connect("selected_tower_up",_on_selected_tower_up)
 
 	# calculate side margins for clamping tower placement
 	var playable_screen_aspect_ratio := 16.0/9.0
@@ -103,20 +110,24 @@ func _input(event):
 		spawned_tower.queue_free()
 		tower_selected = null
 		show_right_ui_menu()
+		
 	
 	if is_tower_ready_to_spawn && !is_touching_buy_menu:
 		hide_right_ui_menu()
 		spawn_tower()
+		
 		
 	if is_tower_ready_to_spawn && !is_touching_inside_play_area:
 		tower_selected = null
 		is_tower_ready_to_spawn = false
 		show_right_ui_menu()
 		
+		
 	if is_tower_ready_to_spawn && is_touching_toggle_buy_menu_btn:
 		tower_selected = null
 		is_tower_ready_to_spawn = false
 		show_right_ui_menu()
+		
 		
 	if event is InputEventScreenTouch:
 		is_dragging = event.is_pressed()
@@ -138,22 +149,52 @@ func spawn_tower():
 
 		spawned_tower.global_position = touch_position
 		is_tower_ready_to_spawn = false
+		
+		if selected_banner:
+			selected_banner.update_banner_selection_info()
+			selected_banner = null
 
 
-func _on_selected_tower(tower_stats):
-	tower_selected = tower_stats
-	is_tower_ready_to_spawn = true
+func _on_selected_tower_pressed(tower_stats: TowerStats, banner: TowerBuyBanner):
+	if !banner.is_disabled && banner.is_selected:
+		tower_selected = tower_stats
+		is_tower_ready_to_spawn = true
+	else:
+		tower_selected = null
+		is_tower_ready_to_spawn = false
+
+
+func _on_selected_tower_down(tower_stats: TowerStats, banner: TowerBuyBanner):
+	if !banner.is_disabled:
+		tower_selected = tower_stats
+		is_tower_ready_to_spawn = true
+		selected_banner = banner
+	else:
+		tower_selected = null
+		is_tower_ready_to_spawn = false
+
+
+func _on_selected_tower_up(banner: TowerBuyBanner):
+	if !is_dragging && !banner.is_selected:
+		tower_selected = null
+		is_tower_ready_to_spawn = false
 
 
 func _on_tower_placed(tower_stats):
 	emit_signal("selected_tower_placed",tower_stats)
+	# idk whether we want this or not
+	#ui.reset_buy_menu_tower_label()
+	#ui.reset_buy_menu_selection_outline()
+
 
 func hide_right_ui_menu():
 	tower_buy_menu.visible = false
 	play_btn.visible = false
 	pause_menu_btn.visible = false
-	
+
+
 func show_right_ui_menu():
 	tower_buy_menu.visible = true
 	play_btn.visible = true
 	pause_menu_btn.visible = true
+	

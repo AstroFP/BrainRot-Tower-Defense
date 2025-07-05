@@ -14,6 +14,7 @@ func _process(_delta):
 	pass
 
 func show_game_over_panel(waves_survived: int):
+	if waves_survived == 0: waves_survived = 1
 	game_over_wave.text += str(waves_survived)
 	visible = true
 
