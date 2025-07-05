@@ -58,10 +58,6 @@ func _input(event):
 		
 		if tower_buy_menu.visible:
 			buy_menu_animation_player.play("close")
-		#tower_buy_menu.visible = false
-		
-		#if playable_area.get_global_rect().has_point(pos) && !tower_buy_menu.get_global_rect().has_point(pos) && !toggle_tower_buy_menu_btn.get_global_rect().has_point(pos) && !pause_btn.get_global_rect().has_point(pos) && !play_btn.get_global_rect().has_point(pos):
-			#tower_buy_menu.visible = false
 
 
 func _on_buy_tower_button_pressed(tower:TowerStats, banner: TowerBuyBanner):
@@ -84,9 +80,7 @@ func _on_buy_tower_button_up(banner:TowerBuyBanner):
 func _on_toggle_tower_buy_menu_btn_pressed():
 	if tower_buy_menu.visible:
 		buy_menu_animation_player.play("close")
-		#tower_buy_menu.visible = false
 	else:
-		#tower_buy_menu.visible= true
 		buy_menu_animation_player.play("open")
 
 

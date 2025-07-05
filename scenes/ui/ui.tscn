@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=36 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -58,8 +58,6 @@ MarginContainer/constants/margin_left = 1
 MarginContainer/constants/margin_right = 1
 MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_mgwkc")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y220t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl07w"]
 
@@ -713,21 +711,6 @@ _data = {
 &"open": SubResource("Animation_swkix")
 }
 
-[sub_resource type="Theme" id="Theme_mgwkc"]
-resource_local_to_scene = true
-Button/styles/disabled = SubResource("StyleBoxFlat_ygedu")
-Button/styles/focus = SubResource("StyleBoxFlat_oopc8")
-Button/styles/hover = SubResource("StyleBoxFlat_ygedu")
-Button/styles/normal = SubResource("StyleBoxFlat_ygedu")
-Button/styles/pressed = SubResource("StyleBoxFlat_ygedu")
-Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
-Label/font_sizes/font_size = 28
-MarginContainer/constants/margin_bottom = 1
-MarginContainer/constants/margin_left = 1
-MarginContainer/constants/margin_right = 1
-MarginContainer/constants/margin_top = 1
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_qmss2")
-
 [node name="UICanvas" type="CanvasLayer"]
 script = ExtResource("1_f5cxw")
 
@@ -805,17 +788,6 @@ size_flags_vertical = 0
 theme = SubResource("Theme_4w2x3")
 btn_style = ExtResource("15_n3vwu")
 btn_icon = ExtResource("5_0i47d")
-
-[node name="PauseBtn-old" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
-visible = false
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_y220t")
-flat = true
-icon_alignment = 1
-expand_icon = true
 
 [node name="ToggleTowerBuyMenuBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
 custom_minimum_size = Vector2(45, 150)
@@ -1157,15 +1129,6 @@ size_flags_horizontal = 4
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 32
 text = "Wave: "
-
-[node name="UIButton" parent="." instance=ExtResource("14_hc5d0")]
-offset_left = 205.0
-offset_top = 521.0
-offset_right = 611.0
-offset_bottom = 734.0
-theme = SubResource("Theme_mgwkc")
-btn_style = ExtResource("15_n3vwu")
-btn_text = "btn"
 
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
