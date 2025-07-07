@@ -4,6 +4,7 @@ signal pause_menu_opened
 signal pause_menu_closed
 
 @onready var pause_menu = $PauseMenu
+@onready var pause_menu_animation_player = $PauseMenuAnimationPlayer
 
 var touch_start_time := 0.0
 var holding := false
@@ -47,9 +48,11 @@ func _on_pause_menu_play_again_btn_pressed():
 
 func show_pause_menu():
 	emit_signal("pause_menu_opened")
-	visible = true
+	pause_menu_animation_player.play("open")
+	
 
 
 func hide_pause_menu():
 	emit_signal("pause_menu_closed")
-	visible = false
+	pause_menu_animation_player.play("close")
+	

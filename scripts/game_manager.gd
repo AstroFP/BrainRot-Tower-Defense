@@ -198,4 +198,5 @@ func _on_game_pause():
 
 
 func _on_game_unpause():
+	await get_tree().create_timer(0.5).timeout
 	unpause_game()

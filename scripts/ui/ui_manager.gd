@@ -85,8 +85,9 @@ func _on_pause_menu_opened():
 
 
 func _on_pause_menu_closed():
-	toggle_paused_background_overlay()
 	emit_signal("unpause_game")
+	await  get_tree().create_timer(0.5).timeout
+	toggle_paused_background_overlay()
 
 
 func toggle_paused_background_overlay():
