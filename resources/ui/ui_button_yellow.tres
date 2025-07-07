@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UIButtonStyle" load_steps=2 format=3 uid="uid://x5asljhnifmw"]
+
+[ext_resource type="Script" uid="uid://do2jtc7iklfts" path="res://scripts/resources/ui_button_style.gd" id="1_if467"]
+
+[resource]
+script = ExtResource("1_if467")
+font_color = Color(1, 0.988235, 0.960784, 1)
+gradient_border_color_top = Color(0.6, 0.6, 0.6, 1)
+gradient_border_color_bottom = Color(0.298039, 0.298039, 0.298039, 1)
+inner_color = Color(0.4, 0.4, 0.4, 1)
+font_color_disabled = Color(0.360784, 0.321569, 0.239216, 1)
+gradient_border_color_top_disabled = Color(0.239216, 0.239216, 0.239216, 1)
+gradient_border_color_bottom_disabled = Color(0.121569, 0.121569, 0.121569, 1)
+inner_color_disabled = Color(0.184314, 0.184314, 0.184314, 1)
+metadata/_custom_type_script = "uid://do2jtc7iklfts"
