@@ -112,5 +112,3 @@ material = SubResource("ShaderMaterial_fm1ou")
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 3
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]
