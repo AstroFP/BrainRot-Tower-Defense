@@ -3,7 +3,7 @@ extends MarginContainer
 signal pause_menu_opened
 signal pause_menu_closed
 
-@onready var pause_menu = $PauseMenu
+@onready var pause_menu = $PauseMenuOuterBg/PauseMenu
 @onready var pause_menu_animation_player = $PauseMenuAnimationPlayer
 
 var touch_start_time := 0.0
