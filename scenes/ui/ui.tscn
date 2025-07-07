@@ -873,6 +873,7 @@ size_flags_horizontal = 1
 theme = SubResource("Theme_0i47d")
 btn_style = ExtResource("15_n3vwu")
 btn_text = "Info"
+start_disabled = true
 
 [node name="BuyMenuAnimationPlayer" type="AnimationPlayer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
 libraries = {

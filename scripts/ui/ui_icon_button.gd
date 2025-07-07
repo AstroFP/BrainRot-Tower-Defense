@@ -3,6 +3,7 @@ extends Button
 
 @export var btn_style: UIButtonStyle
 @export var btn_icon: Texture2D
+@export var start_disabled:= false
 
 @onready var gradient_border = $GradientWrapper/GradientBorder
 @onready var inner_color = $GradientWrapper/InnerWrapper/InnerColor
@@ -23,7 +24,12 @@ func _ready():
 	gradient_border_stylebox = gradient_border.get("theme_override_styles/panel") as StyleBoxFlat
 	
 	# setup button
-	enable_button()
+	disabled = start_disabled
+	
+	if disabled:
+		disable_button()
+	else:
+		enable_button()
 	
 
 func _process(delta):
