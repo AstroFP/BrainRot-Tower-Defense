@@ -15,6 +15,8 @@ signal unpause_game
 @onready var paused_background_overlay = $PausedBackgroundOverlay
 @onready var wave_display = $UIContainer/UI/WaveDisplay
 @onready var buy_menu_tower_list = $UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/InnerBG/TowerBuyMenuItemsMargins/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
+@onready var popup_menu = $UIContainer/UI/PopupMenu
+@onready var popup_menu_background_overlay = $PopupMenuBackgroundOverlay
 
 var game_rules: GameRules
 
@@ -95,3 +97,20 @@ func toggle_paused_background_overlay():
 		paused_background_overlay.visible = false
 	else:
 		paused_background_overlay.visible = true
+
+
+func toggle_popup_background_overlay():
+	if popup_menu_background_overlay.visible:
+		popup_menu_background_overlay.visible = false
+	else:
+		popup_menu_background_overlay.visible = true
+
+
+func _on_popup_menu_popup_opened():
+	pause_menu_wrapper.disable_input()
+	toggle_popup_background_overlay()
+
+
+func _on_popup_menu_popup_closed():
+	pause_menu_wrapper.enable_input()
+	toggle_popup_background_overlay()

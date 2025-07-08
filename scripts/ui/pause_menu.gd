@@ -5,6 +5,7 @@ signal pause_menu_closed
 
 @onready var pause_menu = $PauseMenuOuterBg/PauseMenu
 @onready var pause_menu_animation_player = $PauseMenuAnimationPlayer
+@onready var popup_menu = $"../PopupMenu"
 
 var touch_start_time := 0.0
 var holding := false
@@ -43,7 +44,8 @@ func _on_continue_btn_pressed():
 
 
 func _on_play_again_btn_pressed():
-	get_tree().reload_current_scene()
+	popup_menu.setup_menu("Restart", "Are you sure you wish to restart the level?", get_tree().reload_current_scene)
+	popup_menu.show_menu()
 
 
 func show_pause_menu():
@@ -54,3 +56,10 @@ func show_pause_menu():
 func hide_pause_menu():
 	emit_signal("pause_menu_closed")
 	pause_menu_animation_player.play("close")
+
+
+func disable_input():
+	set_process_input(false)
+
+func enable_input():
+	set_process_input(true)

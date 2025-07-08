@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=71 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://byye283a1cnlt" path="res://assets/sprites/ui/pause_menu/arrow.png" id="20_fv78h"]
 [ext_resource type="Texture2D" uid="uid://dlcyytm86845x" path="res://assets/sprites/ui/pause_menu/home_icon.png" id="21_fv78h"]
 [ext_resource type="Resource" uid="uid://dxac8js3phmid" path="res://resources/ui/ui_button_red.tres" id="22_o71gb"]
+[ext_resource type="Script" uid="uid://bir8t4xy08qj" path="res://scripts/ui/popup_menu.gd" id="25_o71gb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i47d"]
 bg_color = Color(0, 0, 0, 1)
@@ -1105,12 +1106,118 @@ _data = {
 &"open": SubResource("Animation_0i47d")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en2kd"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.301961, 0.301961, 0.301961, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnqvi"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ygsn"]
+bg_color = Color(0, 0, 0, 0.196078)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_272wc"]
+color = Color(0.301961, 0.301961, 0.301961, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knhlc"]
+bg_color = Color(0, 0, 0, 0.196078)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2sfg"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yy7ol"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydrdt"]
+border_width_bottom = 25
+border_color = Color(0.298039, 0.298039, 0.298039, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_lkvmi"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
+Button/styles/hover = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/normal = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/pressed = SubResource("StyleBoxFlat_o2sfg")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
+
+[sub_resource type="Theme" id="Theme_67jad"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
+Button/styles/hover = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/normal = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/pressed = SubResource("StyleBoxFlat_o2sfg")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
+
 [node name="UICanvas" type="CanvasLayer"]
 script = ExtResource("1_f5cxw")
 
 [node name="PausedBackgroundOverlay" type="ColorRect" parent="."]
 visible = false
 z_index = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="PopupMenuBackgroundOverlay" type="ColorRect" parent="."]
+visible = false
+z_index = 5
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1580,6 +1687,111 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 32
 text = "Wave: "
 
+[node name="PopupMenu" type="PanelContainer" parent="UIContainer/UI"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_en2kd")
+script = ExtResource("25_o71gb")
+
+[node name="PopupMenuContentsWrapper" type="MarginContainer" parent="UIContainer/UI/PopupMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PopupMenuContents" type="PanelContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vnqvi")
+
+[node name="PopupMenuItems" type="VBoxContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PopupHeaderWrapper" type="MarginContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PopupHeader" type="PanelContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupHeaderWrapper"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ygsn")
+
+[node name="PopupHeaderText" type="Label" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupHeaderWrapper/PopupHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.988235, 0.960784, 1)
+theme_override_font_sizes/font_size = 64
+text = "Header"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_272wc")
+
+[node name="PopupContentWrapper" type="MarginContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="PopupContent" type="PanelContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupContentWrapper"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_knhlc")
+
+[node name="PopupContentText" type="Label" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupContentWrapper/PopupContent"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.988235, 0.960784, 1)
+theme_override_font_sizes/font_size = 28
+text = "Popup content"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_272wc")
+
+[node name="PopupButtonsWrapper" type="MarginContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="PopupButtons" type="HBoxContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="CancelBtn" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons" instance=ExtResource("14_hc5d0")]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = SubResource("Theme_lkvmi")
+btn_text = "Cancel"
+btn_style = ExtResource("22_o71gb")
+
+[node name="OKBtn" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons" instance=ExtResource("14_hc5d0")]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = SubResource("Theme_67jad")
+btn_text = "Ok"
+btn_style = ExtResource("17_svq4k")
+
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
@@ -1591,3 +1803,7 @@ text = "Wave: "
 [connection signal="pause_menu_opened" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_opened"]
 [connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList/ContinueBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_continue_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList/PlayAgainBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_play_again_btn_pressed"]
+[connection signal="popup_closed" from="UIContainer/UI/PopupMenu" to="." method="_on_popup_menu_popup_closed"]
+[connection signal="popup_opened" from="UIContainer/UI/PopupMenu" to="." method="_on_popup_menu_popup_opened"]
+[connection signal="pressed" from="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons/CancelBtn" to="UIContainer/UI/PopupMenu" method="_on_cancel_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons/OKBtn" to="UIContainer/UI/PopupMenu" method="_on_ok_btn_pressed"]
