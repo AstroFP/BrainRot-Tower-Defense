@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=60 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -6,16 +6,24 @@
 [ext_resource type="Script" uid="uid://cpyc1d248rktr" path="res://scripts/ui/play_btn.gd" id="3_7vp6q"]
 [ext_resource type="Texture2D" uid="uid://ckok8l2ekcfew" path="res://assets/sprites/ui/heart.png" id="3_g5kmx"]
 [ext_resource type="PackedScene" uid="uid://bmfj52nu20k36" path="res://scenes/ui/ui_button_icon.tscn" id="3_mgwkc"]
-[ext_resource type="Texture2D" uid="uid://2uwiipyws4g3" path="res://assets/sprites/ui/buy_menu_toggle_btn.png" id="4_hl07w"]
+[ext_resource type="Texture2D" uid="uid://2uwiipyws4g3" path="res://assets/sprites/ui/right_menu/buy_menu_toggle_btn.png" id="4_hl07w"]
 [ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="5_0dwhk"]
-[ext_resource type="Texture2D" uid="uid://cm2tv8g81t6ew" path="res://assets/sprites/ui/pause_icon.png" id="5_0i47d"]
+[ext_resource type="Texture2D" uid="uid://cm2tv8g81t6ew" path="res://assets/sprites/ui/right_menu/pause_icon.png" id="5_0i47d"]
 [ext_resource type="Script" uid="uid://ct5j6a4vnfb62" path="res://scripts/ui/game_over_panel.gd" id="6_pfayw"]
 [ext_resource type="Script" uid="uid://br72ugcth0srs" path="res://scripts/ui/buy_menu_tower_list.gd" id="7_swkix"]
-[ext_resource type="Texture2D" uid="uid://bb2daltimn15m" path="res://assets/sprites/ui/play_icon.png" id="8_0i47d"]
+[ext_resource type="Texture2D" uid="uid://bb2daltimn15m" path="res://assets/sprites/ui/right_menu/play_icon.png" id="8_0i47d"]
 [ext_resource type="Script" uid="uid://dechlfp15kj8m" path="res://scripts/ui/pause_menu.gd" id="9_uegxj"]
 [ext_resource type="Script" uid="uid://b7mng3q4amihb" path="res://scripts/ui/wave_display.gd" id="11_4kltc"]
 [ext_resource type="PackedScene" uid="uid://b0lom8jygodhw" path="res://scenes/ui/ui_button_text.tscn" id="14_hc5d0"]
 [ext_resource type="Resource" uid="uid://8bem8uqo5jwr" path="res://resources/ui/ui_button_blue.tres" id="15_n3vwu"]
+[ext_resource type="PackedScene" uid="uid://cwlsl851c2kd4" path="res://scenes/ui/ui_button_full.tscn" id="16_4w2x3"]
+[ext_resource type="Resource" uid="uid://dqlfmwodkto7b" path="res://resources/ui/ui_button_green.tres" id="17_svq4k"]
+[ext_resource type="Texture2D" uid="uid://cb3o15pe3l25o" path="res://assets/sprites/ui/pause_menu/arrow_icon.png" id="17_ygedu"]
+[ext_resource type="Texture2D" uid="uid://846c7a7ukqhb" path="res://assets/sprites/ui/pause_menu/restart_icon.png" id="19_ygedu"]
+[ext_resource type="Texture2D" uid="uid://ykve5l7p2sjm" path="res://assets/sprites/ui/pause_menu/options_icon.png" id="20_26a3v"]
+[ext_resource type="Texture2D" uid="uid://byye283a1cnlt" path="res://assets/sprites/ui/pause_menu/arrow.png" id="20_fv78h"]
+[ext_resource type="Texture2D" uid="uid://dlcyytm86845x" path="res://assets/sprites/ui/pause_menu/home_icon.png" id="21_fv78h"]
+[ext_resource type="Resource" uid="uid://dxac8js3phmid" path="res://resources/ui/ui_button_red.tres" id="22_o71gb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i47d"]
 bg_color = Color(0, 0, 0, 1)
@@ -65,10 +73,10 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_mgwkc")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swkix"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.301961, 0.301961, 0.301961, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -345,7 +353,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(386, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(390, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0.35, 0.75)
 }
 tracks/1/type = "bezier"
@@ -529,7 +537,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 386, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 390, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.45)
 }
 tracks/1/type = "bezier"
@@ -713,10 +721,10 @@ _data = {
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26a3v"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.301961, 0.301961, 0.301961, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -742,6 +750,108 @@ color = Color(0.301961, 0.301961, 0.301961, 1)
 grow_begin = 0.0
 grow_end = 0.0
 thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqqne"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhbcy"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khplb"]
+border_width_bottom = 25
+border_color = Color(0.298039, 0.298039, 0.298039, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_en2kd"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_svq4k"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_ygedu"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_oopc8"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_qmss2"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
 
 [sub_resource type="Animation" id="Animation_mgwkc"]
 length = 0.001
@@ -1317,6 +1427,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 1080.0
+offset_right = -0.0239258
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -1329,7 +1440,7 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_26a3v")
 
 [node name="PauseMenu" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg"]
-custom_minimum_size = Vector2(800, 500)
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -1364,7 +1475,7 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0.988235, 0.960784, 1)
 theme_override_font_sizes/font_size = 64
-text = "Pause"
+text = "PAUSE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1384,38 +1495,58 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ContinueBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList"]
-clip_contents = true
-custom_minimum_size = Vector2(250, 0)
+[node name="ContinueBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 28
-text = "Continue"
+theme = SubResource("Theme_en2kd")
+btn_text = "Resume"
+btn_icon = ExtResource("17_ygedu")
+btn_style = ExtResource("17_svq4k")
 
-[node name="PlayAgainBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList"]
-custom_minimum_size = Vector2(250, 0)
+[node name="PlayAgainBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 28
-text = "Play again"
+theme = SubResource("Theme_svq4k")
+btn_text = "Restart"
+btn_icon = ExtResource("19_ygedu")
+btn_style = ExtResource("15_n3vwu")
 
-[node name="ReplayLastWaveBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList"]
-custom_minimum_size = Vector2(250, 0)
+[node name="ReplayLastWaveBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 28
-text = "Replay last wave"
+theme = SubResource("Theme_ygedu")
+btn_text = "Replay last wave"
+btn_icon = ExtResource("20_fv78h")
+flip_h = true
+btn_style = ExtResource("15_n3vwu")
+start_disabled = true
 
-[node name="ExitBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList"]
-custom_minimum_size = Vector2(250, 0)
+[node name="SettingsBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 28
-text = "Exit to menu"
+theme = SubResource("Theme_oopc8")
+btn_text = "Settings"
+btn_icon = ExtResource("20_26a3v")
+start_disabled = true
+
+[node name="ExitBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_qmss2")
+btn_text = "Main menu"
+btn_icon = ExtResource("21_fv78h")
+btn_style = ExtResource("22_o71gb")
+start_disabled = true
 
 [node name="PauseMenuAnimationPlayer" type="AnimationPlayer" parent="UIContainer/UI/PauseMenuWrapper"]
 libraries = {
@@ -1459,4 +1590,4 @@ text = "Wave: "
 [connection signal="pause_menu_closed" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_closed"]
 [connection signal="pause_menu_opened" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_opened"]
 [connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList/ContinueBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_continue_btn_pressed"]
-[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList/PlayAgainBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_pause_menu_play_again_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList/PlayAgainBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_play_again_btn_pressed"]

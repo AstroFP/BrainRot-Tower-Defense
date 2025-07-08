@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj5xhmcswkn2"
-path="res://.godot/imported/arch-linux_icon.png-a9c20ad5d85f557e769b12e9cc0d0fad.ctex"
+uid="uid://846c7a7ukqhb"
+path="res://.godot/imported/restart_icon.png-ff5eca4cf4d7eb8df8c4912a5acdf542.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/arch-linux_icon.png"
-dest_files=["res://.godot/imported/arch-linux_icon.png-a9c20ad5d85f557e769b12e9cc0d0fad.ctex"]
+source_file="res://assets/sprites/ui/pause_menu/restart_icon.png"
+dest_files=["res://.godot/imported/restart_icon.png-ff5eca4cf4d7eb8df8c4912a5acdf542.ctex"]
 
 [params]
 

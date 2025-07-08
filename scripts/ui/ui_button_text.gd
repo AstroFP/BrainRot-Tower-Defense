@@ -11,7 +11,7 @@ func _ready():
 	label.text = btn_text
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 

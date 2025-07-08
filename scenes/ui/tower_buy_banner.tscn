@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://wvork5parv5" path="res://scripts/ui/tower_buy_banner.gd" id="1_cxih7"]
 [ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="3_w7bcc"]
-[ext_resource type="Texture2D" uid="uid://dn5pemf7xudiw" path="res://assets/sprites/ui/bobrito_icon.png" id="4_6bey2"]
+[ext_resource type="Texture2D" uid="uid://dn5pemf7xudiw" path="res://assets/sprites/ui/right_menu/buy_menu/tower_icons/bobrito_icon.png" id="4_6bey2"]
 [ext_resource type="Shader" uid="uid://ryregunc7t7j" path="res://assets/shaders/gray_scale_shader.gdshader" id="4_w7bcc"]
-[ext_resource type="Texture2D" uid="uid://weqgdxtvhqix" path="res://assets/sprites/ui/Banner_s.png" id="5_w7bcc"]
+[ext_resource type="Texture2D" uid="uid://weqgdxtvhqix" path="res://assets/sprites/ui/right_menu/buy_menu/Banner_s.png" id="5_w7bcc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7bcc"]
 resource_local_to_scene = true

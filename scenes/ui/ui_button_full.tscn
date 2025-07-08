@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwlsl851c2kd4"]
+
+[ext_resource type="Theme" uid="uid://cd7r8lowbea51" path="res://assets/themes/ui_button_theme.tres" id="1_3x01n"]
+[ext_resource type="Script" uid="uid://fiyffldwkr75" path="res://scripts/ui/ui_button_full.gd" id="1_ue1bi"]
+[ext_resource type="Resource" uid="uid://c0lbq65botdkr" path="res://resources/ui/ui_button_gray.tres" id="2_6eyo4"]
+[ext_resource type="Shader" uid="uid://b28qvb35csw6j" path="res://assets/shaders/ui_button_icon_color_toggle_shader.gdshader" id="4_xfvcw"]
+[ext_resource type="Texture2D" uid="uid://cb3o15pe3l25o" path="res://assets/sprites/ui/pause_menu/arrow_icon.png" id="5_xfvcw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6eyo4"]
+resource_local_to_scene = true
+border_width_bottom = 40
+border_color = Color(0.298039, 0.298039, 0.298039, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3x01n"]
+resource_local_to_scene = true
+bg_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfvcw"]
+resource_local_to_scene = true
+shader = ExtResource("4_xfvcw")
+shader_parameter/color = Color(1, 0, 0, 1)
+
+[node name="UIButtonFull" type="Button"]
+custom_minimum_size = Vector2(110, 50)
+offset_right = 110.0
+offset_bottom = 50.0
+theme = ExtResource("1_3x01n")
+script = ExtResource("1_ue1bi")
+btn_style = ExtResource("2_6eyo4")
+
+[node name="GradientWrapper" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="GradientBorder" type="PanelContainer" parent="GradientWrapper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6eyo4")
+
+[node name="InnerWrapper" type="MarginContainer" parent="GradientWrapper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="InnerColor" type="PanelContainer" parent="GradientWrapper/InnerWrapper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3x01n")
+
+[node name="ButtonContent" type="HBoxContainer" parent="GradientWrapper/InnerWrapper/InnerColor"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="GradientWrapper/InnerWrapper/InnerColor/ButtonContent"]
+layout_mode = 2
+text = "btn"
+vertical_alignment = 1
+
+[node name="ButtonIconWrapper" type="MarginContainer" parent="GradientWrapper/InnerWrapper/InnerColor/ButtonContent"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ButtonIcon" type="TextureRect" parent="GradientWrapper/InnerWrapper/InnerColor/ButtonContent/ButtonIconWrapper"]
+material = SubResource("ShaderMaterial_xfvcw")
+layout_mode = 2
+texture = ExtResource("5_xfvcw")
+expand_mode = 2
+stretch_mode = 5

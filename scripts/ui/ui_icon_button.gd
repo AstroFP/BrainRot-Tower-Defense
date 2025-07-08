@@ -11,15 +11,15 @@ func _ready():
 	button_icon.texture = btn_icon
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 func enable_button():
 	super()
-	button_icon.material.set_shader_parameter("grayscale_amount", 0.0)
+	button_icon.material.set_shader_parameter("color", btn_style.font_color)
 
 
 func disable_button():
 	super()
-	button_icon.material.set_shader_parameter("grayscale_amount", 0.9)
+	button_icon.material.set_shader_parameter("color", btn_style.font_color_disabled)

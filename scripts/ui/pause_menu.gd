@@ -42,17 +42,15 @@ func _on_continue_btn_pressed():
 	hide_pause_menu()
 
 
-func _on_pause_menu_play_again_btn_pressed():
+func _on_play_again_btn_pressed():
 	get_tree().reload_current_scene()
 
 
 func show_pause_menu():
 	emit_signal("pause_menu_opened")
 	pause_menu_animation_player.play("open")
-	
 
 
 func hide_pause_menu():
 	emit_signal("pause_menu_closed")
 	pause_menu_animation_player.play("close")
-	

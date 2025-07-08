@@ -1,49 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmfj52nu20k36"]
+[gd_scene load_steps=7 format=3 uid="uid://bmfj52nu20k36"]
 
+[ext_resource type="Theme" uid="uid://cd7r8lowbea51" path="res://assets/themes/ui_button_theme.tres" id="1_fm1ou"]
 [ext_resource type="Script" uid="uid://dryvm01c1g0c5" path="res://scripts/ui/ui_icon_button.gd" id="1_i43wi"]
-[ext_resource type="Shader" uid="uid://ryregunc7t7j" path="res://assets/shaders/gray_scale_shader.gdshader" id="2_bhj82"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i47d"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-shadow_color = Color(0, 0, 0, 0.196078)
-shadow_size = 4
-shadow_offset = Vector2(0, 4)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svq4k"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-shadow_color = Color(0, 0, 0, 0.196078)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgwkc"]
-border_width_bottom = 25
-border_color = Color(0.298039, 0.298039, 0.298039, 1)
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="Theme" id="Theme_bhj82"]
-resource_local_to_scene = true
-Button/styles/disabled = SubResource("StyleBoxFlat_0i47d")
-Button/styles/focus = SubResource("StyleBoxFlat_svq4k")
-Button/styles/hover = SubResource("StyleBoxFlat_0i47d")
-Button/styles/normal = SubResource("StyleBoxFlat_0i47d")
-Button/styles/pressed = SubResource("StyleBoxFlat_0i47d")
-Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
-Label/font_sizes/font_size = 28
-MarginContainer/constants/margin_bottom = 1
-MarginContainer/constants/margin_left = 1
-MarginContainer/constants/margin_right = 1
-MarginContainer/constants/margin_top = 1
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_mgwkc")
+[ext_resource type="Shader" uid="uid://b28qvb35csw6j" path="res://assets/shaders/ui_button_icon_color_toggle_shader.gdshader" id="3_fm1ou"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fm1ou"]
 resource_local_to_scene = true
@@ -65,15 +24,15 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fm1ou"]
 resource_local_to_scene = true
-shader = ExtResource("2_bhj82")
-shader_parameter/grayscale_amount = 0.0
+shader = ExtResource("3_fm1ou")
+shader_parameter/color = Color(0, 0, 0, 1)
 
 [node name="UIButtonIcon" type="Button"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(15, 50)
 offset_right = 50.0
 offset_bottom = 50.0
 size_flags_horizontal = 4
-theme = SubResource("Theme_bhj82")
+theme = ExtResource("1_fm1ou")
 script = ExtResource("1_i43wi")
 
 [node name="GradientWrapper" type="MarginContainer" parent="."]
