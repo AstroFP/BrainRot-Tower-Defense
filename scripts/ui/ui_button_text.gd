@@ -25,5 +25,5 @@ func disable_button():
 	label.add_theme_color_override("font_color",btn_style.font_color_disabled)
 
 
-func set_btn_text(text:String):
-	label.text = text
+func set_btn_text(_text:String):
+	label.text = _text
