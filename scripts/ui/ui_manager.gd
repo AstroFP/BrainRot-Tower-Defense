@@ -82,35 +82,37 @@ func _on_pause_btn_pressed():
 
 
 func _on_pause_menu_opened():
-	toggle_paused_background_overlay()
+	enable_paused_background_overlay()
 	emit_signal("pause_game")
 
 
 func _on_pause_menu_closed():
 	emit_signal("unpause_game")
 	await  get_tree().create_timer(0.5).timeout
-	toggle_paused_background_overlay()
+	disable_paused_background_overlay()
 
 
-func toggle_paused_background_overlay():
-	if paused_background_overlay.visible:
-		paused_background_overlay.visible = false
-	else:
-		paused_background_overlay.visible = true
+func disable_paused_background_overlay():
+	paused_background_overlay.visible = false
+
+func enable_paused_background_overlay():	
+	paused_background_overlay.visible = true
 
 
-func toggle_popup_background_overlay():
-	if popup_menu_background_overlay.visible:
-		popup_menu_background_overlay.visible = false
-	else:
-		popup_menu_background_overlay.visible = true
+func disable_popup_background_overlay():
+	popup_menu_background_overlay.visible = false
+
+
+func enable_popup_background_overlay():
+	popup_menu_background_overlay.visible = true
 
 
 func _on_popup_menu_popup_opened():
 	pause_menu_wrapper.disable_input()
-	toggle_popup_background_overlay()
+	enable_popup_background_overlay()
 
 
 func _on_popup_menu_popup_closed():
+	await get_tree().create_timer(0.4).timeout
 	pause_menu_wrapper.enable_input()
-	toggle_popup_background_overlay()
+	disable_popup_background_overlay()

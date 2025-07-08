@@ -7,6 +7,7 @@ signal popup_closed
 @onready var ok_btn = $PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons/OKBtn
 @onready var popup_content_text = $PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupContentWrapper/PopupContent/PopupContentText
 @onready var popup_header_text = $PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupHeaderWrapper/PopupHeader/PopupHeaderText
+@onready var popup_menu_animation_player = $PopupMenuAnimationPlayer
 
 var popup_action: Callable
 
@@ -48,12 +49,12 @@ func setup_menu(header: String, content: String, action: Callable):
 
 func show_menu():
 	emit_signal("popup_opened")
-	visible = true
+	popup_menu_animation_player.play("open")
 
 
 func hide_menu():
 	emit_signal("popup_closed")
-	visible = false
+	popup_menu_animation_player.play("close")
 
 
 func _on_ok_btn_pressed():

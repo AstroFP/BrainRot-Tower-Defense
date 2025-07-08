@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=75 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -1202,6 +1202,126 @@ MarginContainer/constants/margin_right = 1
 MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
 
+[sub_resource type="Animation" id="Animation_o71gb"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fqqne"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qhbcy"]
+resource_name = "close"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qhbcy"]
+_data = {
+&"RESET": SubResource("Animation_fqqne"),
+&"close": SubResource("Animation_qhbcy"),
+&"open": SubResource("Animation_o71gb")
+}
+
 [node name="UICanvas" type="CanvasLayer"]
 script = ExtResource("1_f5cxw")
 
@@ -1688,6 +1808,7 @@ theme_override_font_sizes/font_size = 32
 text = "Wave: "
 
 [node name="PopupMenu" type="PanelContainer" parent="UIContainer/UI"]
+visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 8
@@ -1695,12 +1816,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -354.0
+offset_top = -194.5
+offset_right = 354.0
+offset_bottom = 194.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(354, 194.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_en2kd")
 script = ExtResource("25_o71gb")
 
@@ -1791,6 +1914,11 @@ size_flags_horizontal = 10
 theme = SubResource("Theme_67jad")
 btn_text = "Ok"
 btn_style = ExtResource("17_svq4k")
+
+[node name="PopupMenuAnimationPlayer" type="AnimationPlayer" parent="UIContainer/UI/PopupMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_qhbcy")
+}
 
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
