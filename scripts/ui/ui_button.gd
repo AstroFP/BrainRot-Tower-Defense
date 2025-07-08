@@ -11,9 +11,15 @@ var gradient_border_stylebox: StyleBoxFlat
 
 
 func _ready():
+	# if no styling provided - create new (defaults to gray button style)
 	if !btn_style:
 		btn_style = UIButtonStyle.new()
 	
+	# connect down and up signals for styling
+	button_down.connect(_on_button_down)
+	button_up.connect(_on_button_up)
+	
+	# find and set border and inner background
 	gradient_border = find_child("GradientBorder")
 	inner_color = find_child("InnerColor")
 	
@@ -35,13 +41,35 @@ func _process(_delta):
 
 func enable_button():
 	disabled = false
+	set_default_style()
+
+
+func disable_button():
+	disabled = true
+	set_disabled_style()
+
+
+func set_pressed_style():
+	inner_color_stylebox.bg_color = btn_style.inner_color_pressed
+	gradient_border_stylebox.bg_color = btn_style.gradient_border_color_top_pressed
+	gradient_border_stylebox.border_color = btn_style.gradient_border_color_bottom_pressed
+
+
+func set_default_style():
 	inner_color_stylebox.bg_color = btn_style.inner_color
 	gradient_border_stylebox.bg_color = btn_style.gradient_border_color_top
 	gradient_border_stylebox.border_color = btn_style.gradient_border_color_bottom
 
 
-func disable_button():
-	disabled = true
+func set_disabled_style():
 	inner_color_stylebox.bg_color = btn_style.inner_color_disabled
 	gradient_border_stylebox.bg_color = btn_style.gradient_border_color_top_disabled
 	gradient_border_stylebox.border_color = btn_style.gradient_border_color_bottom_disabled
+
+
+func _on_button_down():
+	set_pressed_style()
+
+
+func _on_button_up():
+	set_default_style()

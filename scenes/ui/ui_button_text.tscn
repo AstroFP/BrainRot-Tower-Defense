@@ -62,7 +62,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="UIButton" type="Button"]
+[node name="UIButtonText" type="Button"]
 custom_minimum_size = Vector2(15, 50)
 offset_right = 231.0
 offset_bottom = 44.0
