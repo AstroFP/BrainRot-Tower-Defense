@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=77 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://cb3o15pe3l25o" path="res://assets/sprites/ui/pause_menu/arrow_icon.png" id="17_ygedu"]
 [ext_resource type="Texture2D" uid="uid://846c7a7ukqhb" path="res://assets/sprites/ui/pause_menu/restart_icon.png" id="19_ygedu"]
 [ext_resource type="Texture2D" uid="uid://ykve5l7p2sjm" path="res://assets/sprites/ui/pause_menu/options_icon.png" id="20_26a3v"]
-[ext_resource type="Texture2D" uid="uid://byye283a1cnlt" path="res://assets/sprites/ui/pause_menu/arrow.png" id="20_fv78h"]
 [ext_resource type="Texture2D" uid="uid://dlcyytm86845x" path="res://assets/sprites/ui/pause_menu/home_icon.png" id="21_fv78h"]
 [ext_resource type="Resource" uid="uid://dxac8js3phmid" path="res://resources/ui/ui_button_red.tres" id="22_o71gb"]
 [ext_resource type="Script" uid="uid://bir8t4xy08qj" path="res://scripts/ui/popup_menu.gd" id="25_o71gb"]
@@ -52,7 +51,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_fv78h"]
+[sub_resource type="Theme" id="Theme_26a3v"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_0i47d")
 Button/styles/focus = SubResource("StyleBoxFlat_svq4k")
@@ -98,7 +97,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_o71gb"]
+[sub_resource type="Theme" id="Theme_fv78h"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_272wc")
 Button/styles/focus = SubResource("StyleBoxFlat_lkvmi")
@@ -201,7 +200,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_fqqne"]
+[sub_resource type="Theme" id="Theme_o71gb"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_ygedu")
 Button/styles/focus = SubResource("StyleBoxFlat_oopc8")
@@ -839,6 +838,21 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="Theme" id="Theme_fqqne"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
 [sub_resource type="Theme" id="Theme_qhbcy"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
@@ -885,21 +899,6 @@ MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
 
 [sub_resource type="Theme" id="Theme_vnqvi"]
-resource_local_to_scene = true
-Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
-Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
-Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
-Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
-Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
-Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
-Label/font_sizes/font_size = 28
-MarginContainer/constants/margin_bottom = 1
-MarginContainer/constants/margin_left = 1
-MarginContainer/constants/margin_right = 1
-MarginContainer/constants/margin_top = 1
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
-
-[sub_resource type="Theme" id="Theme_7ygsn"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
 Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
@@ -1240,7 +1239,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_272wc"]
+[sub_resource type="Theme" id="Theme_7ygsn"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
 Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
@@ -1255,7 +1254,7 @@ MarginContainer/constants/margin_right = 1
 MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
 
-[sub_resource type="Theme" id="Theme_knhlc"]
+[sub_resource type="Theme" id="Theme_272wc"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
 Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
@@ -1474,7 +1473,7 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 0
-theme = SubResource("Theme_fv78h")
+theme = SubResource("Theme_26a3v")
 btn_icon = ExtResource("5_0i47d")
 btn_style = ExtResource("15_n3vwu")
 
@@ -1490,7 +1489,7 @@ icon_alignment = 1
 
 [node name="PlayBtn" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer" instance=ExtResource("9_fqqne")]
 layout_mode = 2
-theme = SubResource("Theme_o71gb")
+theme = SubResource("Theme_fv78h")
 btn_style = ExtResource("17_svq4k")
 
 [node name="TowerBuyMenu" type="PanelContainer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
@@ -1553,7 +1552,7 @@ script = ExtResource("7_swkix")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 1
-theme = SubResource("Theme_fqqne")
+theme = SubResource("Theme_o71gb")
 btn_text = "Info"
 btn_style = ExtResource("15_n3vwu")
 start_disabled = true
@@ -1715,7 +1714,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1080.0
 offset_right = -0.0239258
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_uegxj")
@@ -1787,7 +1788,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_qhbcy")
+theme = SubResource("Theme_fqqne")
 btn_text = "Resume"
 btn_icon = ExtResource("17_ygedu")
 btn_style = ExtResource("17_svq4k")
@@ -1797,7 +1798,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_khplb")
+theme = SubResource("Theme_qhbcy")
 btn_text = "Restart"
 btn_icon = ExtResource("19_ygedu")
 btn_style = ExtResource("15_n3vwu")
@@ -1807,9 +1808,9 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_en2kd")
+theme = SubResource("Theme_khplb")
 btn_text = "Replay last wave"
-btn_icon = ExtResource("20_fv78h")
+btn_icon = ExtResource("17_ygedu")
 flip_h = true
 btn_style = ExtResource("15_n3vwu")
 start_disabled = true
@@ -1819,7 +1820,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_vnqvi")
+theme = SubResource("Theme_en2kd")
 btn_text = "Settings"
 btn_icon = ExtResource("20_26a3v")
 start_disabled = true
@@ -1829,7 +1830,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_7ygsn")
+theme = SubResource("Theme_vnqvi")
 btn_text = "Main menu"
 btn_icon = ExtResource("21_fv78h")
 btn_style = ExtResource("22_o71gb")
@@ -1963,7 +1964,7 @@ theme_override_constants/separation = 120
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
 size_flags_horizontal = 2
-theme = SubResource("Theme_272wc")
+theme = SubResource("Theme_7ygsn")
 btn_text = "Cancel"
 btn_style = ExtResource("22_o71gb")
 
@@ -1971,7 +1972,7 @@ btn_style = ExtResource("22_o71gb")
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
 size_flags_horizontal = 10
-theme = SubResource("Theme_knhlc")
+theme = SubResource("Theme_272wc")
 btn_text = "Ok"
 btn_style = ExtResource("17_svq4k")
 
