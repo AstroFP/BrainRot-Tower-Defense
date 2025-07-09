@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=78 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -52,7 +52,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_4w2x3"]
+[sub_resource type="Theme" id="Theme_fv78h"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_0i47d")
 Button/styles/focus = SubResource("StyleBoxFlat_svq4k")
@@ -98,7 +98,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_fqqne"]
+[sub_resource type="Theme" id="Theme_o71gb"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_272wc")
 Button/styles/focus = SubResource("StyleBoxFlat_lkvmi")
@@ -152,12 +152,27 @@ content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0, 0, 0, 0.196078)
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 shadow_color = Color(1, 1, 1, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xdx3"]
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygedu"]
 bg_color = Color(0, 0, 0, 1)
@@ -186,7 +201,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_0i47d"]
+[sub_resource type="Theme" id="Theme_fqqne"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_ygedu")
 Button/styles/focus = SubResource("StyleBoxFlat_oopc8")
@@ -781,7 +796,11 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o71gb"]
-bg_color = Color(0, 0, 0, 0.196078)
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -820,6 +839,36 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="Theme" id="Theme_qhbcy"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_khplb"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
 [sub_resource type="Theme" id="Theme_en2kd"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
@@ -835,7 +884,7 @@ MarginContainer/constants/margin_right = 1
 MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
 
-[sub_resource type="Theme" id="Theme_svq4k"]
+[sub_resource type="Theme" id="Theme_vnqvi"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
 Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
@@ -850,37 +899,7 @@ MarginContainer/constants/margin_right = 1
 MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
 
-[sub_resource type="Theme" id="Theme_ygedu"]
-resource_local_to_scene = true
-Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
-Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
-Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
-Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
-Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
-Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
-Label/font_sizes/font_size = 28
-MarginContainer/constants/margin_bottom = 1
-MarginContainer/constants/margin_left = 1
-MarginContainer/constants/margin_right = 1
-MarginContainer/constants/margin_top = 1
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
-
-[sub_resource type="Theme" id="Theme_oopc8"]
-resource_local_to_scene = true
-Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
-Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
-Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
-Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
-Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
-Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
-Label/font_sizes/font_size = 28
-MarginContainer/constants/margin_bottom = 1
-MarginContainer/constants/margin_left = 1
-MarginContainer/constants/margin_right = 1
-MarginContainer/constants/margin_top = 1
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
-
-[sub_resource type="Theme" id="Theme_qmss2"]
+[sub_resource type="Theme" id="Theme_7ygsn"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
 Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
@@ -1167,7 +1186,11 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ygsn"]
-bg_color = Color(0, 0, 0, 0.196078)
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -1180,7 +1203,11 @@ grow_end = 0.0
 thickness = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knhlc"]
-bg_color = Color(0, 0, 0, 0.196078)
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -1213,7 +1240,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_lkvmi"]
+[sub_resource type="Theme" id="Theme_272wc"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
 Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
@@ -1228,7 +1255,7 @@ MarginContainer/constants/margin_right = 1
 MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
 
-[sub_resource type="Theme" id="Theme_67jad"]
+[sub_resource type="Theme" id="Theme_knhlc"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
 Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
@@ -1447,7 +1474,7 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 0
-theme = SubResource("Theme_4w2x3")
+theme = SubResource("Theme_fv78h")
 btn_icon = ExtResource("5_0i47d")
 btn_style = ExtResource("15_n3vwu")
 
@@ -1463,7 +1490,7 @@ icon_alignment = 1
 
 [node name="PlayBtn" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer" instance=ExtResource("9_fqqne")]
 layout_mode = 2
-theme = SubResource("Theme_fqqne")
+theme = SubResource("Theme_o71gb")
 btn_style = ExtResource("17_svq4k")
 
 [node name="TowerBuyMenu" type="PanelContainer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
@@ -1474,9 +1501,9 @@ theme = SubResource("Theme_hc5d0")
 [node name="TowerBuyMenyItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 10
 
 [node name="InnerBG" type="PanelContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper"]
 layout_mode = 2
@@ -1509,6 +1536,7 @@ horizontal_alignment = 1
 [node name="BuyMenuTowerScroll" type="ScrollContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/InnerBG/TowerBuyMenuItemsMargins/TowerBuyMenuItems"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xdx3")
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
@@ -1525,7 +1553,7 @@ script = ExtResource("7_swkix")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 1
-theme = SubResource("Theme_0i47d")
+theme = SubResource("Theme_fqqne")
 btn_text = "Info"
 btn_style = ExtResource("15_n3vwu")
 start_disabled = true
@@ -1761,7 +1789,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_en2kd")
+theme = SubResource("Theme_qhbcy")
 btn_text = "Resume"
 btn_icon = ExtResource("17_ygedu")
 btn_style = ExtResource("17_svq4k")
@@ -1771,7 +1799,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_svq4k")
+theme = SubResource("Theme_khplb")
 btn_text = "Restart"
 btn_icon = ExtResource("19_ygedu")
 btn_style = ExtResource("15_n3vwu")
@@ -1781,7 +1809,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_ygedu")
+theme = SubResource("Theme_en2kd")
 btn_text = "Replay last wave"
 btn_icon = ExtResource("20_fv78h")
 flip_h = true
@@ -1793,7 +1821,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_oopc8")
+theme = SubResource("Theme_vnqvi")
 btn_text = "Settings"
 btn_icon = ExtResource("20_26a3v")
 start_disabled = true
@@ -1803,7 +1831,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_qmss2")
+theme = SubResource("Theme_7ygsn")
 btn_text = "Main menu"
 btn_icon = ExtResource("21_fv78h")
 btn_style = ExtResource("22_o71gb")
@@ -1937,7 +1965,7 @@ theme_override_constants/separation = 120
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
 size_flags_horizontal = 2
-theme = SubResource("Theme_lkvmi")
+theme = SubResource("Theme_272wc")
 btn_text = "Cancel"
 btn_style = ExtResource("22_o71gb")
 
@@ -1945,7 +1973,7 @@ btn_style = ExtResource("22_o71gb")
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
 size_flags_horizontal = 10
-theme = SubResource("Theme_67jad")
+theme = SubResource("Theme_knhlc")
 btn_text = "Ok"
 btn_style = ExtResource("17_svq4k")
 
