@@ -7,7 +7,6 @@ extends Button
 var gradient_border: PanelContainer
 var inner_color: PanelContainer
 var inner_color_stylebox: StyleBoxFlat
-var gradient_border_stylebox: StyleBoxFlat
 
 
 func _ready():
@@ -25,7 +24,6 @@ func _ready():
 	
 	# initialize style variables
 	inner_color_stylebox = inner_color.get("theme_override_styles/panel") as StyleBoxFlat
-	gradient_border_stylebox = gradient_border.get("theme_override_styles/panel") as StyleBoxFlat
 	
 	# setup button
 	disabled = start_disabled
@@ -51,20 +49,20 @@ func disable_button():
 
 func set_pressed_style():
 	inner_color_stylebox.bg_color = btn_style.inner_color_pressed
-	gradient_border_stylebox.bg_color = btn_style.gradient_border_color_top_pressed
-	gradient_border_stylebox.border_color = btn_style.gradient_border_color_bottom_pressed
+	gradient_border.material.set_shader_parameter("color_top",btn_style.gradient_border_color_top_pressed)
+	gradient_border.material.set_shader_parameter("color_bottom",btn_style.gradient_border_color_bottom_pressed)
 
 
 func set_default_style():
 	inner_color_stylebox.bg_color = btn_style.inner_color
-	gradient_border_stylebox.bg_color = btn_style.gradient_border_color_top
-	gradient_border_stylebox.border_color = btn_style.gradient_border_color_bottom
+	gradient_border.material.set_shader_parameter("color_top",btn_style.gradient_border_color_top)
+	gradient_border.material.set_shader_parameter("color_bottom",btn_style.gradient_border_color_bottom)
 
 
 func set_disabled_style():
 	inner_color_stylebox.bg_color = btn_style.inner_color_disabled
-	gradient_border_stylebox.bg_color = btn_style.gradient_border_color_top_disabled
-	gradient_border_stylebox.border_color = btn_style.gradient_border_color_bottom_disabled
+	gradient_border.material.set_shader_parameter("color_top",btn_style.gradient_border_color_top_disabled)
+	gradient_border.material.set_shader_parameter("color_bottom",btn_style.gradient_border_color_bottom_disabled)
 
 
 func _on_button_down():

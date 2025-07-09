@@ -1,9 +1,8 @@
-[gd_scene load_steps=75 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=77 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
 [ext_resource type="Script" uid="uid://cydr451m3h3lq" path="res://scripts/ui/resources_panel.gd" id="3_0dwhk"]
-[ext_resource type="Script" uid="uid://cpyc1d248rktr" path="res://scripts/ui/play_btn.gd" id="3_7vp6q"]
 [ext_resource type="Texture2D" uid="uid://ckok8l2ekcfew" path="res://assets/sprites/ui/heart.png" id="3_g5kmx"]
 [ext_resource type="PackedScene" uid="uid://bmfj52nu20k36" path="res://scenes/ui/ui_button_icon.tscn" id="3_mgwkc"]
 [ext_resource type="Texture2D" uid="uid://2uwiipyws4g3" path="res://assets/sprites/ui/right_menu/buy_menu_toggle_btn.png" id="4_hl07w"]
@@ -11,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cm2tv8g81t6ew" path="res://assets/sprites/ui/right_menu/pause_icon.png" id="5_0i47d"]
 [ext_resource type="Script" uid="uid://ct5j6a4vnfb62" path="res://scripts/ui/game_over_panel.gd" id="6_pfayw"]
 [ext_resource type="Script" uid="uid://br72ugcth0srs" path="res://scripts/ui/buy_menu_tower_list.gd" id="7_swkix"]
-[ext_resource type="Texture2D" uid="uid://bb2daltimn15m" path="res://assets/sprites/ui/right_menu/play_icon.png" id="8_0i47d"]
+[ext_resource type="PackedScene" uid="uid://34vp2mjhfbdf" path="res://scenes/ui/play_btn.tscn" id="9_fqqne"]
 [ext_resource type="Script" uid="uid://dechlfp15kj8m" path="res://scripts/ui/pause_menu.gd" id="9_uegxj"]
 [ext_resource type="Script" uid="uid://b7mng3q4amihb" path="res://scripts/ui/wave_display.gd" id="11_4kltc"]
 [ext_resource type="PackedScene" uid="uid://b0lom8jygodhw" path="res://scenes/ui/ui_button_text.tscn" id="14_hc5d0"]
@@ -70,7 +69,49 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_mgwkc")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl07w"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kltc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272wc"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkvmi"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+shadow_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67jad"]
+border_width_bottom = 25
+border_color = Color(0.298039, 0.298039, 0.298039, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_fqqne"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_272wc")
+Button/styles/focus = SubResource("StyleBoxFlat_lkvmi")
+Button/styles/hover = SubResource("StyleBoxFlat_272wc")
+Button/styles/normal = SubResource("StyleBoxFlat_272wc")
+Button/styles/pressed = SubResource("StyleBoxFlat_272wc")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_67jad")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swkix"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
@@ -1202,44 +1243,6 @@ MarginContainer/constants/margin_right = 1
 MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
 
-[sub_resource type="Animation" id="Animation_o71gb"]
-resource_name = "open"
-length = 0.4
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_fqqne"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -1313,6 +1316,44 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_o71gb"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qhbcy"]
@@ -1420,17 +1461,10 @@ icon = ExtResource("4_hl07w")
 flat = true
 icon_alignment = 1
 
-[node name="PlayBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
-custom_minimum_size = Vector2(80, 80)
+[node name="PlayBtn" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer" instance=ExtResource("9_fqqne")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4kltc")
-icon = ExtResource("8_0i47d")
-flat = true
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("3_7vp6q")
+theme = SubResource("Theme_fqqne")
+btn_style = ExtResource("17_svq4k")
 
 [node name="TowerBuyMenu" type="PanelContainer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
 z_index = 1

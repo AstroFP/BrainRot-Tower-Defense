@@ -15,11 +15,11 @@ func _process(_delta):
 	pass
 
 
-func enable_button():
+func set_default_style():
 	super()
 	button_icon.material.set_shader_parameter("color", btn_style.font_color)
 
 
-func disable_button():
+func set_disabled_style():
 	super()
 	button_icon.material.set_shader_parameter("color", btn_style.font_color_disabled)

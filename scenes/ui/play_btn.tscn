@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://34vp2mjhfbdf"]
+
+[ext_resource type="Theme" uid="uid://1akmggtklevb" path="res://assets/themes/play_button_theme.tres" id="1_6qn31"]
+[ext_resource type="Script" uid="uid://cpyc1d248rktr" path="res://scripts/ui/play_btn.gd" id="1_vj835"]
+[ext_resource type="Shader" uid="uid://c8umrt1yjrv4b" path="res://assets/shaders/play_button_gradient_shader.gdshader" id="2_vj835"]
+[ext_resource type="Shader" uid="uid://b28qvb35csw6j" path="res://assets/shaders/ui_button_icon_color_toggle_shader.gdshader" id="3_mp4nx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qn31"]
+resource_local_to_scene = true
+shader = ExtResource("2_vj835")
+shader_parameter/color_top = Color(0, 0, 0, 1)
+shader_parameter/color_bottom = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0kyo"]
+resource_local_to_scene = true
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa3n2"]
+resource_local_to_scene = true
+bg_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lw3t2"]
+resource_local_to_scene = true
+shader = ExtResource("3_mp4nx")
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[node name="PlayBtn" type="Button"]
+custom_minimum_size = Vector2(75, 75)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("1_6qn31")
+script = ExtResource("1_vj835")
+
+[node name="GradientWrapper" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="GradientBorder" type="PanelContainer" parent="GradientWrapper"]
+material = SubResource("ShaderMaterial_6qn31")
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y0kyo")
+
+[node name="InnerWrapper" type="MarginContainer" parent="GradientWrapper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="InnerColor" type="PanelContainer" parent="GradientWrapper/InnerWrapper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pa3n2")
+
+[node name="ButtonIcon" type="TextureRect" parent="GradientWrapper/InnerWrapper/InnerColor"]
+material = SubResource("ShaderMaterial_lw3t2")
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 3

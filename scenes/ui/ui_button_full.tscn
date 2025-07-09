@@ -1,16 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwlsl851c2kd4"]
+[gd_scene load_steps=11 format=3 uid="uid://cwlsl851c2kd4"]
 
 [ext_resource type="Theme" uid="uid://cd7r8lowbea51" path="res://assets/themes/ui_button_theme.tres" id="1_3x01n"]
 [ext_resource type="Script" uid="uid://fiyffldwkr75" path="res://scripts/ui/ui_button_full.gd" id="1_ue1bi"]
 [ext_resource type="Resource" uid="uid://c0lbq65botdkr" path="res://resources/ui/ui_button_gray.tres" id="2_6eyo4"]
+[ext_resource type="Shader" uid="uid://c8umrt1yjrv4b" path="res://assets/shaders/play_button_gradient_shader.gdshader" id="4_i6yri"]
 [ext_resource type="Shader" uid="uid://b28qvb35csw6j" path="res://assets/shaders/ui_button_icon_color_toggle_shader.gdshader" id="4_xfvcw"]
 [ext_resource type="Texture2D" uid="uid://cb3o15pe3l25o" path="res://assets/sprites/ui/pause_menu/arrow_icon.png" id="5_xfvcw"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgi56"]
+resource_local_to_scene = true
+shader = ExtResource("4_i6yri")
+shader_parameter/color_top = Color(0, 0, 0, 1)
+shader_parameter/color_bottom = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6eyo4"]
 resource_local_to_scene = true
-border_width_bottom = 40
-border_color = Color(0.298039, 0.298039, 0.298039, 1)
-border_blend = true
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -51,6 +55,7 @@ theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
 [node name="GradientBorder" type="PanelContainer" parent="GradientWrapper"]
+material = SubResource("ShaderMaterial_pgi56")
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6eyo4")
