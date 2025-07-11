@@ -59,6 +59,7 @@ func hide_menu():
 
 func _on_ok_btn_pressed():
 	if popup_action:
+		await RenderingServer.frame_post_draw
 		popup_action.call()
 
 
