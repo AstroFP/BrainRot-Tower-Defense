@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://weqgdxtvhqix"
-path="res://.godot/imported/Banner_s.png-6ef54024bc343818ae0675889aea0c99.ctex"
+uid="uid://c0pl5vdswgvae"
+path="res://.godot/imported/villager_icon.png-19a5b3e0915112a2af464e196e74eebd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Banner_s.png"
-dest_files=["res://.godot/imported/Banner_s.png-6ef54024bc343818ae0675889aea0c99.ctex"]
+source_file="res://assets/sprites/ui/right_menu/buy_menu/tower_icons/villager_icon.png"
+dest_files=["res://.godot/imported/villager_icon.png-19a5b3e0915112a2af464e196e74eebd.ctex"]
 
 [params]
 

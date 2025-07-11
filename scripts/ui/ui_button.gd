@@ -2,52 +2,72 @@ class_name UIButton
 extends Button
 
 @export var btn_style: UIButtonStyle
-@export var btn_text: String
-@export var btn_icon: Texture2D
+@export var start_disabled:= false
 
-@onready var gradient_border = $GradientWrapper/GradientBorder
-@onready var inner_color = $GradientWrapper/InnerWrapper/InnerColor
-@onready var label = $GradientWrapper/InnerWrapper/InnerColor/Label
-
+var gradient_border: PanelContainer
+var inner_color: PanelContainer
 var inner_color_stylebox: StyleBoxFlat
-var gradient_border_stylebox: StyleBoxFlat
 
 
 func _ready():
+	# if no styling provided - create new (defaults to gray button style)
 	if !btn_style:
 		btn_style = UIButtonStyle.new()
-
-
-	label.text = btn_text
+	
+	# connect down and up signals for styling
+	button_down.connect(_on_button_down)
+	button_up.connect(_on_button_up)
+	
+	# find and set border and inner background
+	gradient_border = find_child("GradientBorder")
+	inner_color = find_child("InnerColor")
 	
 	# initialize style variables
 	inner_color_stylebox = inner_color.get("theme_override_styles/panel") as StyleBoxFlat
-	gradient_border_stylebox = gradient_border.get("theme_override_styles/panel") as StyleBoxFlat
 	
 	# setup button
-	enable_button()
-	
+	disabled = start_disabled
+	if disabled:
+		disable_button()
+	else:
+		enable_button()
 
-func _process(delta):
+
+func _process(_delta):
 	pass
 
 
 func enable_button():
 	disabled = false
-	inner_color_stylebox.bg_color = btn_style.inner_color
-	gradient_border_stylebox.bg_color = btn_style.gradient_border_color_top
-	gradient_border_stylebox.border_color = btn_style.gradient_border_color_bottom
-	label.add_theme_color_override("font_color",btn_style.font_color)
+	set_default_style()
 
 
 func disable_button():
 	disabled = true
+	set_disabled_style()
+
+
+func set_pressed_style():
+	inner_color_stylebox.bg_color = btn_style.inner_color_pressed
+	gradient_border.material.set_shader_parameter("color_top",btn_style.gradient_border_color_top_pressed)
+	gradient_border.material.set_shader_parameter("color_bottom",btn_style.gradient_border_color_bottom_pressed)
+
+
+func set_default_style():
+	inner_color_stylebox.bg_color = btn_style.inner_color
+	gradient_border.material.set_shader_parameter("color_top",btn_style.gradient_border_color_top)
+	gradient_border.material.set_shader_parameter("color_bottom",btn_style.gradient_border_color_bottom)
+
+
+func set_disabled_style():
 	inner_color_stylebox.bg_color = btn_style.inner_color_disabled
-	gradient_border_stylebox.bg_color = btn_style.gradient_border_color_top_disabled
-	gradient_border_stylebox.border_color = btn_style.gradient_border_color_bottom_disabled
-	label.add_theme_color_override("font_color",btn_style.font_color_disabled)
-	
-	
-func _on_pressed():
-	disable_button()
-	print_debug("button_pressed")
+	gradient_border.material.set_shader_parameter("color_top",btn_style.gradient_border_color_top_disabled)
+	gradient_border.material.set_shader_parameter("color_bottom",btn_style.gradient_border_color_bottom_disabled)
+
+
+func _on_button_down():
+	set_pressed_style()
+
+
+func _on_button_up():
+	set_default_style()

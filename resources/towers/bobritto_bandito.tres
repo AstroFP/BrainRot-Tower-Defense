@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TowerStats" load_steps=3 format=3 uid="uid://b66hya4spt8sj"]
 
-[ext_resource type="Texture2D" uid="uid://dn5pemf7xudiw" path="res://assets/sprites/ui/bobrito_icon.png" id="1_kap5v"]
+[ext_resource type="Texture2D" uid="uid://dn5pemf7xudiw" path="res://assets/sprites/ui/right_menu/buy_menu/tower_icons/bobrito_icon.png" id="1_kap5v"]
 [ext_resource type="Script" uid="uid://dvdcvjd7do71g" path="res://scripts/resources/tower_stats.gd" id="2_l35u1"]
 
 [resource]

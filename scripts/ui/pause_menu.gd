@@ -3,7 +3,9 @@ extends MarginContainer
 signal pause_menu_opened
 signal pause_menu_closed
 
-@onready var pause_menu = $PauseMenu
+@onready var pause_menu = $PauseMenuOuterBg/PauseMenu
+@onready var pause_menu_animation_player = $PauseMenuAnimationPlayer
+@onready var popup_menu = $"../PopupMenu"
 
 var touch_start_time := 0.0
 var holding := false
@@ -41,15 +43,23 @@ func _on_continue_btn_pressed():
 	hide_pause_menu()
 
 
-func _on_pause_menu_play_again_btn_pressed():
-	get_tree().reload_current_scene()
+func _on_play_again_btn_pressed():
+	popup_menu.setup_menu("Restart", "Are you sure you wish to restart the level?", get_tree().reload_current_scene)
+	popup_menu.show_menu()
 
 
 func show_pause_menu():
 	emit_signal("pause_menu_opened")
-	visible = true
+	pause_menu_animation_player.play("open")
 
 
 func hide_pause_menu():
 	emit_signal("pause_menu_closed")
-	visible = false
+	pause_menu_animation_player.play("close")
+
+
+func disable_input():
+	set_process_input(false)
+
+func enable_input():
+	set_process_input(true)

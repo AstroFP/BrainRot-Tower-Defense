@@ -1,21 +1,28 @@
-[gd_scene load_steps=36 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=77 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
 [ext_resource type="Script" uid="uid://cydr451m3h3lq" path="res://scripts/ui/resources_panel.gd" id="3_0dwhk"]
-[ext_resource type="Script" uid="uid://cpyc1d248rktr" path="res://scripts/ui/play_btn.gd" id="3_7vp6q"]
 [ext_resource type="Texture2D" uid="uid://ckok8l2ekcfew" path="res://assets/sprites/ui/heart.png" id="3_g5kmx"]
 [ext_resource type="PackedScene" uid="uid://bmfj52nu20k36" path="res://scenes/ui/ui_button_icon.tscn" id="3_mgwkc"]
-[ext_resource type="Texture2D" uid="uid://2uwiipyws4g3" path="res://assets/sprites/ui/buy_menu_toggle_btn.png" id="4_hl07w"]
+[ext_resource type="Texture2D" uid="uid://2uwiipyws4g3" path="res://assets/sprites/ui/right_menu/buy_menu_toggle_btn.png" id="4_hl07w"]
 [ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="5_0dwhk"]
-[ext_resource type="Texture2D" uid="uid://cm2tv8g81t6ew" path="res://assets/sprites/ui/pause_icon.png" id="5_0i47d"]
+[ext_resource type="Texture2D" uid="uid://cm2tv8g81t6ew" path="res://assets/sprites/ui/right_menu/pause_icon.png" id="5_0i47d"]
 [ext_resource type="Script" uid="uid://ct5j6a4vnfb62" path="res://scripts/ui/game_over_panel.gd" id="6_pfayw"]
 [ext_resource type="Script" uid="uid://br72ugcth0srs" path="res://scripts/ui/buy_menu_tower_list.gd" id="7_swkix"]
-[ext_resource type="Texture2D" uid="uid://bb2daltimn15m" path="res://assets/sprites/ui/play_icon.png" id="8_0i47d"]
+[ext_resource type="PackedScene" uid="uid://34vp2mjhfbdf" path="res://scenes/ui/play_btn.tscn" id="9_fqqne"]
 [ext_resource type="Script" uid="uid://dechlfp15kj8m" path="res://scripts/ui/pause_menu.gd" id="9_uegxj"]
 [ext_resource type="Script" uid="uid://b7mng3q4amihb" path="res://scripts/ui/wave_display.gd" id="11_4kltc"]
-[ext_resource type="PackedScene" uid="uid://b0lom8jygodhw" path="res://scenes/ui/ui_button.tscn" id="14_hc5d0"]
+[ext_resource type="PackedScene" uid="uid://b0lom8jygodhw" path="res://scenes/ui/ui_button_text.tscn" id="14_hc5d0"]
 [ext_resource type="Resource" uid="uid://8bem8uqo5jwr" path="res://resources/ui/ui_button_blue.tres" id="15_n3vwu"]
+[ext_resource type="PackedScene" uid="uid://cwlsl851c2kd4" path="res://scenes/ui/ui_button_full.tscn" id="16_4w2x3"]
+[ext_resource type="Resource" uid="uid://dqlfmwodkto7b" path="res://resources/ui/ui_button_green.tres" id="17_svq4k"]
+[ext_resource type="Texture2D" uid="uid://cb3o15pe3l25o" path="res://assets/sprites/ui/pause_menu/arrow_icon.png" id="17_ygedu"]
+[ext_resource type="Texture2D" uid="uid://846c7a7ukqhb" path="res://assets/sprites/ui/pause_menu/restart_icon.png" id="19_ygedu"]
+[ext_resource type="Texture2D" uid="uid://ykve5l7p2sjm" path="res://assets/sprites/ui/pause_menu/options_icon.png" id="20_26a3v"]
+[ext_resource type="Texture2D" uid="uid://dlcyytm86845x" path="res://assets/sprites/ui/pause_menu/home_icon.png" id="21_fv78h"]
+[ext_resource type="Resource" uid="uid://dxac8js3phmid" path="res://resources/ui/ui_button_red.tres" id="22_o71gb"]
+[ext_resource type="Script" uid="uid://bir8t4xy08qj" path="res://scripts/ui/popup_menu.gd" id="25_o71gb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i47d"]
 bg_color = Color(0, 0, 0, 1)
@@ -44,7 +51,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_4w2x3"]
+[sub_resource type="Theme" id="Theme_26a3v"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_0i47d")
 Button/styles/focus = SubResource("StyleBoxFlat_svq4k")
@@ -61,14 +68,56 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_mgwkc")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl07w"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kltc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272wc"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkvmi"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+shadow_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67jad"]
+border_width_bottom = 25
+border_color = Color(0.298039, 0.298039, 0.298039, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_fv78h"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_272wc")
+Button/styles/focus = SubResource("StyleBoxFlat_lkvmi")
+Button/styles/hover = SubResource("StyleBoxFlat_272wc")
+Button/styles/normal = SubResource("StyleBoxFlat_272wc")
+Button/styles/pressed = SubResource("StyleBoxFlat_272wc")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_67jad")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swkix"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.301961, 0.301961, 0.301961, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -102,12 +151,27 @@ content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0, 0, 0, 0.196078)
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 shadow_color = Color(1, 1, 1, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xdx3"]
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygedu"]
 bg_color = Color(0, 0, 0, 1)
@@ -136,7 +200,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_0i47d"]
+[sub_resource type="Theme" id="Theme_o71gb"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_ygedu")
 Button/styles/focus = SubResource("StyleBoxFlat_oopc8")
@@ -345,7 +409,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(386, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(390, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0.35, 0.75)
 }
 tracks/1/type = "bezier"
@@ -529,7 +593,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 386, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 390, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.45)
 }
 tracks/1/type = "bezier"
@@ -711,12 +775,636 @@ _data = {
 &"open": SubResource("Animation_swkix")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26a3v"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.301961, 0.301961, 0.301961, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv78h"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o71gb"]
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0i47d"]
+color = Color(0.301961, 0.301961, 0.301961, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqqne"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhbcy"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khplb"]
+border_width_bottom = 25
+border_color = Color(0.298039, 0.298039, 0.298039, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_fqqne"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_qhbcy"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_khplb"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_en2kd"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_vnqvi"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Animation" id="Animation_mgwkc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1080, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_4w2x3"]
+resource_name = "close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1080, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_0i47d"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1080, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w2x3"]
+_data = {
+&"RESET": SubResource("Animation_mgwkc"),
+&"close": SubResource("Animation_4w2x3"),
+&"open": SubResource("Animation_0i47d")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en2kd"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.301961, 0.301961, 0.301961, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnqvi"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ygsn"]
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_272wc"]
+color = Color(0.301961, 0.301961, 0.301961, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knhlc"]
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 4
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.588235)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2sfg"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yy7ol"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydrdt"]
+border_width_bottom = 25
+border_color = Color(0.298039, 0.298039, 0.298039, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_7ygsn"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
+Button/styles/hover = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/normal = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/pressed = SubResource("StyleBoxFlat_o2sfg")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
+
+[sub_resource type="Theme" id="Theme_272wc"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
+Button/styles/hover = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/normal = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/pressed = SubResource("StyleBoxFlat_o2sfg")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
+
+[sub_resource type="Animation" id="Animation_fqqne"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qhbcy"]
+resource_name = "close"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_o71gb"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qhbcy"]
+_data = {
+&"RESET": SubResource("Animation_fqqne"),
+&"close": SubResource("Animation_qhbcy"),
+&"open": SubResource("Animation_o71gb")
+}
+
 [node name="UICanvas" type="CanvasLayer"]
 script = ExtResource("1_f5cxw")
 
 [node name="PausedBackgroundOverlay" type="ColorRect" parent="."]
 visible = false
-z_index = 2
+z_index = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="PopupMenuBackgroundOverlay" type="ColorRect" parent="."]
+visible = false
+z_index = 5
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -785,9 +1473,9 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 0
-theme = SubResource("Theme_4w2x3")
-btn_style = ExtResource("15_n3vwu")
+theme = SubResource("Theme_26a3v")
 btn_icon = ExtResource("5_0i47d")
+btn_style = ExtResource("15_n3vwu")
 
 [node name="ToggleTowerBuyMenuBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
 custom_minimum_size = Vector2(45, 150)
@@ -799,17 +1487,10 @@ icon = ExtResource("4_hl07w")
 flat = true
 icon_alignment = 1
 
-[node name="PlayBtn" type="Button" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer"]
-custom_minimum_size = Vector2(80, 80)
+[node name="PlayBtn" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer" instance=ExtResource("9_fqqne")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4kltc")
-icon = ExtResource("8_0i47d")
-flat = true
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("3_7vp6q")
+theme = SubResource("Theme_fv78h")
+btn_style = ExtResource("17_svq4k")
 
 [node name="TowerBuyMenu" type="PanelContainer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
 z_index = 1
@@ -819,9 +1500,9 @@ theme = SubResource("Theme_hc5d0")
 [node name="TowerBuyMenyItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 10
 
 [node name="InnerBG" type="PanelContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper"]
 layout_mode = 2
@@ -854,6 +1535,7 @@ horizontal_alignment = 1
 [node name="BuyMenuTowerScroll" type="ScrollContainer" parent="UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/InnerBG/TowerBuyMenuItemsMargins/TowerBuyMenuItems"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xdx3")
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
@@ -870,9 +1552,10 @@ script = ExtResource("7_swkix")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 1
-theme = SubResource("Theme_0i47d")
-btn_style = ExtResource("15_n3vwu")
+theme = SubResource("Theme_o71gb")
 btn_text = "Info"
+btn_style = ExtResource("15_n3vwu")
+start_disabled = true
 
 [node name="BuyMenuAnimationPlayer" type="AnimationPlayer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
 libraries = {
@@ -947,7 +1630,7 @@ text = "debug"
 
 [node name="GameOverPanel" type="MarginContainer" parent="UIContainer/UI"]
 visible = false
-z_index = 2
+z_index = 3
 custom_minimum_size = Vector2(800, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -1024,84 +1707,139 @@ text = "Exit to menu"
 
 [node name="PauseMenuWrapper" type="MarginContainer" parent="UIContainer/UI"]
 visible = false
-z_index = 2
+modulate = Color(1, 1, 1, 0)
+z_index = 3
+custom_minimum_size = Vector2(800, 500)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1080.0
+offset_right = -0.0239258
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_uegxj")
 
-[node name="PauseMenu" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper"]
-custom_minimum_size = Vector2(800, 500)
+[node name="PauseMenuOuterBg" type="PanelContainer" parent="UIContainer/UI/PauseMenuWrapper"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_26a3v")
 
-[node name="PauseMenuBg" type="ColorRect" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu"]
+[node name="PauseMenu" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg"]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-color = Color(0.585062, 0.585062, 0.585062, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="PauseMenuItemsWrapper" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 40
+[node name="PauseMenuInnerBg" type="PanelContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fv78h")
 
-[node name="PauseMenuItems" type="VBoxContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper"]
+[node name="PauseMenuItemsWrapper" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg"]
 layout_mode = 2
 
-[node name="PauseMenuHeader" type="Label" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
+[node name="PauseMenuItems" type="VBoxContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper"]
+layout_mode = 2
+
+[node name="PauseMenuHeaderWrapper" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="PauseMenuHeaderBg" type="PanelContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuHeaderWrapper"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o71gb")
+
+[node name="PauseMenuHeader" type="Label" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuHeaderWrapper/PauseMenuHeaderBg"]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 12
+theme_override_colors/font_color = Color(1, 0.988235, 0.960784, 1)
 theme_override_font_sizes/font_size = 64
-text = "Pause"
+text = "PAUSE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
+[node name="HSeparator" type="HSeparator" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_0i47d")
 
-[node name="ContinueBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
-clip_contents = true
-custom_minimum_size = Vector2(250, 0)
+[node name="PauseMenuButtonsWrapper" type="MarginContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="PauseMenuButtonsList" type="VBoxContainer" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ContinueBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 28
-text = "Continue"
+theme = SubResource("Theme_fqqne")
+btn_text = "Resume"
+btn_icon = ExtResource("17_ygedu")
+btn_style = ExtResource("17_svq4k")
 
-[node name="PlayAgainBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
-custom_minimum_size = Vector2(250, 0)
+[node name="PlayAgainBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 28
-text = "Play again"
+theme = SubResource("Theme_qhbcy")
+btn_text = "Restart"
+btn_icon = ExtResource("19_ygedu")
+btn_style = ExtResource("15_n3vwu")
 
-[node name="ReplayLastWaveBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
-custom_minimum_size = Vector2(250, 0)
+[node name="ReplayLastWaveBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 28
-text = "Replay last wave"
+theme = SubResource("Theme_khplb")
+btn_text = "Replay last wave"
+btn_icon = ExtResource("17_ygedu")
+flip_h = true
+btn_style = ExtResource("15_n3vwu")
+start_disabled = true
 
-[node name="ExitBtn" type="Button" parent="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems"]
-custom_minimum_size = Vector2(250, 0)
+[node name="SettingsBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 28
-text = "Exit to menu"
+theme = SubResource("Theme_en2kd")
+btn_text = "Settings"
+btn_icon = ExtResource("20_26a3v")
+start_disabled = true
+
+[node name="ExitBtn" parent="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList" instance=ExtResource("16_4w2x3")]
+custom_minimum_size = Vector2(400, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_vnqvi")
+btn_text = "Main menu"
+btn_icon = ExtResource("21_fv78h")
+btn_style = ExtResource("22_o71gb")
+start_disabled = true
+
+[node name="PauseMenuAnimationPlayer" type="AnimationPlayer" parent="UIContainer/UI/PauseMenuWrapper"]
+libraries = {
+&"": SubResource("AnimationLibrary_4w2x3")
+}
 
 [node name="WaveDisplay" type="MarginContainer" parent="UIContainer/UI"]
 custom_minimum_size = Vector2(300, 130)
@@ -1130,6 +1868,119 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 32
 text = "Wave: "
 
+[node name="PopupMenu" type="PanelContainer" parent="UIContainer/UI"]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -354.0
+offset_top = -194.5
+offset_right = 354.0
+offset_bottom = 194.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(354, 194.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_en2kd")
+script = ExtResource("25_o71gb")
+
+[node name="PopupMenuContentsWrapper" type="MarginContainer" parent="UIContainer/UI/PopupMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PopupMenuContents" type="PanelContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vnqvi")
+
+[node name="PopupMenuItems" type="VBoxContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PopupHeaderWrapper" type="MarginContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PopupHeader" type="PanelContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupHeaderWrapper"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ygsn")
+
+[node name="PopupHeaderText" type="Label" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupHeaderWrapper/PopupHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.988235, 0.960784, 1)
+theme_override_font_sizes/font_size = 64
+text = "Header"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_272wc")
+
+[node name="PopupContentWrapper" type="MarginContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="PopupContent" type="PanelContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupContentWrapper"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_knhlc")
+
+[node name="PopupContentText" type="Label" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupContentWrapper/PopupContent"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.988235, 0.960784, 1)
+theme_override_font_sizes/font_size = 28
+text = "Popup content"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_272wc")
+
+[node name="PopupButtonsWrapper" type="MarginContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="PopupButtons" type="HBoxContainer" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="CancelBtn" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons" instance=ExtResource("14_hc5d0")]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = SubResource("Theme_7ygsn")
+btn_text = "Cancel"
+btn_style = ExtResource("22_o71gb")
+
+[node name="OKBtn" parent="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons" instance=ExtResource("14_hc5d0")]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = SubResource("Theme_272wc")
+btn_text = "Ok"
+btn_style = ExtResource("17_svq4k")
+
+[node name="PopupMenuAnimationPlayer" type="AnimationPlayer" parent="UIContainer/UI/PopupMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_qhbcy")
+}
+
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
@@ -1139,5 +1990,9 @@ text = "Wave: "
 [connection signal="pressed" from="UIContainer/UI/GameOverPanel/GameOverPanelBg/GameOverPanelItemsWrapper/GameOverPanelItems/Exitbtn" to="UIContainer/UI/GameOverPanel" method="_on_exitbtn_pressed"]
 [connection signal="pause_menu_closed" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_closed"]
 [connection signal="pause_menu_opened" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_opened"]
-[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems/ContinueBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_continue_btn_pressed"]
-[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenu/PauseMenuBg/PauseMenuItemsWrapper/PauseMenuItems/PlayAgainBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_pause_menu_play_again_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList/ContinueBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList/PlayAgainBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_play_again_btn_pressed"]
+[connection signal="popup_closed" from="UIContainer/UI/PopupMenu" to="." method="_on_popup_menu_popup_closed"]
+[connection signal="popup_opened" from="UIContainer/UI/PopupMenu" to="." method="_on_popup_menu_popup_opened"]
+[connection signal="pressed" from="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons/CancelBtn" to="UIContainer/UI/PopupMenu" method="_on_cancel_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons/OKBtn" to="UIContainer/UI/PopupMenu" method="_on_ok_btn_pressed"]

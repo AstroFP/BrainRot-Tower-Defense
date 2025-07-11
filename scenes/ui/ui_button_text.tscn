@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0lom8jygodhw"]
+[gd_scene load_steps=10 format=3 uid="uid://b0lom8jygodhw"]
 
-[ext_resource type="Script" uid="uid://dr6c50ftptwwk" path="res://scripts/ui/ui_button.gd" id="1_5y1ro"]
+[ext_resource type="Script" uid="uid://guc510ykbe7f" path="res://scripts/ui/ui_button_text.gd" id="1_5djw5"]
+[ext_resource type="Shader" uid="uid://c8umrt1yjrv4b" path="res://assets/shaders/play_button_gradient_shader.gdshader" id="2_5lu0q"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygedu"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2sfg"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
@@ -12,7 +13,7 @@ shadow_color = Color(0, 0, 0, 0.196078)
 shadow_size = 4
 shadow_offset = Vector2(0, 4)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oopc8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yy7ol"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
@@ -20,7 +21,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 shadow_color = Color(0, 0, 0, 0.196078)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmss2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydrdt"]
 border_width_bottom = 25
 border_color = Color(0.298039, 0.298039, 0.298039, 1)
 border_blend = true
@@ -30,25 +31,27 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="Theme" id="Theme_0i47d"]
-resource_local_to_scene = true
-Button/styles/disabled = SubResource("StyleBoxFlat_ygedu")
-Button/styles/focus = SubResource("StyleBoxFlat_oopc8")
-Button/styles/hover = SubResource("StyleBoxFlat_ygedu")
-Button/styles/normal = SubResource("StyleBoxFlat_ygedu")
-Button/styles/pressed = SubResource("StyleBoxFlat_ygedu")
+Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
+Button/styles/hover = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/normal = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/pressed = SubResource("StyleBoxFlat_o2sfg")
 Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
 Label/font_sizes/font_size = 28
 MarginContainer/constants/margin_bottom = 1
 MarginContainer/constants/margin_left = 1
 MarginContainer/constants/margin_right = 1
 MarginContainer/constants/margin_top = 1
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_qmss2")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dkfxe"]
+resource_local_to_scene = true
+shader = ExtResource("2_5lu0q")
+shader_parameter/color_top = Color(0, 0, 0, 1)
+shader_parameter/color_bottom = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y1ro"]
 resource_local_to_scene = true
-border_width_bottom = 40
-border_color = Color(0.298039, 0.298039, 0.298039, 1)
-border_blend = true
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -62,13 +65,13 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="UIButton" type="Button"]
-custom_minimum_size = Vector2(0, 50)
+[node name="UIButtonText" type="Button"]
+custom_minimum_size = Vector2(15, 50)
 offset_right = 231.0
 offset_bottom = 44.0
 size_flags_horizontal = 4
 theme = SubResource("Theme_0i47d")
-script = ExtResource("1_5y1ro")
+script = ExtResource("1_5djw5")
 
 [node name="GradientWrapper" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -84,6 +87,7 @@ theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
 [node name="GradientBorder" type="PanelContainer" parent="GradientWrapper"]
+material = SubResource("ShaderMaterial_dkfxe")
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5y1ro")
@@ -105,5 +109,3 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4w2x3")
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

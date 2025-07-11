@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn5pemf7xudiw"
-path="res://.godot/imported/bobrito_icon.png-88062a410b4d97565657ef0d68c7816f.ctex"
+uid="uid://weqgdxtvhqix"
+path="res://.godot/imported/Banner_s.png-c46326a89d2e8f36c55a1c0d0989feef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/bobrito_icon.png"
-dest_files=["res://.godot/imported/bobrito_icon.png-88062a410b4d97565657ef0d68c7816f.ctex"]
+source_file="res://assets/sprites/ui/right_menu/buy_menu/Banner_s.png"
+dest_files=["res://.godot/imported/Banner_s.png-c46326a89d2e8f36c55a1c0d0989feef.ctex"]
 
 [params]
 
