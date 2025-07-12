@@ -180,7 +180,7 @@ func _on_enemy_end_of_track_reached(damage:int):
 # handle game over
 func _on_game_over():
 	ui.show_game_over_panel(current_wave)
-	ui.toggle_paused_background_overlay()
+	ui.enable_paused_background_overlay()
 	pause_game()
 
 
