@@ -20,6 +20,7 @@ func show_game_over_panel(waves_survived: int):
 
 
 func _on_play_again_btn_pressed():
+	await RenderingServer.frame_post_draw
 	get_tree().reload_current_scene()
 
 
