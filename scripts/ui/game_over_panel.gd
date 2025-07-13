@@ -1,7 +1,9 @@
 class_name GameOverPanel
-extends MarginContainer
+extends PanelContainer
 
-@onready var game_over_wave = $GameOverPanelBg/GameOverPanelItemsWrapper/GameOverPanelItems/GameOverWave
+@onready var popup_menu: PanelContainer = $"../PopupMenu"
+@onready var game_over_wave: Label = $GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverWaveWrapper/GameOverWaveBg/GameOverWave
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,13 +22,13 @@ func show_game_over_panel(waves_survived: int):
 
 
 func _on_play_again_btn_pressed():
-	await RenderingServer.frame_post_draw
-	get_tree().reload_current_scene()
+	popup_menu.setup_menu("Play again", "Are you sure you wish to replay the level?", get_tree().reload_current_scene)
+	popup_menu.show_menu()
 
 
 func _on_replay_last_wave_btn_pressed():
 	pass # Replace with function body.
 
 
-func _on_exitbtn_pressed():
+func _on_exit_btn_pressed() -> void:
 	pass # Replace with function body.
