@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=81 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -777,6 +777,258 @@ _data = {
 &"RESET": SubResource("Animation_hc5d0"),
 &"close": SubResource("Animation_n3vwu"),
 &"open": SubResource("Animation_swkix")
+}
+
+[sub_resource type="Animation" id="Animation_272wc"]
+resource_name = "Close"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1080, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_vnqvi"]
+resource_name = "Open"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1080, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.5)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7ygsn"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1080, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_knhlc"]
+_data = {
+&"Close": SubResource("Animation_272wc"),
+&"Open": SubResource("Animation_vnqvi"),
+&"RESET": SubResource("Animation_7ygsn")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqqne"]
@@ -1596,55 +1848,57 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "debug"
 
-[node name="GameOverPanel" type="PanelContainer" parent="UIContainer/UI"]
+[node name="GameOverPanelWrapper" type="MarginContainer" parent="UIContainer/UI"]
+modulate = Color(1, 1, 1, 0)
 z_index = 3
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -250.0
-offset_right = 400.0
-offset_bottom = 250.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1080.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("14_fv78h")
 script = ExtResource("6_pfayw")
 
-[node name="GameOverPanelItemsWrapper" type="MarginContainer" parent="UIContainer/UI/GameOverPanel"]
+[node name="GameOverPanel" type="PanelContainer" parent="UIContainer/UI/GameOverPanelWrapper"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GameOverPanelItemsWrapper" type="MarginContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="GameOverPanelItemsInnerBg" type="PanelContainer" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper"]
+[node name="GameOverPanelItemsInnerBg" type="PanelContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("16_o71gb")
 
-[node name="GameOverPanelItemsContainer" type="MarginContainer" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg"]
+[node name="GameOverPanelItemsContainer" type="MarginContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg"]
 layout_mode = 2
 
-[node name="GameOverPanelItems" type="VBoxContainer" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer"]
+[node name="GameOverPanelItems" type="VBoxContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="GameOverPanelHeaderWrapper" type="MarginContainer" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
+[node name="GameOverPanelHeaderWrapper" type="MarginContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="GameOverHeaderBg" type="PanelContainer" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverPanelHeaderWrapper"]
+[node name="GameOverHeaderBg" type="PanelContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverPanelHeaderWrapper"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("17_fqqne")
 
-[node name="GameOverHeader" type="Label" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverPanelHeaderWrapper/GameOverHeaderBg"]
+[node name="GameOverHeader" type="Label" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverPanelHeaderWrapper/GameOverHeaderBg"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
@@ -1655,23 +1909,23 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
+[node name="HSeparator2" type="HSeparator" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
 layout_mode = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = ExtResource("18_qhbcy")
 
-[node name="GameOverWaveWrapper" type="MarginContainer" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
+[node name="GameOverWaveWrapper" type="MarginContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="GameOverWaveBg" type="PanelContainer" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverWaveWrapper"]
+[node name="GameOverWaveBg" type="PanelContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverWaveWrapper"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("17_fqqne")
 
-[node name="GameOverWave" type="Label" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverWaveWrapper/GameOverWaveBg"]
+[node name="GameOverWave" type="Label" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverWaveWrapper/GameOverWaveBg"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.988235, 0.960784, 1)
@@ -1680,23 +1934,23 @@ text = "Wave: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
+[node name="HSeparator" type="HSeparator" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
 layout_mode = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = ExtResource("18_qhbcy")
 
-[node name="GameOverButtonsWrapper" type="MarginContainer" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
+[node name="GameOverButtonsWrapper" type="MarginContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="GameOverButtons" type="VBoxContainer" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper"]
+[node name="GameOverButtons" type="VBoxContainer" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="PlayAgainBtn" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons" instance=ExtResource("16_4w2x3")]
+[node name="PlayAgainBtn" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons" instance=ExtResource("16_4w2x3")]
 custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1705,7 +1959,7 @@ btn_text = "Play again"
 btn_icon = ExtResource("19_ygedu")
 btn_style = ExtResource("17_svq4k")
 
-[node name="ReplayLastWaveBtn" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons" instance=ExtResource("16_4w2x3")]
+[node name="ReplayLastWaveBtn" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons" instance=ExtResource("16_4w2x3")]
 custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1716,7 +1970,7 @@ flip_h = true
 btn_style = ExtResource("15_n3vwu")
 start_disabled = true
 
-[node name="ExitBtn" parent="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons" instance=ExtResource("16_4w2x3")]
+[node name="ExitBtn" parent="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons" instance=ExtResource("16_4w2x3")]
 custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1725,6 +1979,11 @@ btn_text = "Main menu"
 btn_icon = ExtResource("21_fv78h")
 btn_style = ExtResource("22_o71gb")
 start_disabled = true
+
+[node name="GameOverAnimationPlayer" type="AnimationPlayer" parent="UIContainer/UI/GameOverPanelWrapper"]
+libraries = {
+&"": SubResource("AnimationLibrary_knhlc")
+}
 
 [node name="PauseMenuWrapper" type="MarginContainer" parent="UIContainer/UI"]
 visible = false
@@ -2006,9 +2265,9 @@ libraries = {
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
 [connection signal="available_money_changed" from="UIContainer/UI/ResourcesPanel" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_available_money_changed"]
-[connection signal="pressed" from="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons/PlayAgainBtn" to="UIContainer/UI/GameOverPanel" method="_on_play_again_btn_pressed"]
-[connection signal="pressed" from="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons/ReplayLastWaveBtn" to="UIContainer/UI/GameOverPanel" method="_on_replay_last_wave_btn_pressed"]
-[connection signal="pressed" from="UIContainer/UI/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons/ExitBtn" to="UIContainer/UI/GameOverPanel" method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons/PlayAgainBtn" to="UIContainer/UI/GameOverPanelWrapper" method="_on_play_again_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons/ReplayLastWaveBtn" to="UIContainer/UI/GameOverPanelWrapper" method="_on_replay_last_wave_btn_pressed"]
+[connection signal="pressed" from="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons/ExitBtn" to="UIContainer/UI/GameOverPanelWrapper" method="_on_exit_btn_pressed"]
 [connection signal="pause_menu_closed" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_closed"]
 [connection signal="pause_menu_opened" from="UIContainer/UI/PauseMenuWrapper" to="." method="_on_pause_menu_opened"]
 [connection signal="pressed" from="UIContainer/UI/PauseMenuWrapper/PauseMenuOuterBg/PauseMenu/PauseMenuInnerBg/PauseMenuItemsWrapper/PauseMenuItems/PauseMenuButtonsWrapper/PauseMenuButtonsList/ContinueBtn" to="UIContainer/UI/PauseMenuWrapper" method="_on_continue_btn_pressed"]

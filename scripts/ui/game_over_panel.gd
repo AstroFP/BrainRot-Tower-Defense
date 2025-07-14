@@ -1,8 +1,9 @@
 class_name GameOverPanel
-extends PanelContainer
+extends MarginContainer
 
 @onready var popup_menu: PanelContainer = $"../PopupMenu"
-@onready var game_over_wave: Label = $GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverWaveWrapper/GameOverWaveBg/GameOverWave
+@onready var game_over_animation_player: AnimationPlayer = $GameOverAnimationPlayer
+@onready var game_over_wave: Label = $GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverWaveWrapper/GameOverWaveBg/GameOverWave
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +19,7 @@ func _process(_delta):
 func show_game_over_panel(waves_survived: int):
 	if waves_survived == 0: waves_survived = 1
 	game_over_wave.text += str(waves_survived)
-	visible = true
+	game_over_animation_player.play("Open")
 
 
 func _on_play_again_btn_pressed():
