@@ -8,7 +8,6 @@ signal unpause_game
 
 @onready var tower_buy_menu_wrapper = $UIContainer/UI/TowerBuyMenuWrapper
 @onready var resources_panel = $UIContainer/UI/ResourcesPanel
-@onready var game_over_panel = $UIContainer/UI/GameOverPanel
 @onready var play_btn = $UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn
 @onready var pause_menu_wrapper = $UIContainer/UI/PauseMenuWrapper
 @onready var pause_btn = $UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn
@@ -17,6 +16,9 @@ signal unpause_game
 @onready var buy_menu_tower_list = $UIContainer/UI/TowerBuyMenuWrapper/TowerBuyMenu/TowerBuyMenyItemsWrapper/InnerBG/TowerBuyMenuItemsMargins/TowerBuyMenuItems/BuyMenuTowerScroll/BuyMenuTowerList
 @onready var popup_menu = $UIContainer/UI/PopupMenu
 @onready var popup_menu_background_overlay = $PopupMenuBackgroundOverlay
+@onready var game_over_panel: GameOverPanel = $UIContainer/UI/GameOverPanelWrapper
+
+
 
 var game_rules: GameRules
 

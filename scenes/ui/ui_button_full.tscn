@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://c0lbq65botdkr" path="res://resources/ui/ui_button_gray.tres" id="2_6eyo4"]
 [ext_resource type="Shader" uid="uid://c8umrt1yjrv4b" path="res://assets/shaders/play_button_gradient_shader.gdshader" id="4_i6yri"]
 [ext_resource type="Shader" uid="uid://b28qvb35csw6j" path="res://assets/shaders/ui_button_icon_color_toggle_shader.gdshader" id="4_xfvcw"]
-[ext_resource type="Texture2D" uid="uid://cb3o15pe3l25o" path="res://assets/sprites/ui/pause_menu/arrow_icon.png" id="5_xfvcw"]
+[ext_resource type="Texture2D" uid="uid://cb3o15pe3l25o" path="res://assets/sprites/ui/menu_icons/arrow_icon.png" id="5_xfvcw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pgi56"]
 resource_local_to_scene = true
