@@ -2,11 +2,13 @@ class_name Tower
 extends Node2D
 
 signal tower_placed(tower:TowerStats)
+const UPGRADES_MANAGER = preload("res://scenes/upgrades_manager.tscn")
 
 # TODO:
 # *Add functionality to click on the placed towers (for now just to display attack range)
 
 @export var tower_stats: TowerStats
+#@onready var upgrades_manager: UpgradesManager = $UpgradesManager
 
 @onready var tower_sprite = $TowerSprite
 @onready var attack_range = $AttackRange
@@ -21,16 +23,26 @@ var placement_state = placement.valid
 var colliding_towers:=[]
 
 var scale_factor := 0.15
-var min_scale_size := Vector2(128,128)
+var min_scale_size := Vector2(128, 128)
+
+
+# combat variables
+var attack_damage: float
+var attack_speed: float
+var attack_radius: float
+var pierce: int
+var attack_damage_multiplier: float
+var attack_speed_multiplier: float
+var attack_radius_multiplier: float
 
 func _ready():
 	# setup process mode
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	
 	# set attack radius
-	var attack_radius = CircleShape2D.new()
-	attack_radius.radius = tower_stats.attack_radius
-	attack_range_hitbox.shape = attack_radius
+	var attack_radius_shape = CircleShape2D.new()
+	attack_radius_shape.radius = tower_stats.attack_radius
+	attack_range_hitbox.shape = attack_radius_shape
 	
 	# set attack radius display
 	update_attak_range_display_size()
@@ -55,6 +67,15 @@ func _ready():
 	hitbox_radius.height = texture_size.y * tower_sprite.get_scale().y
 	hitbox_collision_box.shape = hitbox_radius
 	
+	# set combat variables
+	attack_damage = tower_stats.attack_damage
+	attack_speed = tower_stats.attack_speed
+	attack_radius = tower_stats.attack_radius	
+	pierce = tower_stats.pierce
+	attack_damage_multiplier = tower_stats.attack_damage_multiplier
+	attack_speed_multiplier = tower_stats.attack_speed_multiplier
+	attack_radius_multiplier = tower_stats.attack_radius_multplier
+	
 	# disable AI
 	set_process(false)
 	set_physics_process(false)
@@ -77,7 +98,7 @@ func place_tower():
 	var combat_manager_scene_path =  tower_stats.COMBAT_MANAGER_SCENES[tower_stats.combat_manager_type]
 	var combat_manager_scene = load(combat_manager_scene_path)
 	add_child(combat_manager_scene.instantiate())
-	
+	add_child(UPGRADES_MANAGER.instantiate())
 	emit_signal("tower_placed",tower_stats)
 
 
@@ -96,6 +117,10 @@ func update_attack_range_display_color_to_valid():
 func update_attack_range_display_color_to_invalid():
 	attack_range_display.material.set_shader_parameter("fill_color", tower_stats.attack_range_display_color_invalid)
 	attack_range_display.material.set_shader_parameter("border_color", tower_stats.attack_range_display_border_color_invalid)
+
+
+func get_total_attack_damage() -> float:
+	return attack_damage * attack_damage_multiplier
 
 
 func toggle_attack_range_display():

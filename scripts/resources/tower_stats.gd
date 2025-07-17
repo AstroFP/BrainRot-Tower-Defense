@@ -4,10 +4,18 @@ extends Resource
 @export var name: String
 @export var texture: Texture2D
 @export var icon: Texture2D
-@export var price:= 0
-@export var damage:= 1
-@export var pierce:= 1
+@export var price : int = 0
+@export var attack_damage : float = 1
+@export var attack_speed : float = 1
+@export var pierce : int = 1
 @export_range(0, 800, 0.1, "or_greater") var attack_radius:= 500.0
+
+@export var attack_damage_multiplier : float = 1
+@export var attack_speed_multiplier : float = 1
+@export var attack_radius_multplier : float = 1
+
+@export var tower_upgrades: Resource # Tower upgrades specific to the tower
+
 
 #This is where we declare possible CombatManager Scenes to choose from in .tres file
 #for the later purpose of loading it when placed by player

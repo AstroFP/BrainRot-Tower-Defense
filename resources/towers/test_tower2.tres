@@ -13,4 +13,5 @@ price = 350
 damage = 1
 pierce = 1
 attack_radius = 500.0
+combat_manager_type = 0
 metadata/_custom_type_script = "uid://dvdcvjd7do71g"
