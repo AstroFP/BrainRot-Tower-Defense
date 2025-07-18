@@ -60,7 +60,7 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if body is HungryHippo:
 		enemies_in_range.erase(body)
-
+		body.get_node("HealthManager").dead.disconnect(_on_enemy_dead)
 
 func _on_enemy_dead(body):
 	if body is HungryHippo:

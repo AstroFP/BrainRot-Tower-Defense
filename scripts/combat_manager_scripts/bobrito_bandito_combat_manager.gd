@@ -38,6 +38,6 @@ class DoubleTap:
 	
 	
 	func double_tap(origin:BasicCombatManager) -> void:
-		await origin.get_tree().create_timer(0.05).timeout
-		print("double_tapped")
+		await origin.get_tree().create_timer(0.1).timeout
 		origin.basic_attack_hitscan()
+		print("double_tapped")
