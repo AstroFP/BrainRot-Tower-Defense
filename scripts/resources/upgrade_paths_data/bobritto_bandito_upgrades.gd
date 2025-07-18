@@ -12,7 +12,7 @@ var upgrades := {
 					"effects":{
 						"attack_speed_multiplier": 0.15
 					},
-					"actions":{}
+					"actions":[{}]
 				},
 			]
 		},
@@ -25,7 +25,16 @@ var upgrades := {
 					"effects":{
 						"attack_damage_multiplier":0.5
 					},
-					"actions":{}
+					"actions":[
+						{
+							"name":"special_attack",
+							"param1":1
+						},
+						{
+							"name":"double_tap",
+							"param1":1
+						}
+					]
 				},
 			]
 		},
@@ -38,7 +47,7 @@ var upgrades := {
 					"effects":{
 						"attack_radius_multiplier":0.10
 					},
-					"actions":{}
+					"actions":[{}]
 				},
 			]
 		},

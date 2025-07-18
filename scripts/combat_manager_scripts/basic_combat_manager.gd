@@ -1,4 +1,4 @@
-class_name BaicCombatManager
+class_name BasicCombatManager
 extends Node2D
 
 var detection_area : Area2D
@@ -33,8 +33,8 @@ var attack_cooldown : float = 0
 func _process(delta: float) -> void:
 	attack_cooldown += delta
 	
-	#happens every 0.5 sec, temporarily hardcoded
-	if attack_cooldown > tower.attack_speed:
+	#happens every 60s / tower attack speed
+	if attack_cooldown > tower.get_attack_delay():
 		#print_debug(enemies_in_range.size())
 		attack()
 		attack_cooldown = 0.0
@@ -66,13 +66,6 @@ func _on_enemy_dead(body):
 	if body is HungryHippo:
 		enemies_in_range.erase(body)
 
-func attack():
-	if !enemies_in_range.is_empty():
-		update_target()
-		#setting a healthmanager that can be called to deal damage to the target
-		var current_target_hm = current_target.get_node("HealthManager")
-		
-		current_target_hm.take_damage(tower.get_total_attack_damage())
 
 #			!---- Section 2----!
 #!---- choosing a current tower target ----!
@@ -137,3 +130,30 @@ func choose_closest_enemy() -> HungryHippo:
 
 #	  !---- Section 3----!
 #!---- Actual Combat functionalities ----!
+
+
+var actions : Array = [] # array of special actions gained from upgrades
+var attack_enhancements : Array = []
+var attack_params : Dictionary = {
+	"origin":self,
+	"target":null,
+	"damage":0
+}
+
+func basic_attack_hitscan() -> void:
+	update_target()
+	if current_target:
+		var current_target_hm = current_target.get_node("HealthManager")
+		current_target_hm.take_damage(tower.get_total_attack_damage())
+
+
+func attack():
+	if !enemies_in_range.is_empty():
+		# perform attack with or without speial enhacments
+		basic_attack_hitscan()
+		
+		# perform additional acions
+		for action in actions:
+			attack_params["target"] = current_target
+			attack_params["damage"] = tower.get_total_attack_damage()
+			action.apply(attack_params)

@@ -2,12 +2,17 @@ class_name UpgradesManager
 extends Node
 
 var tower: Tower
-var upgrades : Array = []
+var tower_combat_manager: BasicCombatManager
+#var upgrades : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tower = get_parent()
+	tower_combat_manager = tower.combat_manager
+	
+	# debug
 	aplly_upgrade(tower.tower_stats.tower_upgrades.upgrades["paths"]["path_2"]["upgrades"][0])
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -16,6 +21,7 @@ func _process(_delta: float) -> void:
 
 func aplly_upgrade(upgrade:Dictionary) -> void:
 	aplly_effects(upgrade["effects"])
+	apply_actions(upgrade["actions"])
 
 
 func aplly_effects(effects : Dictionary) -> void:
@@ -36,5 +42,9 @@ func aplly_effects(effects : Dictionary) -> void:
 			_:
 				pass
 
-func apply_actions() -> void:
-	pass
+
+func apply_actions(actions:Array) -> void:
+	for action in actions:
+		if !action.is_empty():
+			tower_combat_manager.actions.append(tower_combat_manager.get_inner_class(action["name"]))
+				

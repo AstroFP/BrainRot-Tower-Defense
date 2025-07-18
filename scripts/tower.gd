@@ -16,6 +16,8 @@ const UPGRADES_MANAGER = preload("res://scenes/upgrades_manager.tscn")
 @onready var attack_range_display = $AttackRange/AttackRangeHitbox/AttackRangeDisplay
 @onready var hitbox_collision_box = $Hitbox/HitboxCollisionBox
 
+var combat_manager: BasicCombatManager
+
 var is_placed = false
 enum placement {valid = 0, invalid = 1}
 var placement_state = placement.valid
@@ -34,6 +36,8 @@ var pierce: int
 var attack_damage_multiplier: float
 var attack_speed_multiplier: float
 var attack_radius_multiplier: float
+
+var actions : Array = []
 
 func _ready():
 	# setup process mode
@@ -76,6 +80,7 @@ func _ready():
 	attack_speed_multiplier = tower_stats.attack_speed_multiplier
 	attack_radius_multiplier = tower_stats.attack_radius_multplier
 	
+	
 	# disable AI
 	set_process(false)
 	set_physics_process(false)
@@ -97,7 +102,8 @@ func place_tower():
 	#We refer to the entry of that dictionary by using an combat_manager_type variable (also from tower_stats.gd)
 	var combat_manager_scene_path =  tower_stats.COMBAT_MANAGER_SCENES[tower_stats.combat_manager_type]
 	var combat_manager_scene = load(combat_manager_scene_path)
-	add_child(combat_manager_scene.instantiate())
+	combat_manager = combat_manager_scene.instantiate()
+	add_child(combat_manager)
 	add_child(UPGRADES_MANAGER.instantiate())
 	emit_signal("tower_placed",tower_stats)
 
@@ -122,6 +128,11 @@ func update_attack_range_display_color_to_invalid():
 func get_total_attack_damage() -> float:
 	return attack_damage * attack_damage_multiplier
 
+func get_total_attack_speed() -> float:
+	return attack_speed * attack_speed_multiplier
+
+func get_attack_delay() -> float:
+	return 60/get_total_attack_speed()
 
 func toggle_attack_range_display():
 	attack_range_display.visible = false if true else true
