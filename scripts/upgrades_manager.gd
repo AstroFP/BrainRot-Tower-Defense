@@ -23,6 +23,7 @@ func aplly_upgrade(upgrade:Dictionary) -> void:
 	apply_effects(upgrade["effects"])
 	apply_actions(upgrade["actions"])
 	apply_extra_attacks(upgrade["attacks"])
+	apply_attack_replacers(upgrade["replacers"])
 
 # apply effects from an upgrade (raw stats boosts)
 func apply_effects(effects: Dictionary) -> void:
@@ -56,3 +57,9 @@ func apply_extra_attacks(attacks: Array) -> void:
 	for attack in attacks:
 		if !attack.is_empty():
 			tower_combat_manager.extra_attacks.append(tower_combat_manager._get_inner_extra_attack_class(attack["name"],attack["delay"]))
+
+
+func apply_attack_replacers(replacers: Array) -> void:
+	for replacer in replacers:
+		if !replacer.is_empty():
+			tower_combat_manager.attack_replacers.append(tower_combat_manager._get_inner_attack_replacer_class(replacer["name"],replacer["interval"]))

@@ -22,11 +22,19 @@ func _get_inner_action_class(inner_class_name: String):
 func _get_inner_extra_attack_class(inner_class_name:String, att_delay: float):
 	match inner_class_name:
 		"additional_attack":
-			return AdditionalAttack.new(att_delay, _get_extra_attack_callable(inner_class_name))
+			return AdditionalAttack.new(att_delay, _get_attack_callable(inner_class_name))
 		_:
 			return
 
-func _get_extra_attack_callable(callable_name:String):
+
+func _get_inner_attack_replacer_class(inner_class_name: String, interval: int):
+	match  inner_class_name:
+		"additional_attack":
+			return AttackReplacer.new(interval,_get_attack_callable(inner_class_name))
+		_:
+			return
+
+func _get_attack_callable(callable_name:String):
 	match callable_name:
 		"additional_attack":
 			return additional_attack_hitscan
@@ -71,3 +79,7 @@ class DoubleTap:
 class AdditionalAttack extends BasicExtraAttack:
 	func _init(att_delay: float, att_func: Callable) -> void:
 		super(att_delay, att_func)
+
+
+class AttackReplacer extends BasicAttackReplacer:
+	pass

@@ -14,6 +14,9 @@ extends Resource
 @export var attack_speed_multiplier : float = 1
 @export var attack_radius_multplier : float = 1
 
+@export_range(0,100,0.1) var attack_crit_chance : float = 0
+@export var attack_crit_damage_multiplier : float = 2
+
 @export var tower_upgrades: Resource # Tower upgrades specific to the tower
 
 

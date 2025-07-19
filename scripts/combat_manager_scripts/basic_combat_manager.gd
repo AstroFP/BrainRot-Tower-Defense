@@ -30,7 +30,7 @@ func _ready() -> void:
 	detection_area.body_exited.connect(_on_body_exited)
 	
 	#debug
-	attack_replacers.append(BasicAttackReplacer.new(3,basic_attack_hitscan))
+	#attack_replacers.append(BasicAttackReplacer.new(3,basic_attack_hitscan))
 
 
 var attack_cooldown : float = 0
@@ -234,5 +234,9 @@ func _get_inner_extra_attack_class(_inner_class_name: String, _att_delay: float)
 	pass
 
 
-func _get_extra_attack_callable(_callable_name: String):
+func _get_attack_callable(_callable_name: String):
+	pass
+
+
+func _get_inner_attack_replacer_class(_inner_class_name: String, _interval: int):
 	pass

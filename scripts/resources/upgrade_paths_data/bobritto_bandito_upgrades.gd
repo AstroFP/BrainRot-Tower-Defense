@@ -41,7 +41,14 @@ var upgrades := {
 						{
 							"name": "additional_attack",
 							"delay":0.5,
-							"param1":1
+							"param2":1
+						}
+					],
+					"replacers":[
+						{
+							"name":"additional_attack",
+							"interval":3,
+							"param2":1
 						}
 					]
 				},
