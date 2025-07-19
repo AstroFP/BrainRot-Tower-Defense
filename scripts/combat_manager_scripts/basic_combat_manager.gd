@@ -40,7 +40,6 @@ var attack_cooldown : float = 0
 func _process(delta: float) -> void:
 	attack(delta)
 
-
 #				!---- Section 1----!
 # !----handling updating enemies_in_range array---!
 func parse_initial_enemies_in_range(overlapping_bodies):
@@ -132,8 +131,9 @@ func choose_closest_enemy() -> HungryHippo:
 #	  !---- Section 3----!
 #!---- Actual Combat functionalities ----!
 
-# array of special actions gained from upgrades
-var actions : Array = [] 
+# dictionary of special actions gained from upgrades
+var actions : Dictionary = {} 
+
 # attack parameters required by combat functions
 var attack_params : Dictionary = {
 	"origin":self,
@@ -141,19 +141,23 @@ var attack_params : Dictionary = {
 	"damage":0,
 	"is_crit":false
 }
-# array of extra attacks with separate cooldowns gained from upgrades
-var extra_attacks: Array[BasicExtraAttack] = []
-# array of attack enhancements gained from upgrades
-var attack_enhancements : Array[BasicAttackEnhancement] = []
-# array of attack replacers gained from upgrades
-var attack_replacers : Array[BasicAttackReplacer] = []
+
+# dictionary of extra attacks with separate cooldowns gained from upgrades
+var extra_attacks: Dictionary[String,BasicExtraAttack] = {}
+
+# dictionary of attack enhancements gained from upgrades
+var attack_enhancements : Dictionary[String,BasicAttackEnhancement] = {}
+
+# dictionary of attack replacers gained from upgrades
+var attack_replacers : Dictionary[String,BasicAttackReplacer] = {}
+
 
 # basic hitscan attack
 func basic_attack_hitscan(params:Dictionary) -> void:
 	var current_target_hm = params["target"].get_node("HealthManager")
 	current_target_hm.take_damage(params["damage"])
 	for enhancement in attack_enhancements:
-		enhancement.apply(params)
+		attack_enhancements[enhancement].apply(params)
 
 
 # attack funcion that encapsulates the new attack logic supporting upgrade functionality
@@ -181,8 +185,8 @@ func attack(delta_time: float):
 		roll_for_crit()
 		var attack_replaced = false
 		for attack_replacer in attack_replacers:
-			if attack_replacer.should_replace():
-				attack_replacer.execute(attack_params)
+			if attack_replacers[attack_replacer].should_replace():
+				attack_replacers[attack_replacer].execute(attack_params)
 				attack_replaced = true
 		if !attack_replaced:
 			basic_attack.attack(attack_params)
@@ -191,14 +195,14 @@ func attack(delta_time: float):
 		# perform additional acions
 		for action in actions:
 			roll_for_crit()
-			action.apply(attack_params)
+			actions[action].apply(attack_params)
 			
 		attack_cooldown = 0.0
 	
 	# additional attacks (independent, with separate cooldowns)
 	for extra_attack in extra_attacks:
 		roll_for_crit()
-		extra_attack.execute(delta_time, attack_params)
+		extra_attacks[extra_attack].execute(delta_time, attack_params)
 
 
 func roll_for_crit():
@@ -272,9 +276,9 @@ class BasicAttackReplacer:
 		return false
 	
 	
-	func execute(func_params:Dictionary) -> void:
+	func execute(params:Dictionary) -> void:
 		print("attack_replaced")
-		attack_func.call(func_params)
+		attack_func.call(params)
 
 
 # basic attack enhancement class for attack enhancement to inherit from

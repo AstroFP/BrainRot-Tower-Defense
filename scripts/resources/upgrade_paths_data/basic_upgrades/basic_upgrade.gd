@@ -1,0 +1,87 @@
+class_name  BasicUpgrade
+extends Resource
+
+enum effect {
+	attack_damage,
+	attack_speed,
+	attack_radius,
+	attack_crit_chance,
+	attack_damage_multiplier,
+	attack_speed_multiplier,
+	attack_radius_multiplier,
+	attack_crit_multiplier
+}
+
+## Name of an upgrade
+@export var name : String = ""
+
+## Short description of an upgrade
+@export_multiline var description : String = ""
+
+## Detailed description of an upgrade. Should list everything the upgrade does
+@export_multiline var details : String = ""
+## Cost of an upgrade
+
+@export var cost : int = 0
+
+## Dictionary of effects gained from an upgrade
+@export var effects : Dictionary[effect,float] = {}
+
+## Array of actions gaind from an upgrade
+@export var actions : Array[Action] = []
+
+## Array of extra attacks gained from an upgrade
+@export var attacks : Array[Attack] = []
+
+## Array of attack replacers gained from an upgrade
+@export var replacers : Array[Replacer] = []
+
+## Array of attack enhancements gained from an upgrade
+@export var enhancements : Array[Enhancement] = []
+
+
+#{
+	#"level":1,
+	#"name":"Quality bullets",
+	#"description":"",
+	#"cost":690,
+	#"effects":{
+		#"attack_damage_multiplier":0.5
+	#},
+	#"actions":[
+		#{
+			#"name":"special_attack",
+			#"param1":1
+		#},
+		#{
+			#"name":"double_tap",
+			#"param1":1
+		#}
+	#],
+	#"attacks":[
+		#{
+			#"name": "additional_attack",
+			#"delay":0.5,
+			#"param2":1
+		#}
+	#],
+	#"replacers":[
+		#{
+			#"name":"additional_attack",
+			#"interval":3,
+			#"param2":1
+		#}
+	#],
+	#"enhancements":[
+		#{
+			#"name":"attack_enhancement",
+			#"param1":1
+		#}
+	#],
+	#"changers":[
+		#{
+			#"name":"attack_changer",
+			#"param1":1
+		#}
+	#]
+#}

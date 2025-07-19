@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=6 format=3 uid="uid://beuy4pcwsrtnk"]
+
+[ext_resource type="Script" uid="uid://cuuennik1m4eq" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_action.gd" id="1_nqpj1"]
+[ext_resource type="Script" uid="uid://duxlumdieloys" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_attack.gd" id="2_wxvln"]
+[ext_resource type="Script" uid="uid://dmm2tvjnomxcu" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_enhancment.gd" id="3_eemty"]
+[ext_resource type="Script" uid="uid://dlt2n8jy1jy2q" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_replacer.gd" id="4_n41k4"]
+[ext_resource type="Script" uid="uid://dluuljm5nwsdy" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/basic_upgrade.gd" id="5_lcjdd"]
+
+[resource]
+script = ExtResource("5_lcjdd")
+name = "Steady grip"
+description = ""
+details = ""
+cost = 250
+effects = Dictionary[int, float]({
+6: 0.1
+})
+actions = Array[ExtResource("1_nqpj1")]([])
+attacks = Array[ExtResource("2_wxvln")]([])
+replacers = Array[ExtResource("4_n41k4")]([])
+enhancements = Array[ExtResource("3_eemty")]([])
+metadata/_custom_type_script = "uid://dluuljm5nwsdy"

@@ -1,3 +1,4 @@
+class_name BobrittoCombatManager
 extends BasicCombatManager
 
 
@@ -9,10 +10,10 @@ func _process(delta: float) -> void:
 	super(delta)
 
 
+# ---Functions returning objects by string name---
+
 func _get_inner_action_class(inner_class_name: String):
 	match inner_class_name:
-		"special_attack":
-			return SpecialAttack.new()
 		"double_tap":
 			return DoubleTap.new()
 		_:
@@ -22,7 +23,7 @@ func _get_inner_action_class(inner_class_name: String):
 func _get_inner_extra_attack_class(inner_class_name:String, att_delay: float):
 	match inner_class_name:
 		"additional_attack":
-			return AdditionalAttack.new(att_delay, _get_attack_callable(inner_class_name))
+			return AdditionalAttack.new(att_delay)
 		_:
 			return
 
@@ -30,14 +31,7 @@ func _get_inner_extra_attack_class(inner_class_name:String, att_delay: float):
 func _get_inner_attack_replacer_class(inner_class_name: String, interval: int):
 	match  inner_class_name:
 		"additional_attack":
-			return AttackReplacer.new(interval,_get_attack_callable(inner_class_name))
-		_:
-			return
-
-func _get_attack_callable(callable_name:String):
-	match callable_name:
-		"additional_attack":
-			return additional_attack_hitscan
+			return AttackReplacer.new(interval)
 		_:
 			return
 
@@ -49,15 +43,14 @@ func _get_inner_attack_enhancement_class(inner_class_name:String):
 		_:
 			return
 
-### Combat functions
-
-# copy of basic attack for debug
-func additional_attack_hitscan(params:Dictionary) -> void:
-	var current_target_hm = params["target"].get_node("HealthManager")
-	current_target_hm.take_damage(params["damage"])
+# ---Combat functions---
 
 
-### Combat classes
+
+
+
+# ---Combat classes---
+
 class SpecialAttack:
 	#var enhancement: AttackEnhancement
 	func _init() -> void:
@@ -85,12 +78,24 @@ class DoubleTap:
 
 
 class AdditionalAttack extends BasicExtraAttack:
-	func _init(att_delay: float, att_func: Callable) -> void:
-		super(att_delay, att_func)
-
+	func _init(att_delay: float) -> void:
+		attack_delay = att_delay
+		attack_timer = 0
+		attack_function = additional_attack_hitscan
+		
+	# copy of basic attack for debug
+	func additional_attack_hitscan(params:Dictionary) -> void:
+		var current_target_hm = params["target"].get_node("HealthManager")
+		current_target_hm.take_damage(params["damage"])
 
 class AttackReplacer extends BasicAttackReplacer:
-	pass
+	func _init(att_interval: int) -> void:
+		attack_interval = att_interval
+		attack_func = additional_attack_hitscan
+	# copy of basic attack for debug
+	func additional_attack_hitscan(params:Dictionary) -> void:
+		var current_target_hm = params["target"].get_node("HealthManager")
+		current_target_hm.take_damage(params["damage"])
 
 
 class AttackEnhancement extends BasicAttackEnhancement:

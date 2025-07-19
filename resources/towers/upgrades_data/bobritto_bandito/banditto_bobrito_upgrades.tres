@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BobrittoBanditoUpgrades" load_steps=2 format=3 uid="uid://cqg177eodvw15"]
 
-[ext_resource type="Script" uid="uid://gq1tslq0fvoq" path="res://scripts/resources/upgrade_paths_data/bobritto_bandito_upgrades.gd" id="1_xfqli"]
+[ext_resource type="Script" uid="uid://gq1tslq0fvoq" path="res://scripts/resources/upgrade_paths_data/bobritto_bandito/bobritto_bandito_upgrades.gd" id="1_xfqli"]
 
 [resource]
 script = ExtResource("1_xfqli")
