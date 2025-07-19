@@ -50,6 +50,18 @@ var upgrades := {
 							"interval":3,
 							"param2":1
 						}
+					],
+					"enhancements":[
+						{
+							"name":"attack_enhancement",
+							"param1":1
+						}
+					],
+					"changers":[
+						{
+							"name":"attack_changer",
+							"param1":1
+						}
 					]
 				},
 			]

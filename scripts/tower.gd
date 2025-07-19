@@ -36,6 +36,8 @@ var pierce: int
 var attack_damage_multiplier: float
 var attack_speed_multiplier: float
 var attack_radius_multiplier: float
+var attack_crit_chance: float
+var attack_crit_damage_multiplier: float
 
 var actions : Array = []
 
@@ -79,7 +81,8 @@ func _ready():
 	attack_damage_multiplier = tower_stats.attack_damage_multiplier
 	attack_speed_multiplier = tower_stats.attack_speed_multiplier
 	attack_radius_multiplier = tower_stats.attack_radius_multplier
-	
+	attack_crit_chance = tower_stats.attack_crit_chance
+	attack_crit_damage_multiplier = tower_stats.attack_crit_damage_multiplier
 	
 	# disable AI
 	set_process(false)
@@ -133,6 +136,9 @@ func get_total_attack_speed() -> float:
 
 func get_attack_delay() -> float:
 	return 60/get_total_attack_speed()
+
+func get_total_crit_damage() -> float:
+	return get_total_attack_damage() * attack_crit_damage_multiplier
 
 func toggle_attack_range_display():
 	attack_range_display.visible = false if true else true

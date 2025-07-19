@@ -41,24 +41,32 @@ func _get_attack_callable(callable_name:String):
 		_:
 			return
 
+
+func _get_inner_attack_enhancement_class(inner_class_name:String):
+	match  inner_class_name:
+		"attack_enhancement":
+			return AttackEnhancement.new(20)
+		_:
+			return
+
 ### Combat functions
 
 # copy of basic attack for debug
-func additional_attack_hitscan() -> void:
-	update_target()
-	if current_target:
-		var current_target_hm = current_target.get_node("HealthManager")
-		current_target_hm.take_damage(tower.get_total_attack_damage())
-		#print("additional_attack")
+func additional_attack_hitscan(params:Dictionary) -> void:
+	var current_target_hm = params["target"].get_node("HealthManager")
+	current_target_hm.take_damage(params["damage"])
+
 
 ### Combat classes
 class SpecialAttack:
+	#var enhancement: AttackEnhancement
 	func _init() -> void:
+		#enhancement = AttackEnhancement.new(200)
 		pass
-	# every apply should take dictionary params as argument
-	# apply should call a dedicated function e.g. explode()
+
 	func apply(params:Dictionary) -> void:
 		print("Target: {tar} received {dmg} damage.".format({"tar":params["target"],"dmg":params["damage"]}))
+		#enhancement.apply(params)
 
 
 class DoubleTap:
@@ -67,13 +75,13 @@ class DoubleTap:
 	
 	
 	func apply(params:Dictionary) -> void:
-		double_tap(params["origin"])
+		double_tap(params)
 	
 	
-	func double_tap(origin:BasicCombatManager) -> void:
-		await origin.get_tree().create_timer(0.1).timeout
-		origin.basic_attack_hitscan()
-		print("double_tapped")
+	func double_tap(params:Dictionary) -> void:
+		await params["origin"].get_tree().create_timer(0.1).timeout
+		params["origin"].basic_attack.attack(params)
+		print("double_tapped for: ", params["damage"])
 
 
 class AdditionalAttack extends BasicExtraAttack:
@@ -83,3 +91,8 @@ class AdditionalAttack extends BasicExtraAttack:
 
 class AttackReplacer extends BasicAttackReplacer:
 	pass
+
+
+class AttackEnhancement extends BasicAttackEnhancement:
+	func _init(dmg: float) -> void:
+		damage = dmg
