@@ -28,6 +28,9 @@ func _ready() -> void:
 	#body entered/exited are used to update the enemies_in_range array
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
+	
+	#debug
+	attack_replacers.append(BasicAttackReplacer.new(3,basic_attack_hitscan))
 
 
 var attack_cooldown : float = 0
@@ -136,8 +139,11 @@ var attack_params : Dictionary = {
 	"damage":0
 }
 # array of extra attacks with separate cooldowns gained from upgrades
-var additional_attacks: Array = []
+var extra_attacks: Array[BasicExtraAttack] = []
 var attack_enhancements : Array = [] #TBD
+
+# array of attack replacers gained from upgrades
+var attack_replacers : Array[BasicAttackReplacer] = []
 
 # basic hitscan attack
 func basic_attack_hitscan() -> void:
@@ -145,7 +151,6 @@ func basic_attack_hitscan() -> void:
 	if current_target:
 		var current_target_hm = current_target.get_node("HealthManager")
 		current_target_hm.take_damage(tower.get_total_attack_damage())
-		print(current_target)
 
 
 # attack funcion that encapsulates the new attack logic supporting upgrade functionality
@@ -155,7 +160,15 @@ func attack(delta_time: float):
 		# happens every 60s / tower attack speed
 		if attack_cooldown > tower.get_attack_delay():
 			# basic attack
-			basic_attack_hitscan()
+			# TBD:  attack enhancers
+			var attack_replaced = false
+			for attack_replacer in attack_replacers:
+				if attack_replacer.should_replace():
+					attack_replacer.execute()
+					attack_replaced = true
+			if !attack_replaced:
+				basic_attack_hitscan()
+				print("Basic_attack")
 			
 			# perform additional acions
 			for action in actions:
@@ -166,12 +179,12 @@ func attack(delta_time: float):
 			attack_cooldown = 0.0
 		
 		# additional attacks (independent, with separate cooldowns)
-		for additional_attack in additional_attacks:
-			additional_attack.execute(delta_time)
+		for extra_attack in extra_attacks:
+			extra_attack.execute(delta_time)
 
 
 # basic attack class for addtional attacks to inherit from
-class BasicAttack:
+class BasicExtraAttack:
 	var attack_delay: float
 	var attack_timer: float
 	var attack_function: Callable
@@ -190,15 +203,36 @@ class BasicAttack:
 			attack_timer = 0
 
 
+class BasicAttackReplacer:
+	var attack_interval: int
+	var attack_counter: int
+	var attack_func: Callable
+	
+	func _init(interval:int,att_func:Callable) -> void:
+		attack_interval = interval
+		attack_counter = 0
+		attack_func = att_func
+	
+	func should_replace() -> bool:
+		attack_counter += 1
+		if attack_counter % attack_interval == 0:
+			attack_counter = 0
+			return true
+		return false
+	
+	func execute() -> void:
+		print("attack_replaced")
+		attack_func.call()
+		
 # helper functions that return objects/callables by string name
 # expanded in tower specific combat managers
 func _get_inner_action_class(_inner_class_name: String):
 	pass
 
 
-func _get_inner_attack_class(_inner_class_name: String, _att_delay: float):
+func _get_inner_extra_attack_class(_inner_class_name: String, _att_delay: float):
 	pass
 
 
-func _get_additional_attack_callable(_callable_name: String):
+func _get_extra_attack_callable(_callable_name: String):
 	pass

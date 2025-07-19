@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 func aplly_upgrade(upgrade:Dictionary) -> void:
 	apply_effects(upgrade["effects"])
 	apply_actions(upgrade["actions"])
-	apply_additional_attacks(upgrade["attacks"])
+	apply_extra_attacks(upgrade["attacks"])
 
 # apply effects from an upgrade (raw stats boosts)
 func apply_effects(effects: Dictionary) -> void:
@@ -52,7 +52,7 @@ func apply_actions(actions: Array) -> void:
 
 			
 # apply additional attacks (independent, with separate cooldowns)
-func apply_additional_attacks(attacks: Array) -> void:
+func apply_extra_attacks(attacks: Array) -> void:
 	for attack in attacks:
 		if !attack.is_empty():
-			tower_combat_manager.additional_attacks.append(tower_combat_manager._get_inner_attack_class(attack["name"],attack["delay"]))
+			tower_combat_manager.extra_attacks.append(tower_combat_manager._get_inner_extra_attack_class(attack["name"],attack["delay"]))
