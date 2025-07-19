@@ -28,20 +28,11 @@ func _ready() -> void:
 	#body entered/exited are used to update the enemies_in_range array
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
-	
-	# for debug adding basic attack to the additional attacks
-	additional_attacks.append(BasicAttack.new(0.5, basic_attack_hitscan))
+
 
 var attack_cooldown : float = 0
 func _process(delta: float) -> void:
 	attack(delta)
-	#attack_cooldown += delta
-	#
-	##happens every 60s / tower attack speed
-	#if attack_cooldown > tower.get_attack_delay():
-		##print_debug(enemies_in_range.size())
-		#
-		#attack_cooldown = 0.0
 
 
 #				!---- Section 1----!
@@ -136,51 +127,50 @@ func choose_closest_enemy() -> HungryHippo:
 #!---- Actual Combat functionalities ----!
 
 
-var actions : Array = [] # array of special actions gained from upgrades
-var attack_enhancements : Array = []
-
-var additional_attacks: Array = []
-
+# array of special actions gained from upgrades
+var actions : Array = [] 
+# attack parameters required by actions
 var attack_params : Dictionary = {
 	"origin":self,
 	"target":null,
 	"damage":0
 }
+# array of extra attacks with separate cooldowns gained from upgrades
+var additional_attacks: Array = []
+var attack_enhancements : Array = [] #TBD
 
+# basic hitscan attack
 func basic_attack_hitscan() -> void:
 	update_target()
 	if current_target:
 		var current_target_hm = current_target.get_node("HealthManager")
 		current_target_hm.take_damage(tower.get_total_attack_damage())
-		print("attack")
+		print(current_target)
 
+
+# attack funcion that encapsulates the new attack logic supporting upgrade functionality
 func attack(delta_time: float):
 	if !enemies_in_range.is_empty():
 		attack_cooldown += delta_time
-		#happens every 60s / tower attack speed
+		# happens every 60s / tower attack speed
 		if attack_cooldown > tower.get_attack_delay():
-			#basic attack
+			# basic attack
 			basic_attack_hitscan()
 			
-			#perform additional acions
+			# perform additional acions
 			for action in actions:
 				attack_params["target"] = current_target
 				attack_params["damage"] = tower.get_total_attack_damage()
 				action.apply(attack_params)
 				
 			attack_cooldown = 0.0
-			
+		
+		# additional attacks (independent, with separate cooldowns)
 		for additional_attack in additional_attacks:
 			additional_attack.execute(delta_time)
 
-#attack_cooldown += delta
-	#
-	##happens every 60s / tower attack speed
-	#if attack_cooldown > tower.get_attack_delay():
-		##print_debug(enemies_in_range.size())
-		#
-		#attack_cooldown = 0.0
 
+# basic attack class for addtional attacks to inherit from
 class BasicAttack:
 	var attack_delay: float
 	var attack_timer: float
@@ -198,3 +188,17 @@ class BasicAttack:
 		if attack_timer >= attack_delay:
 			attack_function.call()
 			attack_timer = 0
+
+
+# helper functions that return objects/callables by string name
+# expanded in tower specific combat managers
+func _get_inner_action_class(_inner_class_name: String):
+	pass
+
+
+func _get_inner_attack_class(_inner_class_name: String, _att_delay: float):
+	pass
+
+
+func _get_additional_attack_callable(_callable_name: String):
+	pass

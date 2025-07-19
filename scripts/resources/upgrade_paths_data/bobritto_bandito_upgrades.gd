@@ -7,7 +7,8 @@ var upgrades := {
 			"upgrades":[
 				{
 					"level":1,
-					"name":"Gun blazin'",
+					"name":"Gun blazing",
+					"description":"",
 					"cost":420,
 					"effects":{
 						"attack_speed_multiplier": 0.15
@@ -21,6 +22,7 @@ var upgrades := {
 				{
 					"level":1,
 					"name":"Quality bullets",
+					"description":"",
 					"cost":690,
 					"effects":{
 						"attack_damage_multiplier":0.5
@@ -34,6 +36,13 @@ var upgrades := {
 							"name":"double_tap",
 							"param1":1
 						}
+					],
+					"attacks":[
+						{
+							"name": "additional_attack",
+							"delay":0.5,
+							"param1":1
+						}
 					]
 				},
 			]
@@ -43,6 +52,7 @@ var upgrades := {
 				{
 					"level":1,
 					"name":"Steady grip",
+					"description":"",
 					"cost":250,
 					"effects":{
 						"attack_radius_multiplier":0.10

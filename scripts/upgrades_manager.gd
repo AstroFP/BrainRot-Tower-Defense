@@ -5,11 +5,11 @@ var tower: Tower
 var tower_combat_manager: BasicCombatManager
 #var upgrades : Array = []
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	tower = get_parent()
 	tower_combat_manager = tower.combat_manager
-	
+
 	# debug
 	aplly_upgrade(tower.tower_stats.tower_upgrades.upgrades["paths"]["path_2"]["upgrades"][0])
 	
@@ -18,13 +18,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-
+# function that applies all bonuses form an upgrade
 func aplly_upgrade(upgrade:Dictionary) -> void:
-	aplly_effects(upgrade["effects"])
+	apply_effects(upgrade["effects"])
 	apply_actions(upgrade["actions"])
+	apply_additional_attacks(upgrade["attacks"])
 
-
-func aplly_effects(effects : Dictionary) -> void:
+# apply effects from an upgrade (raw stats boosts)
+func apply_effects(effects: Dictionary) -> void:
 	for effect_name in effects:
 		match effect_name:
 			"attack_speed_multiplier":
@@ -43,8 +44,15 @@ func aplly_effects(effects : Dictionary) -> void:
 				pass
 
 
-func apply_actions(actions:Array) -> void:
+# apply actions (special operations performed with basic attack)
+func apply_actions(actions: Array) -> void:
 	for action in actions:
 		if !action.is_empty():
-			tower_combat_manager.actions.append(tower_combat_manager.get_inner_class(action["name"]))
-				
+			tower_combat_manager.actions.append(tower_combat_manager._get_inner_action_class(action["name"]))
+
+			
+# apply additional attacks (independent, with separate cooldowns)
+func apply_additional_attacks(attacks: Array) -> void:
+	for attack in attacks:
+		if !attack.is_empty():
+			tower_combat_manager.additional_attacks.append(tower_combat_manager._get_inner_attack_class(attack["name"],attack["delay"]))

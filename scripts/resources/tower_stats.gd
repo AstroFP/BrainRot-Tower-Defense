@@ -20,13 +20,14 @@ extends Resource
 #This is where we declare possible CombatManager Scenes to choose from in .tres file
 #for the later purpose of loading it when placed by player
 enum COMBAT_MANAGER_TYPE{
-	BOBRITO_GM,
+	BOBRITTO_GM,
 	CAPPUCCINO_GM
 }
 const COMBAT_MANAGER_SCENES = {
-	COMBAT_MANAGER_TYPE.BOBRITO_GM: "res://prefabs/combat_managers/bobrito_bandito_combat_manager.tscn",
+	COMBAT_MANAGER_TYPE.BOBRITTO_GM: "res://prefabs/combat_managers/bobrito_bandito_combat_manager.tscn",
 	COMBAT_MANAGER_TYPE.CAPPUCCINO_GM: "res://prefabs/combat_managers/cappuccino_assassino_combat_manager.tscn"
 }
+
 @export var combat_manager_type : COMBAT_MANAGER_TYPE
 
 var attack_range_display_color_valid := Color(.5, .5, .5, .5)
