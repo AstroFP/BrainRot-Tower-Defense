@@ -20,8 +20,8 @@ enum effect {
 
 ## Detailed description of an upgrade. Should list everything the upgrade does
 @export_multiline var details : String = ""
-## Cost of an upgrade
 
+## Cost of an upgrade
 @export var cost : int = 0
 
 ## Dictionary of effects gained from an upgrade

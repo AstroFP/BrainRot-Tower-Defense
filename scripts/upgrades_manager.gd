@@ -5,14 +5,20 @@ var tower: Tower
 var tower_combat_manager: BasicCombatManager
 #var upgrades : Array = []
 
+# variables to keep track of the amount of upgrades
+var upgrades_amount : int = 0
+var upgrades_amount_per_path : Dictionary[String,int] = {
+	"path_1":0,
+	"path_2":0,
+	"path_3":0
+}
 
 func _ready() -> void:
 	tower = get_parent()
 	tower_combat_manager = tower.combat_manager
 
 	# debug
-	aplly_upgrade(tower.tower_stats.tower_upgrades.upgrades["path_2"]["upgrades"][0])
-	
+	aplly_upgrade(tower.tower_stats.tower_upgrades.upgrades["path_3"]["upgrades"][0])
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -28,7 +34,6 @@ func aplly_upgrade(upgrade:BasicUpgrade) -> void:
 
 # apply effects from an upgrade (raw stats boosts)
 func apply_effects(effects: Dictionary) -> void:
-	print(effects)
 	for effect in effects:
 		match effect:
 			0:
@@ -55,7 +60,7 @@ func apply_effects(effects: Dictionary) -> void:
 func apply_actions(actions: Array) -> void:
 	for action in actions:
 		match action.mode:
-			0:
+			0: # invoke
 				var new_action = tower_combat_manager._get_inner_action_class(action.name)
 				if new_action:
 					tower_combat_manager.actions[action.name] = new_action
@@ -66,7 +71,7 @@ func apply_actions(actions: Array) -> void:
 func apply_extra_attacks(attacks: Array) -> void:
 	for attack in attacks:
 		match attack.mode:
-			0:
+			0: # invoke
 				var new_attack = tower_combat_manager._get_inner_extra_attack_class(attack.name, attack.delay)
 				if new_attack:
 					tower_combat_manager.extra_attacks[attack.name] = new_attack
@@ -76,7 +81,7 @@ func apply_extra_attacks(attacks: Array) -> void:
 func apply_attack_replacers(replacers: Array) -> void:
 	for replacer in replacers:
 		match replacer.mode:
-			0:
+			0: # invoke
 				var new_replacer = tower_combat_manager._get_inner_attack_replacer_class(replacer.name,replacer.interval)
 				if new_replacer:
 					tower_combat_manager.attack_replacers[replacer.name] = new_replacer
@@ -86,7 +91,7 @@ func apply_attack_replacers(replacers: Array) -> void:
 func apply_attack_enhacements(enhancements: Array) -> void:
 	for enhancement in enhancements:
 		match enhancement.mode:
-			0:
+			0: # invoke
 				var new_enhancement = tower_combat_manager._get_inner_attack_enhancement_class(enhancement.name)
 				if new_enhancement:
 					tower_combat_manager.attack_enhancements[enhancement.name] = new_enhancement

@@ -16,6 +16,7 @@ metadata/_custom_type_script = "uid://cuuennik1m4eq"
 script = ExtResource("5_txscp")
 name = "Military-grade bullets"
 description = ""
+details = ""
 cost = 690
 effects = Dictionary[int, float]({
 0: 5.0

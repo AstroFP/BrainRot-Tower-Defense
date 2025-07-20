@@ -2,6 +2,7 @@ class_name Tower
 extends Node2D
 
 signal tower_placed(tower:TowerStats)
+
 const UPGRADES_MANAGER = preload("res://scenes/upgrades_manager.tscn")
 
 # TODO:
@@ -31,13 +32,28 @@ var min_scale_size := Vector2(128, 128)
 # combat variables
 var attack_damage: float
 var attack_speed: float
-var attack_radius: float
+var attack_radius: float:
+	set(value):
+		if attack_radius != value:
+			attack_radius = value
+			update_attack_range_hitbox_size()
+			update_attack_range_display_size()
+	get:
+		return attack_radius
 var pierce: int
 var attack_damage_multiplier: float
 var attack_speed_multiplier: float
-var attack_radius_multiplier: float
+var attack_radius_multiplier: float:
+	set(value):
+		if attack_radius_multiplier != value:
+			attack_radius_multiplier = value
+			update_attack_range_hitbox_size()
+			update_attack_range_display_size()
+	get:
+		return attack_radius_multiplier
 var attack_crit_chance: float
 var attack_crit_damage_multiplier: float
+
 
 var actions : Array = []
 
@@ -45,13 +61,22 @@ func _ready():
 	# setup process mode
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	
+	# set combat variables
+	attack_damage = tower_stats.attack_damage
+	attack_speed = tower_stats.attack_speed
+	attack_radius = tower_stats.attack_radius	
+	pierce = tower_stats.pierce
+	attack_damage_multiplier = tower_stats.attack_damage_multiplier
+	attack_speed_multiplier = tower_stats.attack_speed_multiplier
+	attack_radius_multiplier = tower_stats.attack_radius_multplier
+	attack_crit_chance = tower_stats.attack_crit_chance
+	attack_crit_damage_multiplier = tower_stats.attack_crit_damage_multiplier
+	
 	# set attack radius
-	var attack_radius_shape = CircleShape2D.new()
-	attack_radius_shape.radius = tower_stats.attack_radius
-	attack_range_hitbox.shape = attack_radius_shape
+	update_attack_range_hitbox_size()
 	
 	# set attack radius display
-	update_attak_range_display_size()
+	update_attack_range_display_size()
 	update_attack_range_display_color_to_valid()
 	
 	# set sprite texture
@@ -73,17 +98,6 @@ func _ready():
 	hitbox_radius.height = texture_size.y * tower_sprite.get_scale().y
 	hitbox_collision_box.shape = hitbox_radius
 	
-	# set combat variables
-	attack_damage = tower_stats.attack_damage
-	attack_speed = tower_stats.attack_speed
-	attack_radius = tower_stats.attack_radius	
-	pierce = tower_stats.pierce
-	attack_damage_multiplier = tower_stats.attack_damage_multiplier
-	attack_speed_multiplier = tower_stats.attack_speed_multiplier
-	attack_radius_multiplier = tower_stats.attack_radius_multplier
-	attack_crit_chance = tower_stats.attack_crit_chance
-	attack_crit_damage_multiplier = tower_stats.attack_crit_damage_multiplier
-	
 	# disable AI
 	set_process(false)
 	set_physics_process(false)
@@ -98,7 +112,7 @@ func place_tower():
 	is_placed = true
 	set_process(true)
 	set_physics_process(true)
-	toggle_attack_range_display()
+	#toggle_attack_range_display()
 	
 	#Add a CombatManager scene from resources
 	#We take the scene out of a dictionary stored in tower_stats.gd
@@ -111,11 +125,17 @@ func place_tower():
 	emit_signal("tower_placed",tower_stats)
 
 
-func update_attak_range_display_size():
+func update_attack_range_display_size():
 	var texture_size = attack_range_display.get_texture().get_size()
-	var attack_range_scale_factor = (tower_stats.attack_radius * 2.0) / texture_size.x
+	var attack_range_scale_factor = (get_total_attack_radius() * 2.0) / texture_size.x
 	attack_range_display.scale = Vector2(attack_range_scale_factor, attack_range_scale_factor)
-	attack_range_display.material.set_shader_parameter("border_thickness",8.0/tower_stats.attack_radius)
+	attack_range_display.material.set_shader_parameter("border_thickness",8.0/get_total_attack_radius())
+
+
+func update_attack_range_hitbox_size():
+	var attack_radius_shape = CircleShape2D.new()
+	attack_radius_shape.radius = get_total_attack_radius()
+	attack_range_hitbox.shape = attack_radius_shape
 
 
 func update_attack_range_display_color_to_valid():
@@ -139,6 +159,9 @@ func get_attack_delay() -> float:
 
 func get_total_crit_damage() -> float:
 	return get_total_attack_damage() * attack_crit_damage_multiplier
+
+func get_total_attack_radius() -> float:
+	return attack_radius * attack_radius_multiplier
 
 func toggle_attack_range_display():
 	attack_range_display.visible = false if true else true

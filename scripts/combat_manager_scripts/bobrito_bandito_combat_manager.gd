@@ -51,7 +51,7 @@ func _get_inner_attack_enhancement_class(inner_class_name:String):
 
 # ---Combat classes---
 
-class SpecialAttack:
+class SpecialAttack extends BasicAction:
 	#var enhancement: AttackEnhancement
 	func _init() -> void:
 		#enhancement = AttackEnhancement.new(200)
@@ -62,7 +62,7 @@ class SpecialAttack:
 		#enhancement.apply(params)
 
 
-class DoubleTap:
+class DoubleTap extends BasicAction:
 	func _init() -> void:
 		pass
 	

@@ -14,7 +14,7 @@ enum targetting_styles{
 }
 var current_targetting_style := targetting_styles.first
 var current_target
-var basic_attack: BasicAttack
+var basic_attack: DefaultAttack
 
 func _ready() -> void:
 	tower = get_parent()
@@ -30,10 +30,7 @@ func _ready() -> void:
 	detection_area.body_exited.connect(_on_body_exited)
 	
 	# set basic attack
-	basic_attack = BasicAttack.new(basic_attack_hitscan)
-	
-	#debug
-	#attack_replacers.append(BasicAttackReplacer.new(3,basic_attack_hitscan))
+	basic_attack = DefaultAttack.new(BasicAttackHitscan.attack)
 
 
 var attack_cooldown : float = 0
@@ -132,15 +129,7 @@ func choose_closest_enemy() -> HungryHippo:
 #!---- Actual Combat functionalities ----!
 
 # dictionary of special actions gained from upgrades
-var actions : Dictionary = {} 
-
-# attack parameters required by combat functions
-var attack_params : Dictionary = {
-	"origin":self,
-	"target":null,
-	"damage":0,
-	"is_crit":false
-}
+var actions : Dictionary[String,BasicAction] = {} 
 
 # dictionary of extra attacks with separate cooldowns gained from upgrades
 var extra_attacks: Dictionary[String,BasicExtraAttack] = {}
@@ -151,13 +140,20 @@ var attack_enhancements : Dictionary[String,BasicAttackEnhancement] = {}
 # dictionary of attack replacers gained from upgrades
 var attack_replacers : Dictionary[String,BasicAttackReplacer] = {}
 
+# attack parameters required by combat functions
+var attack_params : Dictionary = {
+	"origin":self,
+	"target":null,
+	"damage":0,
+	"is_crit":false
+}
 
 # basic hitscan attack
-func basic_attack_hitscan(params:Dictionary) -> void:
-	var current_target_hm = params["target"].get_node("HealthManager")
-	current_target_hm.take_damage(params["damage"])
-	for enhancement in attack_enhancements:
-		attack_enhancements[enhancement].apply(params)
+#func basic_attack_hitscan(params:Dictionary) -> void:
+	#var current_target_hm = params["target"].get_node("HealthManager")
+	#current_target_hm.take_damage(params["damage"])
+	#for enhancement in attack_enhancements:
+		#attack_enhancements[enhancement].apply(params)
 
 
 # attack funcion that encapsulates the new attack logic supporting upgrade functionality
@@ -177,7 +173,14 @@ func attack(delta_time: float):
 	attack_params["target"] = current_target
 	attack_params["damage"] = tower.get_total_attack_damage()
 	
-	# increment attack cooldown
+	# basic attack
+	perform_basic_attack(delta_time)
+	
+	# additional attacks (independent, with separate cooldowns)
+	perform_extra_attacks(delta_time)
+
+
+func perform_basic_attack(delta_time: float) -> void:
 	attack_cooldown += delta_time
 	# happens every 60s / tower attack speed
 	if attack_cooldown > tower.get_attack_delay():
@@ -193,13 +196,18 @@ func attack(delta_time: float):
 			print("Basic_attack")
 		
 		# perform additional acions
-		for action in actions:
-			roll_for_crit()
-			actions[action].apply(attack_params)
+		perform_actions()
 			
 		attack_cooldown = 0.0
-	
-	# additional attacks (independent, with separate cooldowns)
+
+
+func perform_actions() -> void:
+	for action in actions:
+		roll_for_crit()
+		actions[action].apply(attack_params)
+
+
+func perform_extra_attacks(delta_time) -> void:
 	for extra_attack in extra_attacks:
 		roll_for_crit()
 		extra_attacks[extra_attack].execute(delta_time, attack_params)
@@ -221,9 +229,20 @@ func is_critical_hit(crit_chance: float) -> bool:
 	return roll < crit_chance
 
 
-# class for basic attack, it defines towers default attack
-# it also allows to change the basic attack, should the basic attack change via upgrades
-class BasicAttack:
+# basic hitscan attack class
+class BasicAttackHitscan:
+	func _init() -> void:
+		pass
+	
+	static func attack(params:Dictionary) -> void:
+		var current_target_hm = params["target"].get_node("HealthManager")
+		current_target_hm.take_damage(params["damage"])
+		for enhancement in params["origin"].attack_enhancements:
+			params["origin"].attack_enhancements[enhancement].apply(params)
+
+# class for default attack, it defines towers basic attack
+# it also allows to change the default attack, should the default attack change via upgrades
+class DefaultAttack:
 	var attack_func: Callable
 	func _init(att_func:Callable) -> void:
 		attack_func = att_func
@@ -233,6 +252,18 @@ class BasicAttack:
 	
 	func change_attack_function(new_att_func:Callable):
 		attack_func = new_att_func
+
+
+# --- Classes for basic attack logic extensions ---
+
+# basic action class for actions to inherit from
+class BasicAction:
+	var action_function: Callable
+	func _init(action_func:Callable) -> void:
+		action_function = action_func
+	
+	func apply(params:Dictionary) -> void:
+		action_function.call(params)
 
 
 # basic attack class for addtional attacks to inherit from
@@ -253,7 +284,6 @@ class BasicExtraAttack:
 		if attack_timer >= attack_delay:
 			attack_function.call(params)
 			attack_timer = 0
-
 
 # basic attack replacer class for replacing attacks to inherit from
 class BasicAttackReplacer:
@@ -279,7 +309,6 @@ class BasicAttackReplacer:
 	func execute(params:Dictionary) -> void:
 		print("attack_replaced")
 		attack_func.call(params)
-
 
 # basic attack enhancement class for attack enhancement to inherit from
 # other classes (actions, replacers etc.) can also implement this
