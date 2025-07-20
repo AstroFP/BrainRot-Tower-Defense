@@ -1,17 +1,6 @@
 class_name  BasicUpgrade
 extends Resource
 
-enum effect {
-	attack_damage,
-	attack_speed,
-	attack_radius,
-	attack_crit_chance,
-	attack_damage_multiplier,
-	attack_speed_multiplier,
-	attack_radius_multiplier,
-	attack_crit_multiplier
-}
-
 ## Name of an upgrade
 @export var name : String = ""
 
@@ -24,8 +13,8 @@ enum effect {
 ## Cost of an upgrade
 @export var cost : int = 0
 
-## Dictionary of effects gained from an upgrade
-@export var effects : Dictionary[effect,float] = {}
+## Effects gained from an upgrade
+@export var effects : Effect
 
 ## Array of actions gaind from an upgrade
 @export var actions : Array[Action] = []

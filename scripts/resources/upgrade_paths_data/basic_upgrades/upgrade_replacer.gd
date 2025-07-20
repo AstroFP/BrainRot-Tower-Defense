@@ -1,15 +1,13 @@
 class_name Replacer
-extends Resource
+extends BasicUpgradeExtension
 
-
-enum mode_type{
-	invoke,
-	update,
-	delete
+enum replacer_type {
+	interval_based,
+	cooldown_based
 }
-## Mode of replacer, whether invoke new replacer, update or delete existing
-@export var mode : mode_type
-## Name of a replacer class
-@export var name : String
+
 ## Amount of attacks between one another
 @export_range(1, 100, 1, "or_greater") var interval : int
+
+## Amount of time between attacks
+@export_range(0, 100, 0.01, "or_greater") var cooldown : float
