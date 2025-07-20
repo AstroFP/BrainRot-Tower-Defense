@@ -23,7 +23,7 @@ script = ExtResource("1_2x682")
 [node name="TowerSprite" type="Sprite2D" parent="."]
 z_index = 1
 
-[node name="AttackRange" type="Area2D" parent="."]
+[node name="AttackRange" type="Area2D" parent="." groups=["TowerAttackRadius"]]
 
 [node name="AttackRangeHitbox" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_7j8ug")

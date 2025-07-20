@@ -64,17 +64,34 @@ class SpecialAttack extends BasicAction:
 
 class DoubleTap extends BasicAction:
 	func _init() -> void:
-		pass
-	
-	
-	func apply(params:Dictionary) -> void:
-		double_tap(params)
-	
+		action_function = double_tap
 	
 	func double_tap(params:Dictionary) -> void:
 		await params["origin"].get_tree().create_timer(0.1).timeout
 		params["origin"].basic_attack.attack(params)
-		print("double_tapped for: ", params["damage"])
+		print_debug("double tapped for: ",params["damage"])
+	
+	func triple_tap(params:Dictionary) -> void:
+		await params["origin"].get_tree().create_timer(0.05).timeout
+		params["origin"].basic_attack.attack(params)
+		await params["origin"].get_tree().create_timer(0.05).timeout
+		params["origin"].basic_attack.attack(params)
+	
+	
+	func double_tap_crit_enhanced(params:Dictionary) -> void:
+		print_debug("enhanced double tap")
+		if params["is_crit"]:
+			triple_tap(params)
+		else:
+			double_tap(params)
+	
+	
+	func update(update_name: String) -> void:
+		match update_name:
+			"double_tap_crit_enhanced":
+				action_function = double_tap_crit_enhanced
+			_:
+				pass
 
 
 class AdditionalAttack extends BasicExtraAttack:
@@ -91,7 +108,7 @@ class AdditionalAttack extends BasicExtraAttack:
 class AttackReplacer extends BasicAttackReplacer:
 	func _init(att_interval: int) -> void:
 		attack_interval = att_interval
-		attack_func = additional_attack_hitscan
+		attack_function = additional_attack_hitscan
 	# copy of basic attack for debug
 	func additional_attack_hitscan(params:Dictionary) -> void:
 		var current_target_hm = params["target"].get_node("HealthManager")
@@ -100,4 +117,4 @@ class AttackReplacer extends BasicAttackReplacer:
 
 class AttackEnhancement extends BasicAttackEnhancement:
 	func _init(dmg: float) -> void:
-		damage = dmg
+		enhancement_damage = dmg

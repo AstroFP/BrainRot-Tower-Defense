@@ -183,12 +183,12 @@ func attack(delta_time: float):
 func perform_basic_attack(delta_time: float) -> void:
 	attack_cooldown += delta_time
 	# happens every 60s / tower attack speed
-	if attack_cooldown > tower.get_attack_delay():
+	if attack_cooldown >= tower.get_attack_delay():
 		# basic attack with attack replacers
 		roll_for_crit()
 		var attack_replaced = false
 		for attack_replacer in attack_replacers:
-			if attack_replacers[attack_replacer].should_replace():
+			if attack_replacers[attack_replacer].should_replace(delta_time):
 				attack_replacers[attack_replacer].execute(attack_params)
 				attack_replaced = true
 		if !attack_replaced:
@@ -204,7 +204,7 @@ func perform_basic_attack(delta_time: float) -> void:
 func perform_actions() -> void:
 	for action in actions:
 		roll_for_crit()
-		actions[action].apply(attack_params)
+		actions[action].execute(attack_params)
 
 
 func perform_extra_attacks(delta_time) -> void:
@@ -262,7 +262,7 @@ class BasicAction:
 	func _init(action_func:Callable) -> void:
 		action_function = action_func
 	
-	func apply(params:Dictionary) -> void:
+	func execute(params:Dictionary) -> void:
 		action_function.call(params)
 
 
@@ -289,41 +289,74 @@ class BasicExtraAttack:
 class BasicAttackReplacer:
 	var attack_interval: int
 	var attack_counter: int
-	var attack_func: Callable
 	
+	var attack_cooldown: float
+	var attack_cooldown_timer: float
 	
-	func _init(interval:int,att_func:Callable) -> void:
+	var attack_type: int
+	var attack_function: Callable
+	
+	func _init(interval:int, cooldown:float, type:int, att_func:Callable) -> void:
 		attack_interval = interval
 		attack_counter = 0
-		attack_func = att_func
+		attack_cooldown_timer = 0
+		attack_function = att_func
+		attack_cooldown = cooldown
+		attack_type = type
 	
-	
-	func should_replace() -> bool:
-		attack_counter += 1
-		if attack_counter % attack_interval == 0:
-			attack_counter = 0
-			return true
-		return false
+	func should_replace(delta_time:float) -> bool:
+		match attack_type:
+			0:
+				attack_counter += 1
+				if attack_counter % attack_interval == 0:
+					attack_counter = 0
+					return true
+				return false
+			1:
+				attack_cooldown_timer += delta_time
+				if attack_cooldown_timer >= attack_cooldown:
+					attack_cooldown_timer = 0
+					return true
+				return false
+			_:
+				return false
 	
 	
 	func execute(params:Dictionary) -> void:
 		print("attack_replaced")
-		attack_func.call(params)
+		attack_function.call(params)
 
 # basic attack enhancement class for attack enhancement to inherit from
 # other classes (actions, replacers etc.) can also implement this
 class BasicAttackEnhancement:
-	var damage: float
-	var timer: float
-	var proc_chance: float
+	var enhancement_damage: float
+	var enhancement_cooldown: float
+	var enhancement_cooldown_counter: float
+	var enhancement_proc_chance: float
+	var enhancement_function: Callable
+	var enhancement_type: int
 	
-	func _init() -> void:
-		damage = 1
+	func _init(damage: float, cooldown:float, proc_chance: float, type:int, enh_func:Callable) -> void:
+		enhancement_damage = damage
+		enhancement_cooldown = cooldown
+		enhancement_cooldown_counter = 0
+		enhancement_proc_chance = clamp(proc_chance, 0, 100)
+		enhancement_function = enh_func
+		enhancement_type = type
 	
-	func apply(params:Dictionary) -> void:
-		print("Enhancement : ",damage)
-		params["target"].get_node("HealthManager").take_damage(damage)
-
+	func execute(params:Dictionary, delta_time:float) -> void:
+		match enhancement_type:
+			0:
+				var roll = randf() * 100.0
+				if roll < enhancement_proc_chance:
+					enhancement_function.call(params)
+			1:
+				enhancement_cooldown_counter += delta_time
+				if enhancement_cooldown_counter >= enhancement_cooldown:
+					enhancement_cooldown_counter = 0
+					enhancement_function.call(params)
+			_:
+				pass
 
 # helper functions that return objects/callables by string name
 # expanded in tower specific combat managers

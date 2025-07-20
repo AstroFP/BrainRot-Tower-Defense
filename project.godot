@@ -37,6 +37,7 @@ folder_colors={
 
 TowerHitbox="Group for area2D nodes serving as hitboxes for towers"
 TowerCollidable="Group for objects blocking tower placement"
+TowerAttackRadius=""
 
 [input]
 

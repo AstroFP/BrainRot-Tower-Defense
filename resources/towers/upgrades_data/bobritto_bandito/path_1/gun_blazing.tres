@@ -1,20 +1,31 @@
-[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=6 format=3 uid="uid://bsfskwbfgn4se"]
+[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=9 format=3 uid="uid://bsfskwbfgn4se"]
 
 [ext_resource type="Script" uid="uid://cuuennik1m4eq" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_action.gd" id="1_nv0gs"]
 [ext_resource type="Script" uid="uid://duxlumdieloys" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_attack.gd" id="2_k8y4w"]
 [ext_resource type="Script" uid="uid://dmm2tvjnomxcu" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_enhancment.gd" id="3_8fogm"]
+[ext_resource type="Script" uid="uid://p62d7r13t78v" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_effect.gd" id="3_k8y4w"]
+[ext_resource type="Script" uid="uid://bwafaoaoehe7s" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_dependency.gd" id="3_thvt0"]
 [ext_resource type="Script" uid="uid://dlt2n8jy1jy2q" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/upgrade_replacer.gd" id="4_thvt0"]
 [ext_resource type="Script" uid="uid://dluuljm5nwsdy" path="res://scripts/resources/upgrade_paths_data/basic_upgrades/basic_upgrade.gd" id="5_t01em"]
+
+[sub_resource type="Resource" id="Resource_8fogm"]
+script = ExtResource("3_k8y4w")
+effects = Dictionary[int, float]({
+5: 0.15
+})
+mode = 0
+name = ""
+dependencies = Array[ExtResource("3_thvt0")]([])
+update_name = ""
+metadata/_custom_type_script = "uid://p62d7r13t78v"
 
 [resource]
 script = ExtResource("5_t01em")
 name = "Gun blazing"
-description = ""
-details = ""
+description = "Makes you shoot faster!"
+details = "Increase attack speed by 15%"
 cost = 420
-effects = Dictionary[int, float]({
-5: 0.15
-})
+effects = SubResource("Resource_8fogm")
 actions = Array[ExtResource("1_nv0gs")]([])
 attacks = Array[ExtResource("2_k8y4w")]([])
 replacers = Array[ExtResource("4_thvt0")]([])

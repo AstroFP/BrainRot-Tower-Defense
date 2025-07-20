@@ -1,9 +1,15 @@
 class_name UpgradesManager
 extends Node
 
+# TBD:
+# add attack chnager to upgrades - replaces the default attack
+# add auras to upgrades and buffs handling to towers
+# add upgrade, delete handling in attack extensions appliers
+# add ui integration with upgrade system
+
 var tower: Tower
 var tower_combat_manager: BasicCombatManager
-#var upgrades : Array = []
+var upgrades : Array = []
 
 # variables to keep track of the amount of upgrades
 var upgrades_amount : int = 0
@@ -13,16 +19,20 @@ var upgrades_amount_per_path : Dictionary[String,int] = {
 	"path_3":0
 }
 
+
 func _ready() -> void:
 	tower = get_parent()
 	tower_combat_manager = tower.combat_manager
 
 	# debug
 	aplly_upgrade(tower.tower_stats.tower_upgrades.upgrades["path_3"]["upgrades"][0])
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+	aplly_upgrade(tower.tower_stats.tower_upgrades.upgrades["path_2"]["upgrades"][0])
+
+
 func _process(_delta: float) -> void:
 	pass
+
 
 # function that applies all bonuses form an upgrade
 func aplly_upgrade(upgrade:BasicUpgrade) -> void:
@@ -31,44 +41,56 @@ func aplly_upgrade(upgrade:BasicUpgrade) -> void:
 	apply_extra_attacks(upgrade.attacks)
 	apply_attack_replacers(upgrade.replacers)
 	apply_attack_enhacements(upgrade.enhancements)
+	if upgrade.name not in upgrades:
+		upgrades.append(upgrade.name.to_lower().to_snake_case())
+
 
 # apply effects from an upgrade (raw stats boosts)
-func apply_effects(effects: Dictionary) -> void:
-	for effect in effects:
-		match effect:
-			0:
-				tower.attack_damage += effects[effect]
-			1:
-				tower.attack_speed += effects[effect]
-			2:
-				tower.attack_radius += effects[effect]
-			4:
-				tower.attack_crit_chance += effects[effect]
-			5:
-				tower.attack_speed_multiplier +=  effects[effect]
-			4:
-				tower.attack_damage_multiplier += effects[effect]
-			6:
-				tower.attack_radius_multiplier += effects[effect]
-			7:
-				tower.attack_crit_damage_multiplier += effects[effect]
-			_:
-				pass
-
+func apply_effects(effects: Effect) -> void:
+	match  effects.mode:
+		0: #invoke
+			var effects_list = effects.effects
+			for effect in effects_list:
+				match effect:
+					0:
+						tower.attack_damage += effects_list[effect]
+					1:
+						tower.attack_speed += effects_list[effect]
+					2:
+						tower.attack_radius += effects_list[effect]
+					4:
+						tower.attack_crit_chance += effects_list[effect]
+					5:
+						tower.attack_speed_multiplier +=  effects_list[effect]
+					4:
+						tower.attack_damage_multiplier += effects_list[effect]
+					6:
+						tower.attack_radius_multiplier += effects_list[effect]
+					7:
+						tower.attack_crit_damage_multiplier += effects_list[effect]
+					_:
+						pass
+		_:
+			pass
 
 # apply actions (special operations performed with basic attack)
-func apply_actions(actions: Array) -> void:
+func apply_actions(actions: Array[Action]) -> void:
 	for action in actions:
 		match action.mode:
 			0: # invoke
 				var new_action = tower_combat_manager._get_inner_action_class(action.name)
 				if new_action:
 					tower_combat_manager.actions[action.name] = new_action
+			1: #update
+				if tower_combat_manager.actions.has(action.name):
+					if resolve_dependencies(action.dependencies):
+						tower_combat_manager.actions[action.name].update(action.update_name)
 			_:
 				pass
-			
+
+	
 # apply additional attacks (independent, with separate cooldowns)
-func apply_extra_attacks(attacks: Array) -> void:
+func apply_extra_attacks(attacks: Array[Attack]) -> void:
 	for attack in attacks:
 		match attack.mode:
 			0: # invoke
@@ -78,7 +100,8 @@ func apply_extra_attacks(attacks: Array) -> void:
 			_:
 				pass
 
-func apply_attack_replacers(replacers: Array) -> void:
+
+func apply_attack_replacers(replacers: Array[Replacer]) -> void:
 	for replacer in replacers:
 		match replacer.mode:
 			0: # invoke
@@ -88,7 +111,8 @@ func apply_attack_replacers(replacers: Array) -> void:
 			_:
 				pass
 
-func apply_attack_enhacements(enhancements: Array) -> void:
+
+func apply_attack_enhacements(enhancements: Array[Enhancement]) -> void:
 	for enhancement in enhancements:
 		match enhancement.mode:
 			0: # invoke
@@ -98,5 +122,17 @@ func apply_attack_enhacements(enhancements: Array) -> void:
 			_:
 				pass
 
+
 #func apply_attack_changer(changers:Array) -> void:
 	#pass
+
+
+func resolve_dependencies(dependancies: Array[Dependancy]) -> bool:
+	for dependancy in dependancies:
+		match dependancy.type:
+			0: # cross upgrade
+				if dependancy.name.to_lower().to_snake_case() not in upgrades:
+					return false
+			_:
+				return false
+	return true
