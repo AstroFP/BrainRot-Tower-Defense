@@ -1,4 +1,4 @@
-class_name Replacer
+class_name AttackReplacer
 extends BasicUpgradeExtension
 
 enum replacer_type {

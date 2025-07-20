@@ -1,4 +1,4 @@
-class_name Attack
+class_name ExtraAttack
 extends BasicUpgradeExtension
 
 ## Cooldown of an attack

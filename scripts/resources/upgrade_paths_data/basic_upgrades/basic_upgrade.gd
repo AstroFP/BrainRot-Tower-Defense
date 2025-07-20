@@ -20,13 +20,13 @@ extends Resource
 @export var actions : Array[Action] = []
 
 ## Array of extra attacks gained from an upgrade
-@export var attacks : Array[Attack] = []
+@export var attacks : Array[ExtraAttack] = []
 
 ## Array of attack replacers gained from an upgrade
-@export var replacers : Array[Replacer] = []
+@export var replacers : Array[AttackReplacer] = []
 
 ## Array of attack enhancements gained from an upgrade
-@export var enhancements : Array[Enhancement] = []
+@export var enhancements : Array[AttackEnhancement] = []
 
 
 #{

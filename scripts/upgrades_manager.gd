@@ -2,17 +2,17 @@ class_name UpgradesManager
 extends Node
 
 # TBD:
-# add attack chnager to upgrades - replaces the default attack
-# add auras to upgrades and buffs handling to towers
-# add upgrade, delete handling in attack extensions appliers
-# add ui integration with upgrade system
+# implement attack chnager to upgrades - replaces the default attack
+# implement auras to upgrades and buffs handling to towers
+# implement opdate and delete handling in attack extensions appliers
+# implement ui integration with upgrade system
+# design and implement complete bobritto upgrades
 
 var tower: Tower
 var tower_combat_manager: BasicCombatManager
-var upgrades : Array = []
 
 # variables to keep track of the amount of upgrades
-var upgrades_amount : int = 0
+var upgrades : Array = []
 var upgrades_amount_per_path : Dictionary[String,int] = {
 	"path_1":0,
 	"path_2":0,
@@ -81,7 +81,7 @@ func apply_actions(actions: Array[Action]) -> void:
 				var new_action = tower_combat_manager._get_inner_action_class(action.name)
 				if new_action:
 					tower_combat_manager.actions[action.name] = new_action
-			1: #update
+			1: # update
 				if tower_combat_manager.actions.has(action.name):
 					if resolve_dependencies(action.dependencies):
 						tower_combat_manager.actions[action.name].update(action.update_name)
@@ -90,7 +90,7 @@ func apply_actions(actions: Array[Action]) -> void:
 
 	
 # apply additional attacks (independent, with separate cooldowns)
-func apply_extra_attacks(attacks: Array[Attack]) -> void:
+func apply_extra_attacks(attacks: Array[ExtraAttack]) -> void:
 	for attack in attacks:
 		match attack.mode:
 			0: # invoke
@@ -101,7 +101,7 @@ func apply_extra_attacks(attacks: Array[Attack]) -> void:
 				pass
 
 
-func apply_attack_replacers(replacers: Array[Replacer]) -> void:
+func apply_attack_replacers(replacers: Array[AttackReplacer]) -> void:
 	for replacer in replacers:
 		match replacer.mode:
 			0: # invoke
@@ -112,7 +112,7 @@ func apply_attack_replacers(replacers: Array[Replacer]) -> void:
 				pass
 
 
-func apply_attack_enhacements(enhancements: Array[Enhancement]) -> void:
+func apply_attack_enhacements(enhancements: Array[AttackEnhancement]) -> void:
 	for enhancement in enhancements:
 		match enhancement.mode:
 			0: # invoke
@@ -123,7 +123,7 @@ func apply_attack_enhacements(enhancements: Array[Enhancement]) -> void:
 				pass
 
 
-#func apply_attack_changer(changers:Array) -> void:
+#func apply_attack_changer(changer:Changer) -> void:
 	#pass
 
 

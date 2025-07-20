@@ -1,2 +1,2 @@
-class_name Enhancement
+class_name AttackEnhancement
 extends BasicUpgradeExtension

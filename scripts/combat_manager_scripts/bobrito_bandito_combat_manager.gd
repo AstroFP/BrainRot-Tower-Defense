@@ -31,7 +31,7 @@ func _get_inner_extra_attack_class(inner_class_name:String, att_delay: float):
 func _get_inner_attack_replacer_class(inner_class_name: String, interval: int):
 	match  inner_class_name:
 		"additional_attack":
-			return AttackReplacer.new(interval)
+			return TMPAttackReplacer.new(interval)
 		_:
 			return
 
@@ -39,7 +39,7 @@ func _get_inner_attack_replacer_class(inner_class_name: String, interval: int):
 func _get_inner_attack_enhancement_class(inner_class_name:String):
 	match  inner_class_name:
 		"attack_enhancement":
-			return AttackEnhancement.new(20)
+			return TMPAttackEnhancement.new(20)
 		_:
 			return
 
@@ -105,7 +105,7 @@ class AdditionalAttack extends BasicExtraAttack:
 		var current_target_hm = params["target"].get_node("HealthManager")
 		current_target_hm.take_damage(params["damage"])
 
-class AttackReplacer extends BasicAttackReplacer:
+class TMPAttackReplacer extends BasicAttackReplacer:
 	func _init(att_interval: int) -> void:
 		attack_interval = att_interval
 		attack_function = additional_attack_hitscan
@@ -115,6 +115,6 @@ class AttackReplacer extends BasicAttackReplacer:
 		current_target_hm.take_damage(params["damage"])
 
 
-class AttackEnhancement extends BasicAttackEnhancement:
+class TMPAttackEnhancement extends BasicAttackEnhancement:
 	func _init(dmg: float) -> void:
 		enhancement_damage = dmg
