@@ -13,8 +13,8 @@ extends Resource
 ## Cost of an upgrade
 @export var cost : int = 0
 
-## Effects gained from an upgrade
-@export var effects : Effect
+## Array of effects gained from an upgrade
+@export var effects : Array[Effect]
 
 ## Array of actions gaind from an upgrade
 @export var actions : Array[Action] = []
@@ -28,6 +28,8 @@ extends Resource
 ## Array of attack enhancements gained from an upgrade
 @export var enhancements : Array[AttackEnhancement] = []
 
+## Attack changer - changes tower's default attack
+@export var changer : AttackChanger
 
 #{
 	#"level":1,

@@ -1,2 +1,2 @@
-class_name Action
+class_name AttackChanger
 extends BasicUpgradeExtension

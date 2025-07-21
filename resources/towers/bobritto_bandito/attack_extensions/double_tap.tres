@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DoubleTap" load_steps=2 format=3 uid="uid://v3wenps1aibw"]
+
+[ext_resource type="Script" uid="uid://xcfu0y10vatb" path="res://scripts/attack_extensions_scripts/bobritto_bandito/double_tap.gd" id="1_a1si6"]
+
+[resource]
+script = ExtResource("1_a1si6")
+metadata/_custom_type_script = "uid://xcfu0y10vatb"

@@ -30,8 +30,9 @@ func _ready() -> void:
 	detection_area.body_exited.connect(_on_body_exited)
 	
 	# set basic attack
-	basic_attack = DefaultAttack.new(BasicAttackHitscan.attack)
-
+	basic_attack = DefaultAttack.new(BasicHitscanAttack.attack)
+	
+	
 
 var attack_cooldown : float = 0
 func _process(delta: float) -> void:
@@ -230,15 +231,7 @@ func is_critical_hit(crit_chance: float) -> bool:
 
 
 # basic hitscan attack class
-class BasicAttackHitscan:
-	func _init() -> void:
-		pass
-	
-	static func attack(params:Dictionary) -> void:
-		var current_target_hm = params["target"].get_node("HealthManager")
-		current_target_hm.take_damage(params["damage"])
-		for enhancement in params["origin"].attack_enhancements:
-			params["origin"].attack_enhancements[enhancement].apply(params)
+
 
 # class for default attack, it defines towers basic attack
 # it also allows to change the default attack, should the default attack change via upgrades
@@ -254,16 +247,7 @@ class DefaultAttack:
 		attack_func = new_att_func
 
 
-# --- Classes for basic attack logic extensions ---
 
-# basic action class for actions to inherit from
-class BasicAction:
-	var action_function: Callable
-	func _init(action_func:Callable) -> void:
-		action_function = action_func
-	
-	func execute(params:Dictionary) -> void:
-		action_function.call(params)
 
 
 # basic attack class for addtional attacks to inherit from

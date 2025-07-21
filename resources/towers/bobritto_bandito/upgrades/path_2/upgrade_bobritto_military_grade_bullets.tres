@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=13 format=3 uid="uid://dnb1xsusy8o2w"]
+
+[ext_resource type="Script" uid="uid://cuuennik1m4eq" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_action.gd" id="1_37jhw"]
+[ext_resource type="Resource" uid="uid://v3wenps1aibw" path="res://resources/towers/bobritto_bandito/attack_extensions/double_tap.tres" id="2_gicm1"]
+[ext_resource type="Script" uid="uid://bwafaoaoehe7s" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_dependency.gd" id="2_v73hh"]
+[ext_resource type="Script" uid="uid://duxlumdieloys" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_extra_attack.gd" id="3_gicm1"]
+[ext_resource type="Script" uid="uid://p62d7r13t78v" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_effect.gd" id="4_kbnye"]
+[ext_resource type="Script" uid="uid://dmm2tvjnomxcu" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_enhancment.gd" id="5_ddb31"]
+[ext_resource type="Script" uid="uid://dlt2n8jy1jy2q" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_replacer.gd" id="6_46j6t"]
+[ext_resource type="Script" uid="uid://dluuljm5nwsdy" path="res://scripts/resources/upgrades_data/basic_upgrades/basic_upgrade.gd" id="7_8wroo"]
+
+[sub_resource type="Resource" id="Resource_fhiok"]
+script = ExtResource("1_37jhw")
+action_resource = ExtResource("2_gicm1")
+mode = 0
+name = "double_tap"
+dependencies = Array[ExtResource("2_v73hh")]([])
+update_name = ""
+metadata/_custom_type_script = "uid://cuuennik1m4eq"
+
+[sub_resource type="Resource" id="Resource_nikmt"]
+script = ExtResource("2_v73hh")
+type = 0
+name = "steady grip"
+metadata/_custom_type_script = "uid://bwafaoaoehe7s"
+
+[sub_resource type="Resource" id="Resource_g42vr"]
+script = ExtResource("1_37jhw")
+action_resource = ExtResource("2_gicm1")
+mode = 1
+name = "double_tap"
+dependencies = Array[ExtResource("2_v73hh")]([SubResource("Resource_nikmt")])
+update_name = "crit_double_tap"
+metadata/_custom_type_script = "uid://cuuennik1m4eq"
+
+[sub_resource type="Resource" id="Resource_o887r"]
+script = ExtResource("4_kbnye")
+effects = Dictionary[int, float]({
+0: 5.0
+})
+mode = 0
+name = ""
+dependencies = Array[ExtResource("2_v73hh")]([])
+update_name = ""
+metadata/_custom_type_script = "uid://p62d7r13t78v"
+
+[resource]
+script = ExtResource("7_8wroo")
+name = "Military-grade bullets"
+description = "Better bullets that pack more punch!"
+details = "Increase attack damge by 5."
+cost = 690
+effects = SubResource("Resource_o887r")
+actions = Array[ExtResource("1_37jhw")]([SubResource("Resource_fhiok"), SubResource("Resource_g42vr")])
+attacks = Array[ExtResource("3_gicm1")]([])
+replacers = Array[ExtResource("6_46j6t")]([])
+enhancements = Array[ExtResource("5_ddb31")]([])
+metadata/_custom_type_script = "uid://dluuljm5nwsdy"

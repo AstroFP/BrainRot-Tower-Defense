@@ -42,49 +42,50 @@ func aplly_upgrade(upgrade:BasicUpgrade) -> void:
 	apply_attack_replacers(upgrade.replacers)
 	apply_attack_enhacements(upgrade.enhancements)
 	if upgrade.name not in upgrades:
-		upgrades.append(upgrade.name.to_lower().to_snake_case())
+		upgrades.append(upgrade.name.to_snake_case())
 
 
 # apply effects from an upgrade (raw stats boosts)
-func apply_effects(effects: Effect) -> void:
-	match  effects.mode:
-		0: #invoke
-			var effects_list = effects.effects
-			for effect in effects_list:
-				match effect:
-					0:
-						tower.attack_damage += effects_list[effect]
-					1:
-						tower.attack_speed += effects_list[effect]
-					2:
-						tower.attack_radius += effects_list[effect]
-					4:
-						tower.attack_crit_chance += effects_list[effect]
-					5:
-						tower.attack_speed_multiplier +=  effects_list[effect]
-					4:
-						tower.attack_damage_multiplier += effects_list[effect]
-					6:
-						tower.attack_radius_multiplier += effects_list[effect]
-					7:
-						tower.attack_crit_damage_multiplier += effects_list[effect]
-					_:
-						pass
-		_:
-			pass
+func apply_effects(effects: Array[Effect]) -> void:
+	for _effect in effects:
+		match _effect.mode:
+			0: #invoke
+				var effects_list = _effect.effects
+				for effect in effects_list:
+					match effect:
+						0:
+							tower.attack_damage += effects_list[effect]
+						1:
+							tower.attack_speed += effects_list[effect]
+						2:
+							tower.attack_radius += effects_list[effect]
+						4:
+							tower.attack_crit_chance += effects_list[effect]
+						5:
+							tower.attack_speed_multiplier +=  effects_list[effect]
+						4:
+							tower.attack_damage_multiplier += effects_list[effect]
+						6:
+							tower.attack_radius_multiplier += effects_list[effect]
+						7:
+							tower.attack_crit_damage_multiplier += effects_list[effect]
+						_:
+							pass
+			_:
+				pass
 
 # apply actions (special operations performed with basic attack)
 func apply_actions(actions: Array[Action]) -> void:
 	for action in actions:
 		match action.mode:
 			0: # invoke
-				var new_action = tower_combat_manager._get_inner_action_class(action.name)
-				if new_action:
-					tower_combat_manager.actions[action.name] = new_action
+				#var new_action = tower_combat_manager._get_inner_action_class(action.name.to_snake_case())
+				#if new_action:
+				tower_combat_manager.actions[action.action_resource.get_class().to_snake_case()] = action.action_resource
 			1: # update
-				if tower_combat_manager.actions.has(action.name):
+				if tower_combat_manager.actions.has(action.name.to_snake_case()):
 					if resolve_dependencies(action.dependencies):
-						tower_combat_manager.actions[action.name].update(action.update_name)
+						tower_combat_manager.actions[action.name].update(action.update_name.to_snake_case())
 			_:
 				pass
 
@@ -94,9 +95,9 @@ func apply_extra_attacks(attacks: Array[ExtraAttack]) -> void:
 	for attack in attacks:
 		match attack.mode:
 			0: # invoke
-				var new_attack = tower_combat_manager._get_inner_extra_attack_class(attack.name, attack.delay)
+				var new_attack = tower_combat_manager._get_inner_extra_attack_class(attack.name.to_snake_case(), attack.delay)
 				if new_attack:
-					tower_combat_manager.extra_attacks[attack.name] = new_attack
+					tower_combat_manager.extra_attacks[attack.name.to_snake_case()] = new_attack
 			_:
 				pass
 
@@ -105,9 +106,9 @@ func apply_attack_replacers(replacers: Array[AttackReplacer]) -> void:
 	for replacer in replacers:
 		match replacer.mode:
 			0: # invoke
-				var new_replacer = tower_combat_manager._get_inner_attack_replacer_class(replacer.name,replacer.interval)
+				var new_replacer = tower_combat_manager._get_inner_attack_replacer_class(replacer.name.to_snake_case(),replacer.interval)
 				if new_replacer:
-					tower_combat_manager.attack_replacers[replacer.name] = new_replacer
+					tower_combat_manager.attack_replacers[replacer.name.to_snake_case()] = new_replacer
 			_:
 				pass
 
@@ -116,22 +117,26 @@ func apply_attack_enhacements(enhancements: Array[AttackEnhancement]) -> void:
 	for enhancement in enhancements:
 		match enhancement.mode:
 			0: # invoke
-				var new_enhancement = tower_combat_manager._get_inner_attack_enhancement_class(enhancement.name)
+				var new_enhancement = tower_combat_manager._get_inner_attack_enhancement_class(enhancement.name.to_snake_case())
 				if new_enhancement:
-					tower_combat_manager.attack_enhancements[enhancement.name] = new_enhancement
+					tower_combat_manager.attack_enhancements[enhancement.name.to_snake_case()] = new_enhancement
 			_:
 				pass
 
 
-#func apply_attack_changer(changer:Changer) -> void:
-	#pass
+func apply_attack_changer(changer:AttackChanger) -> void:
+	match changer.mode:
+		0: # invoke
+			pass
+		_:
+			pass
 
 
 func resolve_dependencies(dependancies: Array[Dependancy]) -> bool:
 	for dependancy in dependancies:
 		match dependancy.type:
 			0: # cross upgrade
-				if dependancy.name.to_lower().to_snake_case() not in upgrades:
+				if dependancy.name.to_snake_case() not in upgrades:
 					return false
 			_:
 				return false

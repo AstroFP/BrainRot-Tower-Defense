@@ -2,13 +2,13 @@ class_name BobrittoBanditoUpgrades
 extends Resource
 
 # path 1 upgrades
-const gun_blazing = preload("res://resources/towers/upgrades_data/bobritto_bandito/path_1/gun_blazing.tres")
+const gun_blazing = preload("res://resources/towers/bobritto_bandito/upgrades/path_1/upgrade_bobritto_gun_blazing.tres")
 
 # path 2 upgrades
-const military_grade_bullets = preload("res://resources/towers/upgrades_data/bobritto_bandito/path_2/military_grade_bullets.tres")
+const military_grade_bullets = preload("res://resources/towers/bobritto_bandito/upgrades/path_2/upgrade_bobritto_military_grade_bullets.tres")
 
 # path 3 upgrades
-const steady_grip = preload("res://resources/towers/upgrades_data/bobritto_bandito/path_3/steady_grip.tres")
+const steady_grip = preload("res://resources/towers/bobritto_bandito/upgrades/path_3/upgrade_bobritto_steady_grip.tres")
 
 
 var upgrades := {
