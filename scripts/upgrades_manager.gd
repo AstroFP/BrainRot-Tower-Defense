@@ -47,45 +47,29 @@ func aplly_upgrade(upgrade:BasicUpgrade) -> void:
 
 # apply effects from an upgrade (raw stats boosts)
 func apply_effects(effects: Array[Effect]) -> void:
-	for _effect in effects:
-		match _effect.mode:
-			0: #invoke
-				var effects_list = _effect.effects
-				for effect in effects_list:
-					match effect:
-						0:
-							tower.attack_damage += effects_list[effect]
-						1:
-							tower.attack_speed += effects_list[effect]
-						2:
-							tower.attack_radius += effects_list[effect]
-						4:
-							tower.attack_crit_chance += effects_list[effect]
-						5:
-							tower.attack_speed_multiplier +=  effects_list[effect]
-						4:
-							tower.attack_damage_multiplier += effects_list[effect]
-						6:
-							tower.attack_radius_multiplier += effects_list[effect]
-						7:
-							tower.attack_crit_damage_multiplier += effects_list[effect]
-						_:
-							pass
+	for effect in effects:
+		match effect.mode:
+			0: # invoke
+				var effects_list = effect.effects
+				for effect_list_item in effects_list:
+					tower.update_tower_stat(effect.effects_names[effect_list_item], effects_list[effect_list_item])
 			_:
 				pass
 
 # apply actions (special operations performed with basic attack)
 func apply_actions(actions: Array[Action]) -> void:
 	for action in actions:
+		var action_name = action.action_resource.resource_name.to_snake_case()
 		match action.mode:
 			0: # invoke
 				#var new_action = tower_combat_manager._get_inner_action_class(action.name.to_snake_case())
 				#if new_action:
-				tower_combat_manager.actions[action.action_resource.get_class().to_snake_case()] = action.action_resource
+				# add action resource to a actions dictionary with its name as a key
+				tower_combat_manager.actions[action_name] = action.action_resource
 			1: # update
-				if tower_combat_manager.actions.has(action.name.to_snake_case()):
+				if tower_combat_manager.actions.has(action_name):
 					if resolve_dependencies(action.dependencies):
-						tower_combat_manager.actions[action.name].update(action.update_name.to_snake_case())
+						tower_combat_manager.actions[action_name].update(action.update_name.to_snake_case())
 			_:
 				pass
 
@@ -135,7 +119,7 @@ func apply_attack_changer(changer:AttackChanger) -> void:
 func resolve_dependencies(dependancies: Array[Dependancy]) -> bool:
 	for dependancy in dependancies:
 		match dependancy.type:
-			0: # cross upgrade
+			0: # is_cross_path_upgrade
 				if dependancy.name.to_snake_case() not in upgrades:
 					return false
 			_:

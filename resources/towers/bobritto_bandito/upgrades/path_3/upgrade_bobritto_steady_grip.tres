@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=10 format=3 uid="uid://beuy4pcwsrtnk"]
+[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=11 format=3 uid="uid://beuy4pcwsrtnk"]
 
 [ext_resource type="Script" uid="uid://cuuennik1m4eq" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_action.gd" id="1_nqpj1"]
+[ext_resource type="Resource" uid="uid://v3wenps1aibw" path="res://resources/towers/bobritto_bandito/attack_extensions/double_tap.tres" id="2_cd82m"]
 [ext_resource type="Script" uid="uid://bwafaoaoehe7s" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_dependency.gd" id="2_eemty"]
 [ext_resource type="Script" uid="uid://duxlumdieloys" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_extra_attack.gd" id="2_wxvln"]
 [ext_resource type="Script" uid="uid://dmm2tvjnomxcu" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_enhancment.gd" id="3_eemty"]
@@ -10,20 +11,22 @@
 
 [sub_resource type="Resource" id="Resource_n41k4"]
 script = ExtResource("1_nqpj1")
-action_update = null
+action_resource = ExtResource("2_cd82m")
 mode = 1
 name = "double_tap"
-dependencies = null
+dependencies = Array[ExtResource("2_eemty")]([])
+update_name = "crit_double_tap"
 metadata/_custom_type_script = "uid://cuuennik1m4eq"
 
-[sub_resource type="Resource" id="Resource_eemty"]
+[sub_resource type="Resource" id="Resource_cd82m"]
 script = ExtResource("3_wxvln")
 effects = Dictionary[int, float]({
 6: 0.1
 })
 mode = 0
-name = ""
-dependencies = Array[ExtResource("2_eemty")]([])
+name = null
+dependencies = null
+update_name = null
 metadata/_custom_type_script = "uid://p62d7r13t78v"
 
 [resource]
@@ -32,7 +35,7 @@ name = "Steady grip"
 description = "Strong grip that allows you to hit distant targets."
 details = "Increase attack radius by 10%"
 cost = 250
-effects = SubResource("Resource_eemty")
+effects = Array[ExtResource("3_wxvln")]([SubResource("Resource_cd82m")])
 actions = Array[ExtResource("1_nqpj1")]([SubResource("Resource_n41k4")])
 attacks = Array[ExtResource("2_wxvln")]([])
 replacers = Array[ExtResource("4_n41k4")]([])

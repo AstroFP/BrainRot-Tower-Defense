@@ -168,6 +168,26 @@ func get_total_attack_radius() -> float:
 	return attack_radius * attack_radius_multiplier
 
 
+func update_tower_stat(stat_name:String, value:float) -> void:
+	match stat_name:
+		"attack_damage":
+			attack_damage += value
+		"attack_speed":
+			attack_speed += value
+		"attack_radius":
+			attack_radius += value
+		"attack_crit_chance":
+			attack_crit_chance += value
+		"attack_damage_multiplier":
+			attack_damage_multiplier += value
+		"attack_speed_multiplier":
+			attack_speed_multiplier += value
+		"attack_radius_multiplier":
+			attack_radius_multiplier += value
+		"attack_crit_damage_multiplier":
+			attack_crit_damage_multiplier += value
+
+
 func disable_attack_range_display() -> void:
 	attack_range_display.visible = false
 

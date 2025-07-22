@@ -33,7 +33,7 @@ dependencies = Array[ExtResource("2_v73hh")]([SubResource("Resource_nikmt")])
 update_name = "crit_double_tap"
 metadata/_custom_type_script = "uid://cuuennik1m4eq"
 
-[sub_resource type="Resource" id="Resource_o887r"]
+[sub_resource type="Resource" id="Resource_v73hh"]
 script = ExtResource("4_kbnye")
 effects = Dictionary[int, float]({
 0: 5.0
@@ -50,7 +50,7 @@ name = "Military-grade bullets"
 description = "Better bullets that pack more punch!"
 details = "Increase attack damge by 5."
 cost = 690
-effects = SubResource("Resource_o887r")
+effects = Array[ExtResource("4_kbnye")]([SubResource("Resource_v73hh")])
 actions = Array[ExtResource("1_37jhw")]([SubResource("Resource_fhiok"), SubResource("Resource_g42vr")])
 attacks = Array[ExtResource("3_gicm1")]([])
 replacers = Array[ExtResource("6_46j6t")]([])

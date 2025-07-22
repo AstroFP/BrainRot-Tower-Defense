@@ -1,13 +1,8 @@
 class_name BasicUpgradeExtension
 extends Resource
 
-enum mode_type{
-	invoke,
-	update,
-	delete
-}
 ## Mode of attack extension, whether invoke new one, update or delete existing
-@export var mode : mode_type
+@export_enum("Invoke","Update","Delete") var mode
 ## Name of attack extension class to perform upgrade on (invoke, update, delete)
 @export var name : String
 ## Intended for update mode if the update is to occur only when the criteria are met
