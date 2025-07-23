@@ -7,6 +7,4 @@ func _init() -> void:
 static func attack(params:Dictionary) -> void:
 	var current_target_hm = params["target"].get_node("HealthManager")
 	current_target_hm.take_damage(params["damage"])
-	for enhancement in params["origin"].attack_enhancements:
-		if params["origin"].attack_enhancements[enhancement].should_enhance(params["delta_time"]):
-			params["origin"].attack_enhancements[enhancement].apply(params)
+	

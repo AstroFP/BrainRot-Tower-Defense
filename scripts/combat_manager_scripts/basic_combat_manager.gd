@@ -193,7 +193,6 @@ func perform_basic_attack(delta_time: float) -> void:
 				attack_replaced = true
 		if !attack_replaced:
 			default_attack.attack(attack_params)
-			print("Basic_attack")
 		
 		# perform additional acions
 		perform_actions()
@@ -238,6 +237,9 @@ class DefaultAttack:
 	
 	func attack(params:Dictionary):
 		attack_func.call(params)
+		for enhancement in params["origin"].attack_enhancements:
+			if params["origin"].attack_enhancements[enhancement].should_enhance(params["delta_time"]):
+				params["origin"].attack_enhancements[enhancement].apply(params)
 	
 	func change_attack_function(new_att_func:Callable):
 		attack_func = new_att_func
