@@ -1,6 +1,6 @@
 @tool
 class_name DoubleTap 
-extends BasicAction
+extends BasicAttackAction
 
 
 var double_tap_delay : float = 0.1
@@ -15,15 +15,15 @@ func _init() -> void:
 
 func double_tap(params:Dictionary) -> void:
 	await params["origin"].get_tree().create_timer(double_tap_delay).timeout
-	params["origin"].basic_attack.attack(params)
+	params["origin"].default_attack.attack(params)
 	print_debug("double tapped for: ",params["damage"])
 
 
 func triple_tap(params:Dictionary) -> void:
 	await params["origin"].get_tree().create_timer(triple_tap_delay).timeout
-	params["origin"].basic_attack.attack(params)
+	params["origin"].default_attack.attack(params)
 	await params["origin"].get_tree().create_timer(triple_tap_delay).timeout
-	params["origin"].basic_attack.attack(params)
+	params["origin"].default_attack.attack(params)
 	print_debug("tripple tapped for: ",params["damage"])
 
 

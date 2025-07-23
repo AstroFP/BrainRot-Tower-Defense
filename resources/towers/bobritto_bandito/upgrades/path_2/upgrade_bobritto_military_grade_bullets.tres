@@ -1,16 +1,19 @@
-[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=13 format=3 uid="uid://dnb1xsusy8o2w"]
+[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=20 format=3 uid="uid://dnb1xsusy8o2w"]
 
-[ext_resource type="Script" uid="uid://cuuennik1m4eq" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_action.gd" id="1_37jhw"]
+[ext_resource type="Script" uid="uid://cuuennik1m4eq" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_action.gd" id="1_v73hh"]
 [ext_resource type="Resource" uid="uid://v3wenps1aibw" path="res://resources/towers/bobritto_bandito/attack_extensions/double_tap.tres" id="2_gicm1"]
 [ext_resource type="Script" uid="uid://bwafaoaoehe7s" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_dependency.gd" id="2_v73hh"]
 [ext_resource type="Script" uid="uid://duxlumdieloys" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_extra_attack.gd" id="3_gicm1"]
 [ext_resource type="Script" uid="uid://p62d7r13t78v" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_effect.gd" id="4_kbnye"]
+[ext_resource type="Script" uid="uid://cbjxhxfmlby7h" path="res://scripts/attack_extensions_scripts/basic/basic_attack_changer.gd" id="5_46j6t"]
 [ext_resource type="Script" uid="uid://dmm2tvjnomxcu" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_enhancment.gd" id="5_ddb31"]
+[ext_resource type="Script" uid="uid://g22f0kog12lh" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_changer.gd" id="5_kbnye"]
 [ext_resource type="Script" uid="uid://dlt2n8jy1jy2q" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_replacer.gd" id="6_46j6t"]
 [ext_resource type="Script" uid="uid://dluuljm5nwsdy" path="res://scripts/resources/upgrades_data/basic_upgrades/basic_upgrade.gd" id="7_8wroo"]
+[ext_resource type="Script" uid="uid://bv34q6xdr2k4b" path="res://scripts/attack_extensions_scripts/basic/basic_attack_enhancement.gd" id="7_gicm1"]
 
 [sub_resource type="Resource" id="Resource_fhiok"]
-script = ExtResource("1_37jhw")
+script = ExtResource("1_v73hh")
 action_resource = ExtResource("2_gicm1")
 dependencies = Array[ExtResource("2_v73hh")]([])
 mode = 0
@@ -23,12 +26,24 @@ name = "steady grip"
 metadata/_custom_type_script = "uid://bwafaoaoehe7s"
 
 [sub_resource type="Resource" id="Resource_g42vr"]
-script = ExtResource("1_37jhw")
+script = ExtResource("1_v73hh")
 action_resource = ExtResource("2_gicm1")
 dependencies = Array[ExtResource("2_v73hh")]([SubResource("Resource_nikmt")])
 mode = 1
 selected_update = "crit_double_tap"
 metadata/_custom_type_script = "uid://cuuennik1m4eq"
+
+[sub_resource type="Resource" id="Resource_8wroo"]
+resource_name = "basic_attack_changer"
+script = ExtResource("5_46j6t")
+metadata/_custom_type_script = "uid://cbjxhxfmlby7h"
+
+[sub_resource type="Resource" id="Resource_46j6t"]
+script = ExtResource("5_kbnye")
+changer_resource = SubResource("Resource_8wroo")
+dependencies = Array[ExtResource("2_v73hh")]([])
+mode = 0
+metadata/_custom_type_script = "uid://g22f0kog12lh"
 
 [sub_resource type="Resource" id="Resource_v73hh"]
 script = ExtResource("4_kbnye")
@@ -39,6 +54,25 @@ dependencies = Array[ExtResource("2_v73hh")]([])
 mode = 0
 metadata/_custom_type_script = "uid://p62d7r13t78v"
 
+[sub_resource type="Resource" id="Resource_kbnye"]
+resource_name = "basic_attack_enhancement"
+script = ExtResource("7_gicm1")
+enhancement_damage = 0.0
+enhancement_cooldown = 0.0
+enhancement_proc_chance = 0.0
+enhancement_type = 0
+metadata/_custom_type_script = "uid://bv34q6xdr2k4b"
+
+[sub_resource type="Resource" id="Resource_ddb31"]
+script = ExtResource("5_ddb31")
+enhancement_resource = SubResource("Resource_kbnye")
+type = 0
+proc_chance = 25.0
+cooldown = 0.0
+dependencies = Array[ExtResource("2_v73hh")]([])
+mode = 0
+metadata/_custom_type_script = "uid://dmm2tvjnomxcu"
+
 [resource]
 script = ExtResource("7_8wroo")
 name = "Military-grade bullets"
@@ -46,8 +80,9 @@ description = "Better bullets that pack more punch!"
 details = "Increase attack damge by 5."
 cost = 690
 effects = Array[ExtResource("4_kbnye")]([SubResource("Resource_v73hh")])
-actions = Array[ExtResource("1_37jhw")]([SubResource("Resource_fhiok"), SubResource("Resource_g42vr")])
+actions = Array[ExtResource("1_v73hh")]([SubResource("Resource_fhiok"), SubResource("Resource_g42vr")])
 attacks = Array[ExtResource("3_gicm1")]([])
 replacers = Array[ExtResource("6_46j6t")]([])
-enhancements = Array[ExtResource("5_ddb31")]([])
+enhancements = Array[ExtResource("5_ddb31")]([SubResource("Resource_ddb31")])
+changer = SubResource("Resource_46j6t")
 metadata/_custom_type_script = "uid://dluuljm5nwsdy"

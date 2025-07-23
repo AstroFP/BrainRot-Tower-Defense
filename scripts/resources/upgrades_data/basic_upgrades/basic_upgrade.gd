@@ -17,7 +17,7 @@ extends Resource
 @export var effects : Array[Effect]
 
 ## Array of actions gaind from an upgrade
-@export var actions : Array[Action] = []
+@export var actions : Array[AttackAction] = []
 
 ## Array of extra attacks gained from an upgrade
 @export var attacks : Array[ExtraAttack] = []

@@ -1,8 +1,8 @@
-class_name BasicAction
+@tool
+class_name BasicAttackAction
 extends Resource
 
 var action_function: Callable
-
 var updates: Array[String] = ["none", "Update 1", "Update 2"]
 
 func _init(action_func:Callable, name:String) -> void:
@@ -23,4 +23,7 @@ func set_action_function(action_func:Callable) -> void:
 
 
 func execute(params:Dictionary) -> void:
-		action_function.call(params)
+	action_function.call(params)
+
+func update(update_name: String) -> void:
+	print_debug("Update: ", update_name)
