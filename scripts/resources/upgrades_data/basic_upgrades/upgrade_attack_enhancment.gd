@@ -39,7 +39,7 @@ func _get_property_list():
 				"name": "proc_chance",
 				"type": TYPE_FLOAT,
 				"hint": PROPERTY_HINT_RANGE,
-				"hint_string": "1,100,0.01",
+				"hint_string": "0,100,0.01",
 				"usage": PROPERTY_USAGE_DEFAULT
 			})
 		BasicAttackEnhancement.enhancement_types.cooldown_based:

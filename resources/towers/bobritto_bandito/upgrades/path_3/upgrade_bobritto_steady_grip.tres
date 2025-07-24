@@ -12,6 +12,7 @@
 [sub_resource type="Resource" id="Resource_n41k4"]
 script = ExtResource("1_cd82m")
 action_resource = ExtResource("2_cd82m")
+execution_type = 0
 dependencies = Array[ExtResource("2_eemty")]([])
 mode = 1
 selected_update = ""

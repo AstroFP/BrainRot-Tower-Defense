@@ -196,15 +196,16 @@ func perform_basic_attack(delta_time: float) -> void:
 			print_debug("basic attack")
 		
 		# perform additional acions
-		perform_actions()
+		perform_actions(delta_time)
 			
 		attack_cooldown = 0.0
 
 
-func perform_actions() -> void:
+func perform_actions(delta_time) -> void:
 	for action in attack_actions:
-		roll_for_crit()
-		attack_actions[action].execute(attack_params)
+		if attack_actions[action].should_execute(delta_time):
+			roll_for_crit()
+			attack_actions[action].execute(attack_params)
 
 
 func perform_extra_attacks(delta_time:float) -> void:

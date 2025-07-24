@@ -10,6 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_d518u"]
 script = ExtResource("1_nv0gs")
+execution_type = 0
 dependencies = Array[ExtResource("2_1mf2o")]([])
 mode = 0
 metadata/_custom_type_script = "uid://cuuennik1m4eq"

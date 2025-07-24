@@ -17,6 +17,7 @@
 [sub_resource type="Resource" id="Resource_fhiok"]
 script = ExtResource("1_v73hh")
 action_resource = ExtResource("2_gicm1")
+execution_type = 0
 dependencies = Array[ExtResource("2_v73hh")]([])
 mode = 0
 metadata/_custom_type_script = "uid://cuuennik1m4eq"
@@ -30,6 +31,7 @@ metadata/_custom_type_script = "uid://bwafaoaoehe7s"
 [sub_resource type="Resource" id="Resource_g42vr"]
 script = ExtResource("1_v73hh")
 action_resource = ExtResource("2_gicm1")
+execution_type = 0
 dependencies = Array[ExtResource("2_v73hh")]([SubResource("Resource_nikmt")])
 mode = 1
 selected_update = "crit_double_tap"
@@ -38,16 +40,12 @@ metadata/_custom_type_script = "uid://cuuennik1m4eq"
 [sub_resource type="Resource" id="Resource_j4e88"]
 resource_name = "basic_extra_attack"
 script = ExtResource("5_8wroo")
-attack_delay = 0.0
-extra_attack_type = 0
-extra_attack_interval = 0
-extra_attack_proc_chance = 0.0
 metadata/_custom_type_script = "uid://x7fxryg6i40r"
 
 [sub_resource type="Resource" id="Resource_n6y5d"]
 script = ExtResource("3_gicm1")
 attack_resource = SubResource("Resource_j4e88")
-execution_type = 0
+cooldown = 3.0
 dependencies = Array[ExtResource("2_v73hh")]([])
 mode = 0
 metadata/_custom_type_script = "uid://duxlumdieloys"

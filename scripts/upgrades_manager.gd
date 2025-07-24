@@ -71,29 +71,51 @@ func apply_actions(actions: Array[AttackAction]) -> void:
 		var action_name = action.action_resource.resource_name.to_snake_case()
 		match action.mode:
 			action.mode_type.invoke:
-				# add action resource to a actions dictionary with its name as a key
-				tower_combat_manager.attack_actions[action_name] = action.action_resource
+				if !tower_combat_manager.attack_actions.has(action_name):
+					if resolve_dependencies(action.dependencies):
+						action.action_resource.action_proc_chance = action.proc_chance
+						action.action_resource.action_interval = action.interval
+						action.action_resource.action_cooldown = action.cooldown
+						tower_combat_manager.attack_actions[action_name] = action.action_resource
 			action.mode_type.update:
 				if tower_combat_manager.attack_actions.has(action_name):
 					if resolve_dependencies(action.dependencies):
-						tower_combat_manager.attack_actions[action_name].update(action.selected_update)
+						var args: Dictionary = {
+							"type": action.execution_type,
+							"proc_chance": action.proc_chance,
+							"interval": action.interval,
+							"cooldown": action.cooldown
+						}
+						tower_combat_manager.attack_actions[action_name].update(action.selected_update, args)
 			action.mode_type.delete:
-				pass
+				if tower_combat_manager.attack_actions.has(action_name):
+					if resolve_dependencies(action.dependencies):
+						tower_combat_manager.attack_actions.erase(action_name)
 			_:
 				pass
 
-	
+
 # apply additional attacks (independent, with separate cooldowns)
 func apply_extra_attacks(attacks: Array[ExtraAttack]) -> void:
 	for attack in attacks:
 		var attack_name = attack.attack_resource.resource_name.to_snake_case()
 		match attack.mode:
 			attack.mode_type.invoke:
-				tower_combat_manager.extra_attacks[attack_name] = attack.attack_resource
+				if !tower_combat_manager.extra_attacks.has(attack_name):
+					if resolve_dependencies(attack.dependencies):
+						attack.attack_resource.attack_cooldown = attack.cooldown
+						tower_combat_manager.extra_attacks[attack_name] = attack.attack_resource
 			attack.mode_type.update:
-				pass
+				if tower_combat_manager.extra_attacks.has(attack_name):
+					if resolve_dependencies(attack.dependencies):
+						var args : Dictionary = {
+							"cooldown": attack.cooldown
+						}
+						tower_combat_manager.extra_attacks[attack_name].update(attack.selected_update,args)
 			attack.mode_type.delete:
-				pass
+				if tower_combat_manager.extra_attacks.has(attack_name):
+					if resolve_dependencies(attack.dependencies):
+						tower_combat_manager.extra_attacks.erase(attack_name)
 			_:
 				pass
 
@@ -109,7 +131,7 @@ func apply_attack_replacers(replacers: Array[AttackReplacer]) -> void:
 				tower_combat_manager.attack_replacers[replacer_name] = replacer.replacer_resource
 			replacer.mode_type.update:
 				pass
-			replacer.delete:
+			replacer.mode_type.delete:
 				pass
 			_:
 				pass
