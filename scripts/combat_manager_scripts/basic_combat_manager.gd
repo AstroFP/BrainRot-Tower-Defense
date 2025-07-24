@@ -177,7 +177,7 @@ func attack(delta_time: float):
 	perform_basic_attack(delta_time)
 	
 	# additional attacks (independent, with separate cooldowns)
-	perform_extra_attacks()
+	perform_extra_attacks(delta_time)
 
 
 func perform_basic_attack(delta_time: float) -> void:
@@ -188,11 +188,12 @@ func perform_basic_attack(delta_time: float) -> void:
 		roll_for_crit()
 		var attack_replaced = false
 		for attack_replacer in attack_replacers:
-			if attack_replacers[attack_replacer].should_replace(delta_time):
+			if attack_replacers[attack_replacer].should_replace(delta_time + tower.get_attack_delay()):
 				attack_replacers[attack_replacer].execute(attack_params)
 				attack_replaced = true
 		if !attack_replaced:
 			default_attack.attack(attack_params)
+			print_debug("basic attack")
 		
 		# perform additional acions
 		perform_actions()
@@ -206,10 +207,11 @@ func perform_actions() -> void:
 		attack_actions[action].execute(attack_params)
 
 
-func perform_extra_attacks() -> void:
+func perform_extra_attacks(delta_time:float) -> void:
 	for extra_attack in extra_attacks:
-		roll_for_crit()
-		extra_attacks[extra_attack].execute(attack_params)
+		if extra_attacks[extra_attack].should_execute(delta_time):
+			roll_for_crit()
+			extra_attacks[extra_attack].execute(attack_params)
 
 
 func roll_for_crit():
@@ -237,9 +239,10 @@ class DefaultAttack:
 	
 	func attack(params:Dictionary):
 		attack_func.call(params)
-		for enhancement in params["origin"].attack_enhancements:
-			if params["origin"].attack_enhancements[enhancement].should_enhance(params["delta_time"]):
-				params["origin"].attack_enhancements[enhancement].apply(params)
+		var enhancements = params["origin"].attack_enhancements
+		for enhancement in enhancements:
+			if enhancements[enhancement].should_enhance(params["delta_time"] + params["origin"].tower.get_attack_delay()):
+				enhancements[enhancement].apply(params)
 	
 	func change_attack_function(new_att_func:Callable):
 		attack_func = new_att_func

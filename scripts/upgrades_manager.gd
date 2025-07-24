@@ -103,6 +103,9 @@ func apply_attack_replacers(replacers: Array[AttackReplacer]) -> void:
 		var replacer_name = replacer.replacer_resource.resource_name.to_snake_case()
 		match replacer.mode:
 			replacer.mode_type.invoke:
+				replacer.replacer_resource.replacer_type = replacer.execution_type
+				replacer.replacer_resource.replacer_interval = replacer.interval
+				replacer.replacer_resource.replacer_cooldown = replacer.cooldown
 				tower_combat_manager.attack_replacers[replacer_name] = replacer.replacer_resource
 			replacer.mode_type.update:
 				pass
@@ -117,7 +120,7 @@ func apply_attack_enhacements(enhancements: Array[AttackEnhancement]) -> void:
 		var enhancement_name = enhancement.enhancement_resource.resource_name
 		match enhancement.mode:
 			enhancement.mode_type.invoke:
-				enhancement.enhancement_resource.enhancement_type = enhancement.type
+				enhancement.enhancement_resource.enhancement_type = enhancement.execution_type
 				enhancement.enhancement_resource.enhancement_proc_chance = enhancement.proc_chance
 				enhancement.enhancement_resource.enhancement_cooldown = enhancement.cooldown
 				tower_combat_manager.attack_enhancements[enhancement_name] = enhancement.enhancement_resource

@@ -2,7 +2,8 @@
 class_name BasicAttackEnhancement
 extends Resource
 
-enum enhacement_types {
+enum enhancement_types {
+	always_active,
 	proc_chance_based,
 	cooldown_based
 }
@@ -12,7 +13,7 @@ enum enhacement_types {
 var enhancement_cooldown_counter: float
 @export var enhancement_proc_chance: float
 var enhancement_function: Callable
-@export var enhancement_type: enhacement_types
+@export var enhancement_type: enhancement_types
 
 var updates: Array[String] = ["none", "Update 1", "Update 2"]
 
@@ -28,11 +29,13 @@ func apply(params:Dictionary) -> void:
 
 func should_enhance(delta_time: float) ->  bool:
 	match enhancement_type:
-		enhacement_types.proc_chance_based:
+		enhancement_types.always_active:
+			return true
+		enhancement_types.proc_chance_based:
 			var roll = randf() * 100.0
 			if roll < enhancement_proc_chance:
 				return true
-		enhacement_types.cooldown_based:
+		enhancement_types.cooldown_based:
 			enhancement_cooldown_counter += delta_time
 			if enhancement_cooldown_counter >= enhancement_cooldown:
 				enhancement_cooldown_counter = 0

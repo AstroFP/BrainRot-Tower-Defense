@@ -16,7 +16,7 @@ func _init() -> void:
 func double_tap(params:Dictionary) -> void:
 	await params["origin"].get_tree().create_timer(double_tap_delay).timeout
 	params["origin"].default_attack.attack(params)
-	print_debug("double tapped for: ",params["damage"])
+	#print_debug("double tapped for: ",params["damage"])
 
 
 func triple_tap(params:Dictionary) -> void:
@@ -28,7 +28,7 @@ func triple_tap(params:Dictionary) -> void:
 
 
 func double_tap_crit_enhanced(params:Dictionary) -> void:
-	print_debug("enhanced double tap")
+	#print_debug("enhanced double tap")
 	if params["is_crit"]:
 		triple_tap(params)
 	else:
