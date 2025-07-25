@@ -17,7 +17,7 @@ var replacer_cooldown_timer: float
 @export var replacer_type: replacer_types
 var replacer_function: Callable
 
-var updates: Array[String] = ["none", "Update 1", "Update 2"]
+var updates: Array[String] = ["none", "change_execution_type"]
 
 func _init() -> void:
 	replacer_counter = 0
@@ -48,8 +48,27 @@ func should_replace(delta_time:float) -> bool:
 func execute(params:Dictionary) -> void:
 	replacer_function.call(params)
 
-func update(update_name: String) -> void:
+func update(update_name: String, update_args:Dictionary) -> void:
+	match update_name:
+		"change_execution_type":
+			change_execution_type(update_args)
+		_:
+			pass
 	print_debug("Update: ", update_name)
+
+func change_execution_type(args:Dictionary) -> void:
+	match args["type"]:
+		replacer_types.always_active:
+			replacer_type = replacer_types.always_active
+		replacer_types.interval_based:
+			replacer_interval = args["interval"]
+			replacer_type = replacer_types.interval_based
+		replacer_types.cooldown_based:
+			replacer_cooldown = args["cooldown"]
+			replacer_type = replacer_types.cooldown_based
+		_:
+			pass
+
 
 func basic_replacer(params: Dictionary) -> void:
 	print_debug("attack replaced: ", params["target"])

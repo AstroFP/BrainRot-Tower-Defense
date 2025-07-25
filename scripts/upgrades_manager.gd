@@ -52,18 +52,11 @@ func aplly_upgrade(upgrade:BasicUpgrade) -> void:
 # apply effects from an upgrade (raw stats boosts)
 func apply_effects(effects: Array[Effect]) -> void:
 	for effect in effects:
-		match effect.mode:
-			effect.mode_type.invoke:
-				var effects_list = effect.effects
-				for effect_list_item in effects_list:
-					var effect_name = effect.effects_type.find_key(effect_list_item)
-					tower.update_tower_stat_by_string_name(effect_name, effects_list[effect_list_item])
-			effect.mode_type.update:
-				pass
-			effect.mode_type.delete:
-				pass
-			_:
-				pass
+		if resolve_dependencies(effect.dependencies):
+			var effects_list = effect.effects
+			for effects_list_item in effects_list:
+				var effect_name = effect.effects_type.find_key(effects_list_item)
+				tower.update_tower_stat_by_string_name(effect_name, effects_list[effects_list_item])
 
 # apply actions (special operations performed with basic attack)
 func apply_actions(actions: Array[AttackAction]) -> void:
@@ -93,7 +86,6 @@ func apply_actions(actions: Array[AttackAction]) -> void:
 						tower_combat_manager.attack_actions.erase(action_name)
 			_:
 				pass
-
 
 # apply additional attacks (independent, with separate cooldowns)
 func apply_extra_attacks(attacks: Array[ExtraAttack]) -> void:
@@ -125,14 +117,25 @@ func apply_attack_replacers(replacers: Array[AttackReplacer]) -> void:
 		var replacer_name = replacer.replacer_resource.resource_name.to_snake_case()
 		match replacer.mode:
 			replacer.mode_type.invoke:
-				replacer.replacer_resource.replacer_type = replacer.execution_type
-				replacer.replacer_resource.replacer_interval = replacer.interval
-				replacer.replacer_resource.replacer_cooldown = replacer.cooldown
-				tower_combat_manager.attack_replacers[replacer_name] = replacer.replacer_resource
+				if !tower_combat_manager.attack_replacers.has(replacer_name):
+					if resolve_dependencies(replacer.dependencies):
+						replacer.replacer_resource.replacer_type = replacer.execution_type
+						replacer.replacer_resource.replacer_interval = replacer.interval
+						replacer.replacer_resource.replacer_cooldown = replacer.cooldown
+						tower_combat_manager.attack_replacers[replacer_name] = replacer.replacer_resource
 			replacer.mode_type.update:
-				pass
+				if tower_combat_manager.attack_replacers.has(replacer_name):
+					if resolve_dependencies(replacer.dependencies):
+						var args: Dictionary = {
+							"type": replacer.execution_type,
+							"interval": replacer.interval,
+							"cooldown": replacer.cooldown
+						}
+						tower_combat_manager.attack_replacers[replacer_name].update(replacer.selected_update,args)
 			replacer.mode_type.delete:
-				pass
+				if tower_combat_manager.attack_replacers.has(replacer_name):
+					if resolve_dependencies(replacer.dependencies):
+						tower_combat_manager.attack_replacers.erase(replacer_name)
 			_:
 				pass
 

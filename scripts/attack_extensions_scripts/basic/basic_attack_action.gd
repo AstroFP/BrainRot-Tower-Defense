@@ -26,8 +26,7 @@ func _init() -> void:
 	action_cooldown_timer = 0
 	action_function = basic_attack_action
 	resource_name ="basic_attack_action"
-	updates += ["lol"]
-	
+
 
 func set_action_function(action_func:Callable) -> void:
 	action_function = action_func

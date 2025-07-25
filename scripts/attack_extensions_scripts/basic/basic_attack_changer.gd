@@ -19,7 +19,7 @@ func execute(params:Dictionary) -> void:
 
 
 func attack(params:Dictionary) -> void:
-	#print_debug("Attack changed")
+	print_debug("Attack changed")
 	var current_target_hm = params["target"].get_node("HealthManager")
 	current_target_hm.take_damage(params["damage"])
 

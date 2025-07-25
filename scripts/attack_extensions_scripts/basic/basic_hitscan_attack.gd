@@ -1,3 +1,4 @@
+#deprecated
 class_name BasicHitscanAttack
 
 func _init() -> void:

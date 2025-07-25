@@ -30,7 +30,7 @@ func _ready() -> void:
 	detection_area.body_exited.connect(_on_body_exited)
 	
 	# set basic attack
-	default_attack = DefaultAttack.new(BasicHitscanAttack.attack)
+	default_attack = DefaultAttack.new(hitscan)
 	
 	
 
@@ -171,7 +171,6 @@ func attack(delta_time: float):
 	# set crucial attack parameters
 	attack_params["target"] = current_target
 	attack_params["damage"] = tower.get_total_attack_damage()
-	attack_params["delta_time"] = delta_time
 	
 	# basic attack
 	perform_basic_attack(delta_time)
@@ -193,6 +192,9 @@ func perform_basic_attack(delta_time: float) -> void:
 				attack_replaced = true
 		if !attack_replaced:
 			default_attack.attack(attack_params)
+			for enhancement in attack_enhancements:
+				if attack_enhancements[enhancement].should_enhance(delta_time + tower.get_attack_delay()):
+					attack_enhancements[enhancement].apply(attack_params)
 			print_debug("basic attack")
 		
 		# perform additional acions
@@ -234,16 +236,23 @@ func is_critical_hit(crit_chance: float) -> bool:
 # class for default attack, it defines towers basic attack
 # it also allows to change the default attack, should the default attack change via upgrades
 class DefaultAttack:
-	var attack_func: Callable
+	var attack_function: Callable
+	var default_attack_function: Callable
 	func _init(att_func:Callable) -> void:
-		attack_func = att_func
+		attack_function = att_func
+	
 	
 	func attack(params:Dictionary):
-		attack_func.call(params)
-		var enhancements = params["origin"].attack_enhancements
-		for enhancement in enhancements:
-			if enhancements[enhancement].should_enhance(params["delta_time"] + params["origin"].tower.get_attack_delay()):
-				enhancements[enhancement].apply(params)
+		attack_function.call(params)
+		
 	
 	func change_attack_function(new_att_func:Callable):
-		attack_func = new_att_func
+		attack_function = new_att_func
+
+
+func hitscan(params:Dictionary) -> void:
+	var current_target_hm = params["target"].get_node("HealthManager")
+	current_target_hm.take_damage(params["damage"])
+
+func spawn_projectile(params:Dictionary) -> void:
+	pass
