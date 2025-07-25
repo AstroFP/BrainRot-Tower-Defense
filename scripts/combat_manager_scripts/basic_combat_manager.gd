@@ -144,7 +144,10 @@ var attack_replacers : Dictionary[String,BasicAttackReplacer] = {}
 # attack changer gained from upgrades
 var attack_changer : BasicAttackChanger:
 	set(value):
-		attack_changer = value
+		if value:
+			attack_changer = value
+		else:
+			default_attack.change_attack_function(default_attack.default_attack_function)
 		default_attack.change_attack_function(attack_changer.attack)
 
 # attack parameters required by combat functions
@@ -255,4 +258,4 @@ func hitscan(params:Dictionary) -> void:
 	current_target_hm.take_damage(params["damage"])
 
 func spawn_projectile(params:Dictionary) -> void:
-	pass
+	print_debug(params)

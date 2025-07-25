@@ -15,7 +15,7 @@ var enhancement_cooldown_counter: float
 var enhancement_function: Callable
 @export var enhancement_type: enhancement_types
 
-var updates: Array[String] = ["none", "Update 1", "Update 2"]
+var updates: Array[String] = ["none", "change_execution_type"]
 
 func _init() -> void:
 	enhancement_cooldown_counter = 0
@@ -48,5 +48,21 @@ func should_enhance(delta_time: float) ->  bool:
 func basic_enhancement(params:Dictionary) -> void:
 	print_debug("basic attack enhancement: ",params["damage"])
 
-func update(update_name: String) -> void:
+func update(update_name: String, update_args: Dictionary) -> void:
+	match  update_name:
+		"change_execution_type":
+			change_execution_type(update_args)
+		_:
+			pass
 	print_debug("Update: ", update_name)
+
+
+func change_execution_type(args: Dictionary) -> void:
+	enhancement_type = args["type"]
+	match enhancement_type:
+		enhancement_types.proc_chance_based:
+			enhancement_proc_chance = args["proc_chance"]
+		enhancement_types.cooldown_based:
+			enhancement_cooldown = args["cooldown"]
+		_:
+			pass

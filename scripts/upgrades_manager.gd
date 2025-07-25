@@ -145,29 +145,46 @@ func apply_attack_enhacements(enhancements: Array[AttackEnhancement]) -> void:
 		var enhancement_name = enhancement.enhancement_resource.resource_name
 		match enhancement.mode:
 			enhancement.mode_type.invoke:
-				enhancement.enhancement_resource.enhancement_type = enhancement.execution_type
-				enhancement.enhancement_resource.enhancement_proc_chance = enhancement.proc_chance
-				enhancement.enhancement_resource.enhancement_cooldown = enhancement.cooldown
-				tower_combat_manager.attack_enhancements[enhancement_name] = enhancement.enhancement_resource
+				if !tower_combat_manager.attack_enhancements.has(enhancement_name):
+					if resolve_dependencies(enhancement.dependencies):
+						enhancement.enhancement_resource.enhancement_type = enhancement.execution_type
+						enhancement.enhancement_resource.enhancement_proc_chance = enhancement.proc_chance
+						enhancement.enhancement_resource.enhancement_cooldown = enhancement.cooldown
+						tower_combat_manager.attack_enhancements[enhancement_name] = enhancement.enhancement_resource
 			enhancement.mode_type.update:
-				pass
+				if tower_combat_manager.attack_enhancements.has(enhancement_name):
+					if resolve_dependencies(enhancement.dependencies):
+						var args: Dictionary = {
+							"type": enhancement.execution_type,
+							"proc_chance": enhancement.proc_chance,
+							"cooldown": enhancement.cooldown
+						}
+						tower_combat_manager.attack_enhancements[enhancement_name].update(enhancement.selected_update,args)
 			enhancement.mode_type.delete:
-				pass
+				if tower_combat_manager.attack_enhancements.has(enhancement_name):
+					if resolve_dependencies(enhancement.dependencies):
+						tower_combat_manager.attack_enhancements.erase(enhancement_name)
 			_:
 				pass
 
 
 func apply_attack_changer(changer:AttackChanger) -> void:
-	if changer:
-		match changer.mode:
-			changer.mode_type.invoke:
-				tower_combat_manager.attack_changer = changer.changer_resource
-			changer.mode_type.update:
-				pass
-			changer.mode_type.delete:
-				pass
-			_:
-				pass
+	if !changer:
+		return
+	match changer.mode:
+		changer.mode_type.invoke:
+			tower_combat_manager.attack_changer = changer.changer_resource
+		changer.mode_type.update:
+			if tower_combat_manager.attack_changer.resource_name == changer.changer_resource.resource_name:
+				if resolve_dependencies(changer.dependencies):
+					var args: Dictionary = {}
+					tower_combat_manager.attack_changer.update(changer.selected_update, args)
+		changer.mode_type.delete:
+			if tower_combat_manager.attack_changer.resource_name == changer.changer_resource.resource_name:
+				if resolve_dependencies(changer.dependencies):
+					tower_combat_manager.attack_changer = null
+		_:			
+			pass
 
 
 func resolve_dependencies(dependancies: Array[Dependancy]) -> bool:

@@ -3,7 +3,7 @@ class_name BasicAttackChanger
 extends Resource
 
 var changer_function:Callable
-var updates: Array[String] = ["none", "Update 1", "Update 2"]
+var updates: Array[String] = ["none"]
 
 func _init() -> void:
 	resource_name = "basic_attack_changer"
@@ -24,5 +24,5 @@ func attack(params:Dictionary) -> void:
 	current_target_hm.take_damage(params["damage"])
 
 
-func update(update_name: String) -> void:
-	print_debug("Update: ", update_name)
+func update(update_name: String, update_args: Dictionary) -> void:
+	print_debug("Update: ", update_name, update_args)
