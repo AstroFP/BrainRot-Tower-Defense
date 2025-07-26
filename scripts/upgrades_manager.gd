@@ -2,10 +2,7 @@ class_name UpgradesManager
 extends Node
 
 # TBD:
-# refactor all atack extensions to utilize the resource approach
-# implement attack chnager to upgrades - replaces the default attack
 # implement auras to upgrades and buffs handling to towers
-# implement update and delete handling in attack extensions appliers
 # implement ui integration with upgrade system
 # design and implement complete bobritto upgrades
 

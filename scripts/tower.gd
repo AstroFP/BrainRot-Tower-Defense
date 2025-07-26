@@ -55,6 +55,8 @@ var attack_crit_chance: float
 var attack_crit_damage_multiplier: float
 
 
+var upgrade_menu_opened: bool = false
+
 var actions : Array = []
 
 func _ready() -> void:
@@ -107,6 +109,10 @@ func _ready() -> void:
 func _physics_process(_delta) -> void:
 	pass
 
+
+func _input(event):
+	if event is InputEventScreenTouch and event.pressed:
+		toggle_upgrade_menu(event)
 
 func place_tower() -> void:
 	is_placed = true
@@ -166,6 +172,22 @@ func get_total_crit_damage() -> float:
 
 func get_total_attack_radius() -> float:
 	return attack_radius * attack_radius_multiplier
+
+
+func toggle_upgrade_menu(event):
+	if tower_sprite.get_rect().has_point(to_local(event.position * get_canvas_transform())):
+		if !is_placed:
+			return
+		if !upgrade_menu_opened:
+			enable_attack_range_display()
+			upgrade_menu_opened = true
+		else:
+			disable_attack_range_display()
+			upgrade_menu_opened = false
+	else:
+		if upgrade_menu_opened:
+			disable_attack_range_display()
+			upgrade_menu_opened = false
 
 
 func update_tower_stat_by_string_name(stat_name:String, value:float) -> void:
