@@ -2,6 +2,8 @@ class_name Tower
 extends Node2D
 
 signal tower_placed(tower:TowerStats)
+signal tower_menu_opened(path_data:Dictionary, upgrades_data:Resource)
+signal tower_menu_closed
 
 const UPGRADES_MANAGER = preload("res://scenes/upgrades_manager.tscn")
 
@@ -18,6 +20,9 @@ const UPGRADES_MANAGER = preload("res://scenes/upgrades_manager.tscn")
 @onready var hitbox_collision_box = $Hitbox/HitboxCollisionBox
 
 var combat_manager: BasicCombatManager
+var upgrades_manager: UpgradesManager
+
+var tower_upgrade_menu: TowerUpgradeMenu
 
 var is_placed = false
 enum placement {valid = 0, invalid = 1}
@@ -126,8 +131,9 @@ func place_tower() -> void:
 	var combat_manager_scene_path =  tower_stats.COMBAT_MANAGER_SCENES[tower_stats.combat_manager_type]
 	var combat_manager_scene = load(combat_manager_scene_path)
 	combat_manager = combat_manager_scene.instantiate()
+	upgrades_manager = UPGRADES_MANAGER.instantiate()
 	add_child(combat_manager)
-	add_child(UPGRADES_MANAGER.instantiate())
+	add_child(upgrades_manager)
 	emit_signal("tower_placed",tower_stats)
 
 
@@ -175,19 +181,26 @@ func get_total_attack_radius() -> float:
 
 
 func toggle_upgrade_menu(event):
+	if upgrade_menu_opened:
+		if tower_upgrade_menu.get_global_rect().has_point(event.position):
+			return
+	
 	if tower_sprite.get_rect().has_point(to_local(event.position * get_canvas_transform())):
 		if !is_placed:
 			return
 		if !upgrade_menu_opened:
 			enable_attack_range_display()
 			upgrade_menu_opened = true
+			emit_signal("tower_menu_opened",upgrades_manager.upgrades_amount_per_path,tower_stats.tower_upgrades)
 		else:
 			disable_attack_range_display()
 			upgrade_menu_opened = false
+			emit_signal("tower_menu_closed")
 	else:
 		if upgrade_menu_opened:
 			disable_attack_range_display()
 			upgrade_menu_opened = false
+			emit_signal("tower_menu_closed")
 
 
 func update_tower_stat_by_string_name(stat_name:String, value:float) -> void:

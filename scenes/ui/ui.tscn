@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://dx21gmg74ok58"]
+[gd_scene load_steps=87 format=3 uid="uid://dx21gmg74ok58"]
 
 [ext_resource type="Script" uid="uid://p704y804ilip" path="res://scripts/ui/ui_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://dp3vwacdwcwb4" path="res://scripts/buy_menu_manager.gd" id="1_u7n8c"]
@@ -9,9 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="5_0dwhk"]
 [ext_resource type="Texture2D" uid="uid://cm2tv8g81t6ew" path="res://assets/sprites/ui/right_menu/pause_icon.png" id="5_0i47d"]
 [ext_resource type="Script" uid="uid://ct5j6a4vnfb62" path="res://scripts/ui/game_over_panel.gd" id="6_pfayw"]
+[ext_resource type="Script" uid="uid://ciw5wro6dhn64" path="res://scripts/ui/tower_upgrade_menu.gd" id="6_vnqvi"]
 [ext_resource type="Script" uid="uid://br72ugcth0srs" path="res://scripts/ui/buy_menu_tower_list.gd" id="7_swkix"]
+[ext_resource type="Shader" uid="uid://c8umrt1yjrv4b" path="res://assets/shaders/play_button_gradient_shader.gdshader" id="8_en2kd"]
 [ext_resource type="PackedScene" uid="uid://34vp2mjhfbdf" path="res://scenes/ui/play_btn.tscn" id="9_fqqne"]
 [ext_resource type="Script" uid="uid://dechlfp15kj8m" path="res://scripts/ui/pause_menu.gd" id="9_uegxj"]
+[ext_resource type="Texture2D" uid="uid://oak6prvucehq" path="res://assets/sprites/nig.PNG" id="9_vnqvi"]
 [ext_resource type="Script" uid="uid://b7mng3q4amihb" path="res://scripts/ui/wave_display.gd" id="11_4kltc"]
 [ext_resource type="StyleBox" uid="uid://egdd601dhl1d" path="res://assets/themes/styles/ui_outer_stylebox.tres" id="14_fv78h"]
 [ext_resource type="PackedScene" uid="uid://b0lom8jygodhw" path="res://scenes/ui/ui_button_text.tscn" id="14_hc5d0"]
@@ -27,6 +30,25 @@
 [ext_resource type="Texture2D" uid="uid://dlcyytm86845x" path="res://assets/sprites/ui/menu_icons/home_icon.png" id="21_fv78h"]
 [ext_resource type="Resource" uid="uid://dxac8js3phmid" path="res://resources/ui/ui_button_red.tres" id="22_o71gb"]
 [ext_resource type="Script" uid="uid://bir8t4xy08qj" path="res://scripts/ui/popup_menu.gd" id="25_o71gb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa3n2"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ygsn"]
+resource_local_to_scene = true
+shader = ExtResource("8_en2kd")
+shader_parameter/color_top = Color(0.458824, 0.843137, 0.584314, 1)
+shader_parameter/color_bottom = Color(0.156863, 0.541176, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0kyo"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i47d"]
 bg_color = Color(0, 0, 0, 1)
@@ -55,7 +77,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_qhbcy"]
+[sub_resource type="Theme" id="Theme_vnqvi"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_0i47d")
 Button/styles/focus = SubResource("StyleBoxFlat_svq4k")
@@ -101,7 +123,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_khplb"]
+[sub_resource type="Theme" id="Theme_7ygsn"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_272wc")
 Button/styles/focus = SubResource("StyleBoxFlat_lkvmi")
@@ -204,7 +226,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_en2kd"]
+[sub_resource type="Theme" id="Theme_272wc"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_ygedu")
 Button/styles/focus = SubResource("StyleBoxFlat_oopc8")
@@ -1058,51 +1080,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_vnqvi"]
-resource_local_to_scene = true
-Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
-Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
-Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
-Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
-Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
-Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
-Label/font_sizes/font_size = 28
-MarginContainer/constants/margin_bottom = 1
-MarginContainer/constants/margin_left = 1
-MarginContainer/constants/margin_right = 1
-MarginContainer/constants/margin_top = 1
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
-
-[sub_resource type="Theme" id="Theme_7ygsn"]
-resource_local_to_scene = true
-Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
-Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
-Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
-Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
-Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
-Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
-Label/font_sizes/font_size = 28
-MarginContainer/constants/margin_bottom = 1
-MarginContainer/constants/margin_left = 1
-MarginContainer/constants/margin_right = 1
-MarginContainer/constants/margin_top = 1
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
-
-[sub_resource type="Theme" id="Theme_272wc"]
-resource_local_to_scene = true
-Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
-Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
-Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
-Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
-Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
-Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
-Label/font_sizes/font_size = 28
-MarginContainer/constants/margin_bottom = 1
-MarginContainer/constants/margin_left = 1
-MarginContainer/constants/margin_right = 1
-MarginContainer/constants/margin_top = 1
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
-
 [sub_resource type="Theme" id="Theme_knhlc"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
@@ -1119,6 +1096,51 @@ MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
 
 [sub_resource type="Theme" id="Theme_o2sfg"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_yy7ol"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_ydrdt"]
+resource_local_to_scene = true
+Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
+Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
+Button/styles/hover = SubResource("StyleBoxFlat_fqqne")
+Button/styles/normal = SubResource("StyleBoxFlat_fqqne")
+Button/styles/pressed = SubResource("StyleBoxFlat_fqqne")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_khplb")
+
+[sub_resource type="Theme" id="Theme_lkvmi"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_fqqne")
 Button/styles/focus = SubResource("StyleBoxFlat_qhbcy")
@@ -1459,7 +1481,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_yy7ol"]
+[sub_resource type="Theme" id="Theme_67jad"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
 Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
@@ -1474,7 +1496,7 @@ MarginContainer/constants/margin_right = 1
 MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
 
-[sub_resource type="Theme" id="Theme_ydrdt"]
+[sub_resource type="Theme" id="Theme_0xdx3"]
 resource_local_to_scene = true
 Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
 Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
@@ -1654,21 +1676,358 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="TowerUpgradeMenu" type="MarginContainer" parent="UIContainer/UI"]
-visible = false
-custom_minimum_size = Vector2(400, 0)
+[node name="WaveDisplay" type="MarginContainer" parent="UIContainer/UI"]
+custom_minimum_size = Vector2(300, 130)
 layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 300.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("11_4kltc")
+
+[node name="WaveDisplayBg" type="ColorRect" parent="UIContainer/UI/WaveDisplay"]
+layout_mode = 2
+color = Color(0.396078, 0.396078, 0.396078, 0.784314)
+
+[node name="WaveDisplayLabel" type="Label" parent="UIContainer/UI/WaveDisplay"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "Wave: "
+
+[node name="ResourcesPanel" type="MarginContainer" parent="UIContainer/UI"]
+custom_minimum_size = Vector2(700, 75)
+layout_mode = 1
+offset_right = 700.0
+offset_bottom = 130.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("3_0dwhk")
+
+[node name="ResourcesPanelBg" type="ColorRect" parent="UIContainer/UI/ResourcesPanel"]
+layout_mode = 2
+color = Color(0.396078, 0.396078, 0.396078, 0.784314)
+
+[node name="ResourcesPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel"]
+layout_mode = 2
+
+[node name="HealthDisplayPanel" type="MarginContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HealthDisplayPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/HealthDisplayPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HealthIcon" type="TextureRect" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/HealthDisplayPanel/HealthDisplayPanelItems"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("3_g5kmx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthCount" type="Label" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/HealthDisplayPanel/HealthDisplayPanelItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "debug"
+
+[node name="MoneyDisplayPanel" type="MarginContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MoneyDisplayPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/MoneyDisplayPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MoneyIcon" type="TextureRect" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/MoneyDisplayPanel/MoneyDisplayPanelItems"]
+texture_filter = 4
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_0dwhk")
+expand_mode = 1
+
+[node name="MoneyCount" type="Label" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/MoneyDisplayPanel/MoneyDisplayPanelItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "debug"
+
+[node name="TowerUpgradeMenuWrapper" type="MarginContainer" parent="UIContainer/UI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = 150.0
 grow_vertical = 2
+script = ExtResource("6_vnqvi")
 
-[node name="TowerUpgradeMenuItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenu"]
+[node name="TowerUpgradeMenu" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("14_fv78h")
+
+[node name="TowerUpgradeMenuItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TowerUpgradeMenuItmesInnerBg" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("16_o71gb")
+
+[node name="TowerUpgradeMenuItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg"]
 layout_mode = 2
 
-[node name="TowerUpgradeMenuBg" type="ColorRect" parent="UIContainer/UI/TowerUpgradeMenu"]
+[node name="TowerUpgradeTabContainer" type="TabContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems"]
 layout_mode = 2
-color = Color(0.439049, 0.439049, 0.439049, 1)
+current_tab = 0
+clip_tabs = false
+tab_focus_mode = 1
+
+[node name="Upgrades" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="UpgradeBannersContainer" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="UpgradeBannerPath1" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer"]
+layout_mode = 2
+
+[node name="UpgradeBannerBorder" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pa3n2")
+
+[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="UpgradeBanner" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper"]
+material = SubResource("ShaderMaterial_7ygsn")
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y0kyo")
+
+[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="UpgradeBannerItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UpgradeName" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+custom_minimum_size = Vector2(130, 50)
+layout_mode = 2
+text = "Gun blazing"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="UpgradeIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("9_vnqvi")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PriceTag" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+layout_mode = 2
+
+[node name="CoinIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+layout_mode = 2
+texture = ExtResource("5_0dwhk")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Price" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+layout_mode = 2
+text = "250"
+
+[node name="UIButtonText" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1" instance=ExtResource("14_hc5d0")]
+custom_minimum_size = Vector2(140, 35)
+layout_mode = 2
+btn_text = "Details"
+font_size = 16
+btn_style = ExtResource("15_n3vwu")
+
+[node name="UpgradeBannerPath2" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer"]
+layout_mode = 2
+
+[node name="UpgradeBannerBorder" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pa3n2")
+
+[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="UpgradeBanner" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper"]
+material = SubResource("ShaderMaterial_7ygsn")
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y0kyo")
+
+[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="UpgradeBannerItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UpgradeName" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+custom_minimum_size = Vector2(130, 50)
+layout_mode = 2
+text = "Gun blazing"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="UpgradeIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("9_vnqvi")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PriceTag" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+layout_mode = 2
+
+[node name="CoinIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+layout_mode = 2
+texture = ExtResource("5_0dwhk")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Price" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+layout_mode = 2
+text = "250"
+
+[node name="UIButtonText" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2" instance=ExtResource("14_hc5d0")]
+custom_minimum_size = Vector2(140, 35)
+layout_mode = 2
+btn_text = "Details"
+font_size = 16
+btn_style = ExtResource("15_n3vwu")
+
+[node name="UpgradeBannerPath3" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer"]
+layout_mode = 2
+
+[node name="UpgradeBannerBorder" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pa3n2")
+
+[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="UpgradeBanner" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper"]
+material = SubResource("ShaderMaterial_7ygsn")
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y0kyo")
+
+[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="UpgradeBannerItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UpgradeName" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+custom_minimum_size = Vector2(130, 50)
+layout_mode = 2
+text = "Gun blazing"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="UpgradeIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("9_vnqvi")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PriceTag" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+layout_mode = 2
+
+[node name="CoinIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+layout_mode = 2
+texture = ExtResource("5_0dwhk")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Price" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+layout_mode = 2
+text = "250"
+
+[node name="UIButtonText" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3" instance=ExtResource("14_hc5d0")]
+custom_minimum_size = Vector2(140, 35)
+layout_mode = 2
+btn_text = "Details"
+font_size = 16
+btn_style = ExtResource("15_n3vwu")
+
+[node name="Stats" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Label" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Stats"]
+layout_mode = 2
+text = "lol2"
 
 [node name="TowerBuyMenuWrapper" type="HBoxContainer" parent="UIContainer/UI"]
 layout_mode = 1
@@ -1693,7 +2052,7 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 0
-theme = SubResource("Theme_qhbcy")
+theme = SubResource("Theme_vnqvi")
 btn_icon = ExtResource("5_0i47d")
 btn_style = ExtResource("15_n3vwu")
 
@@ -1709,7 +2068,7 @@ icon_alignment = 1
 
 [node name="PlayBtn" parent="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer" instance=ExtResource("9_fqqne")]
 layout_mode = 2
-theme = SubResource("Theme_khplb")
+theme = SubResource("Theme_7ygsn")
 btn_style = ExtResource("17_svq4k")
 
 [node name="TowerBuyMenu" type="PanelContainer" parent="UIContainer/UI/TowerBuyMenuWrapper"]
@@ -1772,7 +2131,7 @@ script = ExtResource("7_swkix")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 1
-theme = SubResource("Theme_en2kd")
+theme = SubResource("Theme_272wc")
 btn_text = "Info"
 btn_style = ExtResource("15_n3vwu")
 start_disabled = true
@@ -1781,72 +2140,6 @@ start_disabled = true
 libraries = {
 &"": SubResource("AnimationLibrary_n3vwu")
 }
-
-[node name="ResourcesPanel" type="MarginContainer" parent="UIContainer/UI"]
-custom_minimum_size = Vector2(700, 75)
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-script = ExtResource("3_0dwhk")
-
-[node name="ResourcesPanelBg" type="ColorRect" parent="UIContainer/UI/ResourcesPanel"]
-layout_mode = 2
-color = Color(0.396078, 0.396078, 0.396078, 0.784314)
-
-[node name="ResourcesPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel"]
-layout_mode = 2
-
-[node name="HealthDisplayPanel" type="MarginContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems"]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="HealthDisplayPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/HealthDisplayPanel"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="HealthIcon" type="TextureRect" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/HealthDisplayPanel/HealthDisplayPanelItems"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("3_g5kmx")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="HealthCount" type="Label" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/HealthDisplayPanel/HealthDisplayPanelItems"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "debug"
-
-[node name="MoneyDisplayPanel" type="MarginContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems"]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="MoneyDisplayPanelItems" type="HBoxContainer" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/MoneyDisplayPanel"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="MoneyIcon" type="TextureRect" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/MoneyDisplayPanel/MoneyDisplayPanelItems"]
-texture_filter = 4
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("5_0dwhk")
-expand_mode = 1
-
-[node name="MoneyCount" type="Label" parent="UIContainer/UI/ResourcesPanel/ResourcesPanelItems/MoneyDisplayPanel/MoneyDisplayPanelItems"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "debug"
 
 [node name="GameOverPanelWrapper" type="MarginContainer" parent="UIContainer/UI"]
 modulate = Color(1, 1, 1, 0)
@@ -2069,7 +2362,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_vnqvi")
+theme = SubResource("Theme_knhlc")
 btn_text = "Resume"
 btn_icon = ExtResource("17_ygedu")
 btn_style = ExtResource("17_svq4k")
@@ -2079,7 +2372,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_7ygsn")
+theme = SubResource("Theme_o2sfg")
 btn_text = "Restart"
 btn_icon = ExtResource("19_ygedu")
 btn_style = ExtResource("15_n3vwu")
@@ -2089,7 +2382,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_272wc")
+theme = SubResource("Theme_yy7ol")
 btn_text = "Replay last wave"
 btn_icon = ExtResource("17_ygedu")
 flip_h = true
@@ -2101,7 +2394,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_knhlc")
+theme = SubResource("Theme_ydrdt")
 btn_text = "Settings"
 btn_icon = ExtResource("20_26a3v")
 start_disabled = true
@@ -2111,7 +2404,7 @@ custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_o2sfg")
+theme = SubResource("Theme_lkvmi")
 btn_text = "Main menu"
 btn_icon = ExtResource("21_fv78h")
 btn_style = ExtResource("22_o71gb")
@@ -2121,33 +2414,6 @@ start_disabled = true
 libraries = {
 &"": SubResource("AnimationLibrary_4w2x3")
 }
-
-[node name="WaveDisplay" type="MarginContainer" parent="UIContainer/UI"]
-custom_minimum_size = Vector2(300, 130)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -0.5
-offset_right = 0.5
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-script = ExtResource("11_4kltc")
-
-[node name="WaveDisplayBg" type="ColorRect" parent="UIContainer/UI/WaveDisplay"]
-layout_mode = 2
-color = Color(0.396078, 0.396078, 0.396078, 0.784314)
-
-[node name="WaveDisplayLabel" type="Label" parent="UIContainer/UI/WaveDisplay"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 32
-text = "Wave: "
 
 [node name="PopupMenu" type="PanelContainer" parent="UIContainer/UI"]
 visible = false
@@ -2245,7 +2511,7 @@ theme_override_constants/separation = 120
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
 size_flags_horizontal = 2
-theme = SubResource("Theme_yy7ol")
+theme = SubResource("Theme_67jad")
 btn_text = "Cancel"
 btn_style = ExtResource("22_o71gb")
 
@@ -2253,7 +2519,7 @@ btn_style = ExtResource("22_o71gb")
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
 size_flags_horizontal = 10
-theme = SubResource("Theme_ydrdt")
+theme = SubResource("Theme_0xdx3")
 btn_text = "Ok"
 btn_style = ExtResource("17_svq4k")
 
@@ -2262,10 +2528,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_qhbcy")
 }
 
+[connection signal="available_money_changed" from="UIContainer/UI/ResourcesPanel" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_available_money_changed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
-[connection signal="available_money_changed" from="UIContainer/UI/ResourcesPanel" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_available_money_changed"]
 [connection signal="pressed" from="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons/PlayAgainBtn" to="UIContainer/UI/GameOverPanelWrapper" method="_on_play_again_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons/ReplayLastWaveBtn" to="UIContainer/UI/GameOverPanelWrapper" method="_on_replay_last_wave_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/GameOverPanelWrapper/GameOverPanel/GameOverPanelItemsWrapper/GameOverPanelItemsInnerBg/GameOverPanelItemsContainer/GameOverPanelItems/GameOverButtonsWrapper/GameOverButtons/ExitBtn" to="UIContainer/UI/GameOverPanelWrapper" method="_on_exit_btn_pressed"]
