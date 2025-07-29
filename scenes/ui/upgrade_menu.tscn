@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=3 uid="uid://l4jn5gabvb1j"]
+
+[ext_resource type="Script" uid="uid://cdmt2aq833uw5" path="res://scripts/ui/upgrade_menu_tabs_manager.gd" id="1_cqxas"]
+[ext_resource type="StyleBox" uid="uid://egdd601dhl1d" path="res://assets/themes/styles/ui_outer_stylebox.tres" id="2_uofuh"]
+[ext_resource type="StyleBox" uid="uid://782hi6cwaaow" path="res://assets/themes/styles/ui_inner_stylebox.tres" id="3_m2qc7"]
+[ext_resource type="StyleBox" uid="uid://xmknkvny3al8" path="res://assets/themes/styles/ui_separator_stylebox.tres" id="4_6xqv8"]
+
+[node name="UpgradeMenu" type="MarginContainer"]
+offset_right = 326.0
+offset_bottom = 257.0
+
+[node name="UpgradeMenuItems" type="VBoxContainer" parent="."]
+layout_mode = 2
+script = ExtResource("1_cqxas")
+
+[node name="TabButtonsWrapper" type="MarginContainer" parent="UpgradeMenuItems"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Buttons" type="HBoxContainer" parent="UpgradeMenuItems/TabButtonsWrapper"]
+layout_mode = 2
+
+[node name="UpgradesTabBtn" type="Button" parent="UpgradeMenuItems/TabButtonsWrapper/Buttons"]
+layout_mode = 2
+text = "Upgrades"
+
+[node name="StatsTabBtn" type="Button" parent="UpgradeMenuItems/TabButtonsWrapper/Buttons"]
+layout_mode = 2
+text = "Stats"
+
+[node name="OuterContainer" type="PanelContainer" parent="UpgradeMenuItems"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_uofuh")
+
+[node name="OuterMargin" type="MarginContainer" parent="UpgradeMenuItems/OuterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MenuItems" type="VBoxContainer" parent="UpgradeMenuItems/OuterContainer/OuterMargin"]
+layout_mode = 2
+
+[node name="InnerContainer" type="PanelContainer" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_m2qc7")
+
+[node name="InnerContainerMargin" type="MarginContainer" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="UpgradesSection" type="VBoxContainer" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ProgressBar" type="ProgressBar" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin/UpgradesSection"]
+layout_mode = 2
+max_value = 7.0
+step = 1.0
+rounded = true
+
+[node name="HSeparator" type="HSeparator" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin/UpgradesSection"]
+layout_mode = 2
+theme_override_styles/separator = ExtResource("4_6xqv8")
+
+[node name="UpgradeBanners" type="HBoxContainer" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin/UpgradesSection"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin/UpgradesSection/UpgradeBanners"]
+custom_minimum_size = Vector2(90, 100)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin/UpgradesSection/UpgradeBanners"]
+custom_minimum_size = Vector2(90, 100)
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin/UpgradesSection/UpgradeBanners"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="StatsSection" type="VBoxContainer" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin/StatsSection"]
+layout_mode = 2
+text = "stats"
+
+[node name="SellbackSection" type="MarginContainer" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems"]
+layout_mode = 2
+
+[node name="SellbackLabel" type="Label" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/SellbackSection"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "1337"
+
+[node name="SellBtn" type="Button" parent="UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/SellbackSection"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Sell"
+
+[connection signal="pressed" from="UpgradeMenuItems/TabButtonsWrapper/Buttons/UpgradesTabBtn" to="UpgradeMenuItems" method="_on_upgrades_tab_btn_pressed"]
+[connection signal="pressed" from="UpgradeMenuItems/TabButtonsWrapper/Buttons/StatsTabBtn" to="UpgradeMenuItems" method="_on_stats_tab_btn_pressed"]
