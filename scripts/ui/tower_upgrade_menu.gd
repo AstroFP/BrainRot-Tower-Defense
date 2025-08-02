@@ -1,4 +1,4 @@
-class_name TowerUpgradeMenu
+class_name TowerUpgradeMenuDEP
 extends MarginContainer
 
 @onready var upgrade_banner_path_1 = $TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1

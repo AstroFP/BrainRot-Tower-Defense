@@ -17,8 +17,8 @@ signal unpause_game
 @onready var popup_menu = $UIContainer/UI/PopupMenu
 @onready var popup_menu_background_overlay = $PopupMenuBackgroundOverlay
 @onready var game_over_panel: GameOverPanel = $UIContainer/UI/GameOverPanelWrapper
-@onready var tower_upgrade_menu_wrapper = $UIContainer/UI/TowerUpgradeMenuWrapper
-@onready var tower_upgrade_menu = $UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu
+@onready var tower_upgrade_menu = $UIContainer/UI/UpgradeMenu
+
 
 
 
@@ -123,8 +123,8 @@ func _on_popup_menu_popup_closed():
 
 
 func enable_upgrade_menu(path_data:Dictionary,upgrades_data:Resource) -> void:
-	tower_upgrade_menu_wrapper.open_menu(path_data, upgrades_data)
+	tower_upgrade_menu.open_menu(path_data, upgrades_data)
 	
 
 func disable_upgrade_menu() -> void:
-	tower_upgrade_menu_wrapper.close_menu()
+	tower_upgrade_menu.close_menu()

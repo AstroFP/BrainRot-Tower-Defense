@@ -3,6 +3,6 @@
 [resource]
 resource_local_to_scene = true
 color = Color(0.301961, 0.301961, 0.301961, 1)
-grow_begin = 10.0
-grow_end = 10.0
+grow_begin = 0.0
+grow_end = 0.0
 thickness = 2

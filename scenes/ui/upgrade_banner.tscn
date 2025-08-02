@@ -1,0 +1,221 @@
+[gd_scene load_steps=19 format=3 uid="uid://htmvjji7o8pt"]
+
+[ext_resource type="Shader" uid="uid://c8umrt1yjrv4b" path="res://assets/shaders/play_button_gradient_shader.gdshader" id="1_5336a"]
+[ext_resource type="Script" uid="uid://q0sk0ooqp34e" path="res://scripts/ui/upgrade_banner.gd" id="1_hpelj"]
+[ext_resource type="Texture2D" uid="uid://oak6prvucehq" path="res://assets/sprites/nig.PNG" id="2_hpelj"]
+[ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="3_4raqo"]
+[ext_resource type="Script" uid="uid://d2fh14nybwf63" path="res://scripts/ui/details_btn.gd" id="5_4raqo"]
+[ext_resource type="Resource" uid="uid://8bem8uqo5jwr" path="res://resources/ui/ui_button_blue.tres" id="6_4raqo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8rhu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbmlj"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7h2q2"]
+resource_local_to_scene = true
+shader = ExtResource("1_5336a")
+shader_parameter/color_top = Color(0.458824, 0.843137, 0.584314, 1)
+shader_parameter/color_bottom = Color(0.156863, 0.541176, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpa1j"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2sfg"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yy7ol"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydrdt"]
+border_width_bottom = 25
+border_color = Color(0.298039, 0.298039, 0.298039, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_0i47d"]
+Button/styles/disabled = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/focus = SubResource("StyleBoxFlat_yy7ol")
+Button/styles/hover = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/normal = SubResource("StyleBoxFlat_o2sfg")
+Button/styles/pressed = SubResource("StyleBoxFlat_o2sfg")
+Label/colors/font_color = Color(1, 0.988235, 0.960784, 1)
+Label/font_sizes/font_size = 28
+MarginContainer/constants/margin_bottom = 1
+MarginContainer/constants/margin_left = 1
+MarginContainer/constants/margin_right = 1
+MarginContainer/constants/margin_top = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4raqo"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3mvud"]
+resource_local_to_scene = true
+shader = ExtResource("1_5336a")
+shader_parameter/color_top = Color(0, 0, 0, 1)
+shader_parameter/color_bottom = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h2q2"]
+resource_local_to_scene = true
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ah26n"]
+resource_local_to_scene = true
+bg_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[node name="UpgradeBanner" type="PanelContainer"]
+offset_right = 174.0
+offset_bottom = 192.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b8rhu")
+script = ExtResource("1_hpelj")
+
+[node name="UpgradeBannerMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="UpgradeBannerBorder" type="PanelContainer" parent="UpgradeBannerMargin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbmlj")
+
+[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="UpgradeBannerInner" type="PanelContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper"]
+material = SubResource("ShaderMaterial_7h2q2")
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpa1j")
+
+[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="UpgradeBannerItems" type="VBoxContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UpgradeName" type="Label" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Upgrade name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="UpgradeIcon" type="TextureRect" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("2_hpelj")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PriceTag" type="HBoxContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+layout_mode = 2
+
+[node name="CoinIcon" type="TextureRect" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+layout_mode = 2
+texture = ExtResource("3_4raqo")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Price" type="Label" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+layout_mode = 2
+text = "420"
+
+[node name="DetailsBtn" type="Button" parent="."]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = SubResource("Theme_0i47d")
+theme_override_styles/focus = SubResource("StyleBoxFlat_4raqo")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4raqo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4raqo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4raqo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4raqo")
+script = ExtResource("5_4raqo")
+btn_text = "i"
+font_size = 14
+btn_style = ExtResource("6_4raqo")
+
+[node name="GradientWrapper" type="MarginContainer" parent="DetailsBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="GradientBorder" type="PanelContainer" parent="DetailsBtn/GradientWrapper"]
+material = SubResource("ShaderMaterial_3mvud")
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7h2q2")
+
+[node name="InnerWrapper" type="MarginContainer" parent="DetailsBtn/GradientWrapper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="InnerColor" type="PanelContainer" parent="DetailsBtn/GradientWrapper/InnerWrapper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ah26n")
+
+[node name="Label" type="Label" parent="DetailsBtn/GradientWrapper/InnerWrapper/InnerColor"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1

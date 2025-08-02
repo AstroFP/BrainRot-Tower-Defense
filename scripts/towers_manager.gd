@@ -18,7 +18,7 @@ func _process(delta):
 func _on_child_entered_tree(node):
 	node.connect("tower_menu_opened",_on_tower_menu_opened)
 	node.connect("tower_menu_closed",_on_tower_menu_closed)
-	node.tower_upgrade_menu = game_manager.ui.tower_upgrade_menu_wrapper
+	node.tower_upgrade_menu = game_manager.ui.tower_upgrade_menu
 
 
 func _on_tower_menu_opened(path_data:Dictionary, upgrades_data:Resource):
