@@ -16,16 +16,14 @@ var upgrades_amount_per_path : Dictionary[String,int] = {
 	"path_2":0,
 	"path_3":0
 }
+var upgrades_count: int = 0
 
 
 func _ready() -> void:
 	tower = get_parent()
 	tower_combat_manager = tower.combat_manager
 
-	# debug
-	aplly_upgrade(tower.tower_stats.tower_upgrades.upgrades["path_3"]["upgrades"][0])
-
-	aplly_upgrade(tower.tower_stats.tower_upgrades.upgrades["path_2"]["upgrades"][0])
+	
 
 
 func _process(_delta: float) -> void:
@@ -196,3 +194,12 @@ func resolve_dependencies(dependancies: Array[Dependancy]) -> bool:
 			_:
 				return false
 	return true
+
+
+func increment_path_upgrade_count(path:String) -> void:
+	if upgrades_amount_per_path.has(path):
+		upgrades_count += 1
+		upgrades_amount_per_path[path] += 1
+		upgrades_amount_per_path[path] = clamp(upgrades_amount_per_path[path],0,5)
+	else:
+		printerr("Unknown path name in tower upgrades: ",path)

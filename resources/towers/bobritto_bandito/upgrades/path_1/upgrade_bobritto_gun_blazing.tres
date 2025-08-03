@@ -7,13 +7,7 @@
 [ext_resource type="Script" uid="uid://p62d7r13t78v" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_effect.gd" id="3_k8y4w"]
 [ext_resource type="Script" uid="uid://dlt2n8jy1jy2q" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_replacer.gd" id="4_thvt0"]
 [ext_resource type="Script" uid="uid://dluuljm5nwsdy" path="res://scripts/resources/upgrades_data/basic_upgrades/basic_upgrade.gd" id="5_t01em"]
-
-[sub_resource type="Resource" id="Resource_d518u"]
-script = ExtResource("1_nv0gs")
-execution_type = 0
-dependencies = Array[ExtResource("2_1mf2o")]([])
-mode = 0
-metadata/_custom_type_script = "uid://cuuennik1m4eq"
+[ext_resource type="Texture2D" uid="uid://oak6prvucehq" path="res://assets/sprites/nig.PNG" id="6_d518u"]
 
 [sub_resource type="Resource" id="Resource_1mf2o"]
 script = ExtResource("3_k8y4w")
@@ -27,11 +21,12 @@ metadata/_custom_type_script = "uid://p62d7r13t78v"
 [resource]
 script = ExtResource("5_t01em")
 name = "Gun blazing"
+icon = ExtResource("6_d518u")
 description = "Makes you shoot faster!"
 details = "Increase attack speed by 15%"
 cost = 420
 effects = Array[ExtResource("3_k8y4w")]([SubResource("Resource_1mf2o")])
-actions = Array[ExtResource("1_nv0gs")]([SubResource("Resource_d518u")])
+actions = Array[ExtResource("1_nv0gs")]([])
 attacks = Array[ExtResource("2_k8y4w")]([])
 replacers = Array[ExtResource("4_thvt0")]([])
 enhancements = Array[ExtResource("3_8fogm")]([])

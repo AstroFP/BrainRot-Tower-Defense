@@ -2,7 +2,7 @@ class_name Tower
 extends Node2D
 
 signal tower_placed(tower:TowerStats)
-signal tower_menu_opened(path_data:Dictionary, upgrades_data:Resource)
+signal tower_menu_opened(path_data:Dictionary, upgrades_data:Resource, caller: Tower)
 signal tower_menu_closed
 
 const UPGRADES_MANAGER = preload("res://scenes/upgrades_manager.tscn")
@@ -118,6 +118,8 @@ func _physics_process(_delta) -> void:
 func _input(event):
 	if event is InputEventScreenTouch and event.pressed:
 		toggle_upgrade_menu(event)
+		toggle_tower_radius_display(event)
+
 
 func place_tower() -> void:
 	is_placed = true
@@ -181,26 +183,43 @@ func get_total_attack_radius() -> float:
 
 
 func toggle_upgrade_menu(event):
-	if upgrade_menu_opened:
+	if get_parent().tower_menu_opened:
 		if tower_upgrade_menu.get_global_rect().has_point(event.position):
 			return
 	
 	if tower_sprite.get_rect().has_point(to_local(event.position * get_canvas_transform())):
 		if !is_placed:
 			return
-		if !upgrade_menu_opened:
+		
+		if !get_parent().tower_menu_opened:
+			emit_signal("tower_menu_opened",upgrades_manager.upgrades_amount_per_path,tower_stats.tower_upgrades,self)
+		else:
+			if get_parent().last_tower_pressed_id != get_instance_id():
+				emit_signal("tower_menu_opened",upgrades_manager.upgrades_amount_per_path,tower_stats.tower_upgrades,self)
+			else:
+				emit_signal("tower_menu_closed")
+	else:
+		if get_parent().tower_menu_opened:
+			if get_parent().last_tower_pressed_id != get_instance_id():
+				return
+			emit_signal("tower_menu_closed")
+
+
+func toggle_tower_radius_display(event):
+	if get_parent().tower_menu_opened:
+		if tower_upgrade_menu.get_global_rect().has_point(event.position):
+			return
+	
+	if tower_sprite.get_rect().has_point(to_local(event.position * get_canvas_transform())):
+		if !is_placed:
+			return
+		if !attack_range_display.visible:
 			enable_attack_range_display()
-			upgrade_menu_opened = true
-			emit_signal("tower_menu_opened",upgrades_manager.upgrades_amount_per_path,tower_stats.tower_upgrades)
 		else:
 			disable_attack_range_display()
-			upgrade_menu_opened = false
-			emit_signal("tower_menu_closed")
 	else:
-		if upgrade_menu_opened:
+		if attack_range_display.visible:
 			disable_attack_range_display()
-			upgrade_menu_opened = false
-			emit_signal("tower_menu_closed")
 
 
 func update_tower_stat_by_string_name(stat_name:String, value:float) -> void:

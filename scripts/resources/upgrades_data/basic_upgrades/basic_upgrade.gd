@@ -4,6 +4,9 @@ extends Resource
 ## Name of an upgrade
 @export var name : String = ""
 
+## Icon of an upgrade
+@export var icon : Texture2D
+
 ## Short description of an upgrade
 @export_multiline var description : String = ""
 

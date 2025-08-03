@@ -122,9 +122,9 @@ func _on_popup_menu_popup_closed():
 	disable_popup_background_overlay()
 
 
-func enable_upgrade_menu(path_data:Dictionary,upgrades_data:Resource) -> void:
-	tower_upgrade_menu.open_menu(path_data, upgrades_data)
-	
+func enable_upgrade_menu(path_data:Dictionary, upgrades_data:Resource, caller: Tower) -> void:
+	tower_upgrade_menu.open_menu(path_data, upgrades_data, caller)
+
 
 func disable_upgrade_menu() -> void:
 	tower_upgrade_menu.close_menu()

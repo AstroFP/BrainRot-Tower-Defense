@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=26 format=3 uid="uid://dnb1xsusy8o2w"]
+[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=27 format=3 uid="uid://dnb1xsusy8o2w"]
 
 [ext_resource type="Script" uid="uid://cuuennik1m4eq" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_action.gd" id="1_v73hh"]
 [ext_resource type="Resource" uid="uid://v3wenps1aibw" path="res://resources/towers/bobritto_bandito/attack_extensions/double_tap.tres" id="2_gicm1"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dluuljm5nwsdy" path="res://scripts/resources/upgrades_data/basic_upgrades/basic_upgrade.gd" id="7_8wroo"]
 [ext_resource type="Script" uid="uid://bv34q6xdr2k4b" path="res://scripts/attack_extensions_scripts/basic/basic_attack_enhancement.gd" id="7_gicm1"]
 [ext_resource type="Script" uid="uid://cxr5kcf4ygnf4" path="res://scripts/attack_extensions_scripts/basic/basic_attack_replacer.gd" id="11_46j6t"]
+[ext_resource type="Texture2D" uid="uid://oak6prvucehq" path="res://assets/sprites/nig.PNG" id="11_v6sqg"]
 
 [sub_resource type="Resource" id="Resource_fhiok"]
 script = ExtResource("1_v73hh")
@@ -108,6 +109,7 @@ metadata/_custom_type_script = "uid://dlt2n8jy1jy2q"
 [resource]
 script = ExtResource("7_8wroo")
 name = "Military-grade bullets"
+icon = ExtResource("11_v6sqg")
 description = "Better bullets that pack more punch!"
 details = "Increase attack damge by 5."
 cost = 690

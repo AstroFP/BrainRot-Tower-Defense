@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://htmvjji7o8pt"]
+[gd_scene load_steps=21 format=3 uid="uid://htmvjji7o8pt"]
 
 [ext_resource type="Shader" uid="uid://c8umrt1yjrv4b" path="res://assets/shaders/play_button_gradient_shader.gdshader" id="1_5336a"]
 [ext_resource type="Script" uid="uid://q0sk0ooqp34e" path="res://scripts/ui/upgrade_banner.gd" id="1_hpelj"]
@@ -28,6 +28,9 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mvud"]
+bg_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2sfg"]
 bg_color = Color(0, 0, 0, 1)
@@ -71,6 +74,13 @@ MarginContainer/constants/margin_top = 1
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_ydrdt")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4raqo"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wmp1f"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 100
 corner_radius_top_right = 100
@@ -122,7 +132,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="UpgradeBannerInner" type="PanelContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper"]
 material = SubResource("ShaderMaterial_7h2q2")
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(0, 178)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bpa1j")
@@ -167,8 +177,16 @@ stretch_mode = 5
 layout_mode = 2
 text = "420"
 
+[node name="BuyBtn" type="Button" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_3mvud")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3mvud")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3mvud")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3mvud")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3mvud")
+
 [node name="DetailsBtn" type="Button" parent="."]
-custom_minimum_size = Vector2(35, 35)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -180,16 +198,30 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_4raqo")
 theme_override_styles/normal = SubResource("StyleBoxFlat_4raqo")
 script = ExtResource("5_4raqo")
 btn_text = "i"
-font_size = 14
+font_size = 16
 btn_style = ExtResource("6_4raqo")
 
-[node name="GradientWrapper" type="MarginContainer" parent="DetailsBtn"]
+[node name="Border" type="PanelContainer" parent="DetailsBtn"]
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -35.0
+offset_bottom = 35.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wmp1f")
+
+[node name="GradientWrapper" type="MarginContainer" parent="DetailsBtn"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -35.0
+offset_bottom = 35.0
+grow_horizontal = 0
 mouse_filter = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
@@ -217,5 +249,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ah26n")
 
 [node name="Label" type="Label" parent="DetailsBtn/GradientWrapper/InnerWrapper/InnerColor"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "i"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/BuyBtn" to="." method="_on_buy_btn_pressed"]
+[connection signal="pressed" from="DetailsBtn" to="DetailsBtn" method="_on_pressed"]
