@@ -12,7 +12,7 @@ func _ready():
 	stats_section.visible = false
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 

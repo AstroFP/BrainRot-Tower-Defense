@@ -2551,3 +2551,4 @@ offset_bottom = 300.0
 [connection signal="popup_opened" from="UIContainer/UI/PopupMenu" to="." method="_on_popup_menu_popup_opened"]
 [connection signal="pressed" from="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons/CancelBtn" to="UIContainer/UI/PopupMenu" method="_on_cancel_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons/OKBtn" to="UIContainer/UI/PopupMenu" method="_on_ok_btn_pressed"]
+[connection signal="upgrade_purchased" from="UIContainer/UI/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_purchased"]

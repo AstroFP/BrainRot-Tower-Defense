@@ -1,6 +1,8 @@
 class_name TowerUpgradeMenu
 extends MarginContainer
 
+signal upgrade_purchased(upgrade_cost:int)
+
 @onready var upgrade_banners = $UpgradeMenuItems/OuterContainer/OuterMargin/MenuItems/InnerContainer/InnerContainerMargin/UpgradesSection/UpgradeBannersMargin/UpgradeBanners
 
 @onready var resources_panel = $"../ResourcesPanel"
@@ -17,26 +19,21 @@ func _ready():
 		banner.connect("upgrade_purchased", _on_upgrade_purchased)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
-func open_menu(path_data:Dictionary, upgrades_data:Resource, caller: Tower) -> void:
-	setup_upgrade_banners(path_data, upgrades_data, caller)
+func open_menu(upgrades_data:Resource, caller: Tower) -> void:
+	setup_upgrade_banners(upgrades_data, caller)
 	visible = true
 
 
 func close_menu() -> void:
 	visible = false
 
-# refactor the code cuz its disgusting
-# add max upgrades icon and max level (7 upgrades overall) and handling
-# check if colors are the same as design in figma
-# add some testing upgrades
-# implement affordable and not affordable functionality
-# implement payment for upgrades
+#TBD overhaul buy menu design and add tower power display (0 - 7 graphical representation of total upgrades acquired)
 
-func setup_upgrade_banners(paths_data: Dictionary, upgrade_data:Resource, caller: Tower) -> void:
+func setup_upgrade_banners(upgrade_data:Resource, caller: Tower) -> void:
 	var idx = 1
 	for banner: UpgradeBanner in banners:
 		var path_name = "path_"+str(idx)
@@ -51,10 +48,15 @@ func _on_available_money_changed(available_money: int) -> void:
 			banner.update_upgrade_banner_display(available_money)
 
 
-func _on_upgrade_purchased(caller:Tower):
+func _on_upgrade_purchased(caller:Tower, upgrade_cost: int):
 	if caller.upgrades_manager.upgrades_count >= 7:
 		for banner:UpgradeBanner in banners:
 			if !caller.upgrades_manager.upgrades_amount_per_path[banner.current_path_name] == 5:
 				banner.set_blocked_icon()
 				banner.disable_price_tag()
+				
+			# enable the banner for it to have its bg color and font color
+			banner.enable_tower_panel()
+			# disable it manually to prevent palyer for buying more upgrades
 			banner.is_disabled = true
+	emit_signal("upgrade_purchased",upgrade_cost)

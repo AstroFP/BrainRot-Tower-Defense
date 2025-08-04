@@ -5,6 +5,7 @@ extends CanvasLayer
 signal play_btn_pressed
 signal pause_game
 signal unpause_game
+signal upgrade_purchased(upgrade_cost:int)
 
 @onready var tower_buy_menu_wrapper = $UIContainer/UI/TowerBuyMenuWrapper
 @onready var resources_panel = $UIContainer/UI/ResourcesPanel
@@ -122,9 +123,13 @@ func _on_popup_menu_popup_closed():
 	disable_popup_background_overlay()
 
 
-func enable_upgrade_menu(path_data:Dictionary, upgrades_data:Resource, caller: Tower) -> void:
-	tower_upgrade_menu.open_menu(path_data, upgrades_data, caller)
+func enable_upgrade_menu(upgrades_data:Resource, caller: Tower) -> void:
+	tower_upgrade_menu.open_menu(upgrades_data, caller)
 
 
 func disable_upgrade_menu() -> void:
 	tower_upgrade_menu.close_menu()
+
+
+func _on_upgrade_menu_upgrade_purchased(upgrade_cost:int):
+	emit_signal("upgrade_purchased",upgrade_cost)

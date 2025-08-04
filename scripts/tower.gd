@@ -2,7 +2,7 @@ class_name Tower
 extends Node2D
 
 signal tower_placed(tower:TowerStats)
-signal tower_menu_opened(path_data:Dictionary, upgrades_data:Resource, caller: Tower)
+signal tower_menu_opened(upgrades_data:Resource, caller: Tower)
 signal tower_menu_closed
 
 const UPGRADES_MANAGER = preload("res://scenes/upgrades_manager.tscn")
@@ -192,10 +192,10 @@ func toggle_upgrade_menu(event):
 			return
 		
 		if !get_parent().tower_menu_opened:
-			emit_signal("tower_menu_opened",upgrades_manager.upgrades_amount_per_path,tower_stats.tower_upgrades,self)
+			emit_signal("tower_menu_opened",tower_stats.tower_upgrades,self)
 		else:
 			if get_parent().last_tower_pressed_id != get_instance_id():
-				emit_signal("tower_menu_opened",upgrades_manager.upgrades_amount_per_path,tower_stats.tower_upgrades,self)
+				emit_signal("tower_menu_opened",tower_stats.tower_upgrades,self)
 			else:
 				emit_signal("tower_menu_closed")
 	else:

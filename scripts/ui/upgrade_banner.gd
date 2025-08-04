@@ -1,7 +1,7 @@
 class_name  UpgradeBanner
 extends PanelContainer
 
-signal upgrade_purchased(caller:Tower)
+signal upgrade_purchased(caller:Tower,upgrade_price:int)
 
 const PATH_MAXED_ICON = preload("res://assets/sprites/ui/upgrade_menu/path_maxed_icon.png")
 const PATH_BLOCKED_ICON = preload("res://assets/sprites/ui/upgrade_menu/path_blocked_icon.png")
@@ -31,19 +31,21 @@ var banner_stats = UpgradeBannerStats.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	current_tier_color = banner_stats.green_colors
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 func update_upgrade_banner_display(available_money: int):
 	if current_caller.upgrades_manager.upgrades_amount_per_path[current_path_name] == 5:
 		return
+		
+	if current_caller.upgrades_manager.upgrades_count == 7:
+		return
+		
 	if is_disabled:
 		if available_money >= int(price.text):
 			enable_tower_panel()
@@ -110,6 +112,7 @@ func setup_banner(upgrades:Array, caller:Tower, path_name: String) -> void:
 	current_upgrade_index = current_caller.upgrades_manager.upgrades_amount_per_path[current_path_name]
 	current_upgrade_index = clamp(current_upgrade_index,0,4)
 	var current_upgrade = current_upgrades[current_upgrade_index]
+	
 	# setup banner data
 	change_inner_bg_color(current_upgrade_index)
 	set_price(current_upgrade.cost)
@@ -123,7 +126,9 @@ func setup_banner(upgrades:Array, caller:Tower, path_name: String) -> void:
 		set_upgrade_icon(current_upgrade.icon)
 		set_upgrade_name(current_upgrade.name)
 	
+	enable_tower_panel()
 	update_upgrade_banner_display(int(upgrade_menu.resources_panel.money_count.text))
+
 
 func load_next_upgrade() -> void:
 	if current_upgrade_index == 5:
@@ -159,7 +164,7 @@ func set_blocked_icon() -> void:
 func _on_buy_btn_pressed():
 	if is_disabled:
 		return
-		
+	
 	# apply upgrade to the caller tower
 	current_caller.upgrades_manager.aplly_upgrade(current_upgrades[current_upgrade_index])
 	
@@ -169,4 +174,5 @@ func _on_buy_btn_pressed():
 	# load next upgrade from the upgrades list
 	load_next_upgrade()
 	
-	emit_signal("upgrade_purchased",current_caller)
+	# send purchased signal (index - 1, because we incremented it earlier)
+	emit_signal("upgrade_purchased",current_caller, current_upgrades[current_upgrade_index - 1].cost)

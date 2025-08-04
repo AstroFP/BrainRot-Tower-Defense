@@ -130,6 +130,7 @@ func setup_ui():
 	ui.connect("play_btn_pressed",_on_play_btn_pressed)
 	ui.connect("pause_game",_on_game_pause)
 	ui.connect("unpause_game",_on_game_unpause)
+	ui.connect("upgrade_purchased",_on_upgrade_purchased)
 	add_child(ui)
 	
 	ui.update_wave_display(game_rules.start_wave)	
@@ -184,6 +185,7 @@ func _on_game_over():
 	pause_game()
 
 
+
 func _on_play_btn_pressed():
 	if current_wave < max_waves:
 			if !wave_in_progress:
@@ -200,3 +202,7 @@ func _on_game_pause():
 func _on_game_unpause():
 	await get_tree().create_timer(0.5).timeout
 	unpause_game()
+
+func _on_upgrade_purchased(upgrade_cost: int) -> void:
+	level_resources.update_current_cash(-upgrade_cost)
+	ui.update_money_count(level_resources.current_cash)

@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -24,10 +24,10 @@ func _on_child_entered_tree(node):
 	node.tower_upgrade_menu = game_manager.ui.tower_upgrade_menu
 
 
-func _on_tower_menu_opened(path_data:Dictionary, upgrades_data:Resource, caller:Tower):
+func _on_tower_menu_opened(upgrades_data:Resource, caller:Tower):
 	last_tower_pressed_id = caller.get_instance_id()
 	tower_menu_opened = true
-	game_manager.ui.enable_upgrade_menu(path_data,upgrades_data, caller)
+	game_manager.ui.enable_upgrade_menu(upgrades_data, caller)
 
 
 func _on_tower_menu_closed():
