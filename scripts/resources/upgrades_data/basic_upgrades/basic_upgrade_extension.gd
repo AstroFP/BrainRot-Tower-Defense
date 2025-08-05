@@ -13,7 +13,7 @@ enum mode_type {
 ### Name of attack extension class to perform upgrade on (invoke, update, delete)
 #@export var name : String
 ## Array of dependencies ensuring given attack extension is applied only when the criteria are met
-@export var dependencies : Array[Dependancy]
+@export var dependencies : Array[Dependency]
 
 ## Mode of attack extension in which it should be applied
 @export var mode: mode_type = mode_type.invoke:

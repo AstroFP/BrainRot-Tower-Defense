@@ -1,4 +1,4 @@
-class_name Dependancy
+class_name Dependency
 extends Resource
 
 enum types{
@@ -6,7 +6,7 @@ enum types{
 	is_not_cross_path_upgrade
 }
 
-## Type of the dependancy
+## Type of the dependency
 @export var type : types = types.is_cross_path_upgrade
-## Name of the dependancy
+## Name of the dependency
 @export var name: String
