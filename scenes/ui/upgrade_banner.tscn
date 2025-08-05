@@ -1,0 +1,159 @@
+[gd_scene load_steps=11 format=3 uid="uid://htmvjji7o8pt"]
+
+[ext_resource type="Shader" uid="uid://c8umrt1yjrv4b" path="res://assets/shaders/play_button_gradient_shader.gdshader" id="1_5336a"]
+[ext_resource type="Script" uid="uid://q0sk0ooqp34e" path="res://scripts/ui/upgrade_banner.gd" id="1_hpelj"]
+[ext_resource type="Texture2D" uid="uid://oak6prvucehq" path="res://assets/sprites/nig.PNG" id="2_hpelj"]
+[ext_resource type="Texture2D" uid="uid://bs6obqfnecq1v" path="res://assets/sprites/ui/rotcoin.png" id="3_4raqo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8rhu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbmlj"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7h2q2"]
+resource_local_to_scene = true
+shader = ExtResource("1_5336a")
+shader_parameter/color_top = Color(0.458824, 0.843137, 0.584314, 1)
+shader_parameter/color_bottom = Color(0.156863, 0.541176, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpa1j"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5336a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mvud"]
+bg_color = Color(1, 1, 1, 0)
+
+[node name="UpgradeBanner" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 140)
+offset_right = 300.0
+offset_bottom = 140.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b8rhu")
+script = ExtResource("1_hpelj")
+
+[node name="UpgradeBannerMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="UpgradeBannerBorder" type="PanelContainer" parent="UpgradeBannerMargin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbmlj")
+
+[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="UpgradeBannerInner" type="PanelContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper"]
+material = SubResource("ShaderMaterial_7h2q2")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpa1j")
+
+[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="UpgradeBannerItems" type="HBoxContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BannerLabels" type="MarginContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="UpgradeName" type="Label" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerLabels"]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Upgrade name"
+horizontal_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="PriceTag" type="HBoxContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerLabels"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="CoinIcon" type="TextureRect" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerLabels/PriceTag"]
+layout_mode = 2
+texture = ExtResource("3_4raqo")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Price" type="Label" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerLabels/PriceTag"]
+layout_mode = 2
+text = "420"
+
+[node name="UpgradeIcon" type="TextureRect" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_hpelj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BannerTierContainer" type="VBoxContainer" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TierIcon" type="TextureRect" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerTierContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("PlaceholderTexture2D_5336a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TierIcon2" type="TextureRect" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerTierContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("PlaceholderTexture2D_5336a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TierIcon3" type="TextureRect" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerTierContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("PlaceholderTexture2D_5336a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TierIcon4" type="TextureRect" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerTierContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("PlaceholderTexture2D_5336a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TierIcon5" type="TextureRect" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerTierContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("PlaceholderTexture2D_5336a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BuyBtn" type="Button" parent="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_3mvud")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3mvud")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3mvud")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3mvud")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3mvud")
+
+[connection signal="pressed" from="UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/BuyBtn" to="." method="_on_buy_btn_pressed"]

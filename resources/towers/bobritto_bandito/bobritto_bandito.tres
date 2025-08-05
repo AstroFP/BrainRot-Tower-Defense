@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="TowerStats" load_steps=3 format=3 uid="uid://b66hya4spt8sj"]
+[gd_resource type="Resource" script_class="TowerStats" load_steps=4 format=3 uid="uid://b66hya4spt8sj"]
 
 [ext_resource type="Texture2D" uid="uid://dn5pemf7xudiw" path="res://assets/sprites/ui/right_menu/buy_menu/tower_icons/bobrito_icon.png" id="1_kap5v"]
 [ext_resource type="Script" uid="uid://dvdcvjd7do71g" path="res://scripts/resources/tower_stats.gd" id="2_l35u1"]
+[ext_resource type="Resource" uid="uid://cqg177eodvw15" path="res://resources/towers/bobritto_bandito/upgrades/banditto_bobrito_upgrades.tres" id="3_mquqy"]
 
 [resource]
 script = ExtResource("2_l35u1")
@@ -9,8 +10,15 @@ name = "Bobritto Bandito"
 texture = ExtResource("1_kap5v")
 icon = ExtResource("1_kap5v")
 price = 175
-damage = 1
+attack_damage = 10.0
+attack_speed = 120.0
 pierce = 1
 attack_radius = 350.0
+attack_damage_multiplier = 1.0
+attack_speed_multiplier = 1.0
+attack_radius_multplier = 1.0
+attack_crit_chance = 0.0
+attack_crit_damage_multiplier = 2.0
+tower_upgrades = ExtResource("3_mquqy")
 combat_manager_type = 0
 metadata/_custom_type_script = "uid://dvdcvjd7do71g"

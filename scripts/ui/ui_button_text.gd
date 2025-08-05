@@ -2,6 +2,7 @@ class_name UIButtonText
 extends UIButton
 
 @export var btn_text: String
+@export var font_size: int
 
 @onready var label = $GradientWrapper/InnerWrapper/InnerColor/Label
 
@@ -9,6 +10,8 @@ extends UIButton
 func _ready():
 	super()
 	label.text = btn_text
+	if font_size:
+		label.add_theme_font_size_override("font_size",font_size)
 
 
 func _process(_delta):

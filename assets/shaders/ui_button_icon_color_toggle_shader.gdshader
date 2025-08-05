@@ -7,4 +7,3 @@ void fragment() {
     vec4 tex_color = texture(TEXTURE, UV);
 	COLOR = vec4(color, tex_color.a) * vec4(1.0, 1.0, 1.0, COLOR.a);
 }
-

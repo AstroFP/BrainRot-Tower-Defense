@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BasicUpgrade" load_steps=10 format=3 uid="uid://ca0dxp3aq4l06"]
+
+[ext_resource type="Script" uid="uid://cuuennik1m4eq" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_action.gd" id="1_csw0k"]
+[ext_resource type="Script" uid="uid://duxlumdieloys" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_extra_attack.gd" id="2_45mwp"]
+[ext_resource type="Script" uid="uid://p62d7r13t78v" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_effect.gd" id="3_j3wj5"]
+[ext_resource type="Script" uid="uid://bwafaoaoehe7s" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_dependency.gd" id="4_45mwp"]
+[ext_resource type="Script" uid="uid://dmm2tvjnomxcu" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_enhancment.gd" id="4_mps7h"]
+[ext_resource type="Script" uid="uid://dlt2n8jy1jy2q" path="res://scripts/resources/upgrades_data/basic_upgrades/upgrade_attack_replacer.gd" id="5_ffa8o"]
+[ext_resource type="Script" uid="uid://dluuljm5nwsdy" path="res://scripts/resources/upgrades_data/basic_upgrades/basic_upgrade.gd" id="6_35g6p"]
+[ext_resource type="Texture2D" uid="uid://oak6prvucehq" path="res://assets/sprites/nig.PNG" id="6_j3wj5"]
+
+[sub_resource type="Resource" id="Resource_j3wj5"]
+script = ExtResource("3_j3wj5")
+effects = Dictionary[int, float]({
+0: 10.0
+})
+dependencies = Array[ExtResource("4_45mwp")]([])
+mode = 0
+metadata/_custom_type_script = "uid://p62d7r13t78v"
+
+[resource]
+script = ExtResource("6_35g6p")
+name = "Test upgrade"
+icon = ExtResource("6_j3wj5")
+description = "Test upgrade"
+details = "Increase attack damage by 10"
+cost = 500
+effects = Array[ExtResource("3_j3wj5")]([SubResource("Resource_j3wj5")])
+actions = Array[ExtResource("1_csw0k")]([])
+attacks = Array[ExtResource("2_45mwp")]([])
+replacers = Array[ExtResource("5_ffa8o")]([])
+enhancements = Array[ExtResource("4_mps7h")]([])
+metadata/_custom_type_script = "uid://dluuljm5nwsdy"
