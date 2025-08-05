@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends HBoxContainer
 
 @onready var upgrades_tab_btn = $TabButtonsWrapper/Buttons/UpgradesTabBtn
 @onready var stats_tab_btn = $TabButtonsWrapper/Buttons/StatsTabBtn

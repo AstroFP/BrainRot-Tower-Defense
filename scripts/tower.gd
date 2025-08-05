@@ -2,8 +2,8 @@ class_name Tower
 extends Node2D
 
 signal tower_placed(tower:TowerStats)
-signal tower_menu_opened(upgrades_data:Resource, caller: Tower)
-signal tower_menu_closed
+#signal tower_menu_opened(upgrades_data:Resource, caller: Tower)
+#signal tower_menu_closed(keep_alive: bool)
 
 const UPGRADES_MANAGER = preload("res://scenes/upgrades_manager.tscn")
 
@@ -117,8 +117,12 @@ func _physics_process(_delta) -> void:
 
 func _input(event):
 	if event is InputEventScreenTouch and event.pressed:
-		toggle_upgrade_menu(event)
+		#toggle_upgrade_menu(event)
 		toggle_tower_radius_display(event)
+
+
+func is_sprite_pressed(cursor_position) -> bool:
+	return tower_sprite.get_rect().has_point(to_local(cursor_position * get_canvas_transform()))
 
 
 func place_tower() -> void:
@@ -182,27 +186,27 @@ func get_total_attack_radius() -> float:
 	return attack_radius * attack_radius_multiplier
 
 
-func toggle_upgrade_menu(event):
-	if get_parent().tower_menu_opened:
-		if tower_upgrade_menu.get_global_rect().has_point(event.position):
-			return
-	
-	if tower_sprite.get_rect().has_point(to_local(event.position * get_canvas_transform())):
-		if !is_placed:
-			return
-		
-		if !get_parent().tower_menu_opened:
-			emit_signal("tower_menu_opened",tower_stats.tower_upgrades,self)
-		else:
-			if get_parent().last_tower_pressed_id != get_instance_id():
-				emit_signal("tower_menu_opened",tower_stats.tower_upgrades,self)
-			else:
-				emit_signal("tower_menu_closed")
-	else:
-		if get_parent().tower_menu_opened:
-			if get_parent().last_tower_pressed_id != get_instance_id():
-				return
-			emit_signal("tower_menu_closed")
+#func toggle_upgrade_menu(event):
+	#if get_parent().tower_menu_opened:
+		#if tower_upgrade_menu.get_global_rect().has_point(event.position):
+			#return
+	#
+	#if tower_sprite.get_rect().has_point(to_local(event.position * get_canvas_transform())):
+		#if !is_placed:
+			#return
+		#
+		#if !get_parent().tower_menu_opened:
+			#emit_signal("tower_menu_opened",tower_stats.tower_upgrades,self)
+		#else:
+			#if get_parent().last_tower_pressed_id != get_instance_id():
+				#emit_signal("tower_menu_opened",tower_stats.tower_upgrades,self)
+			#else:
+				#emit_signal("tower_menu_closed", true)
+	#else:
+		#if get_parent().tower_menu_opened:
+			#if get_parent().last_tower_pressed_id != get_instance_id():
+				#return
+			#emit_signal("tower_menu_closed", false)
 
 
 func toggle_tower_radius_display(event):
@@ -230,6 +234,7 @@ func update_tower_stat_by_string_name(stat_name:String, value:float) -> void:
 	else:
 		printerr("Not a valid tower stat: ", stat_name)
 
+
 func disable_attack_range_display() -> void:
 	attack_range_display.visible = false
 
@@ -247,6 +252,7 @@ func _on_hitbox_area_entered(area) -> void:
 	#TBD gain aura buff on being in range of a tower with aura
 	if area.is_in_group("TowerAttackRadius") && area != attack_range:
 		print_debug("aura buff gained")
+
 
 func _on_hitbox_area_exited(area) -> void:
 	if area.is_in_group("TowerCollidable") && !is_placed:

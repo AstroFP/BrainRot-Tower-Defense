@@ -8,12 +8,14 @@ const PATH_BLOCKED_ICON = preload("res://assets/sprites/ui/upgrade_menu/path_blo
 
 @onready var upgrade_menu = $"../../../../../../../../../.."
 
-@onready var upgrade_name = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/UpgradeName
-@onready var upgrade_icon = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/UpgradeIcon
-@onready var price = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag/Price
+
+@onready var upgrade_name = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerLabels/UpgradeName
+@onready var price = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerLabels/PriceTag/Price
 @onready var upgrade_banner_inner = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner
 @onready var buy_btn = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/BuyBtn
-@onready var price_tag = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag
+@onready var upgrade_icon = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/UpgradeIcon
+@onready var price_tag = $UpgradeBannerMargin/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBannerInner/UpgradeBannerItemsWrapper/UpgradeBannerItems/BannerLabels/PriceTag
+
 
 var tower_upgrade_data: BasicUpgrade
 var upgrade_path_name: String
@@ -25,7 +27,10 @@ var current_tier_color: Dictionary
 var current_caller: Tower
 var current_path_name: String
 var current_upgrades: Array
-var current_upgrade_index: int
+var current_upgrade_index: int:
+	set(value):
+		value = clamp(value,0, 4)
+		current_upgrade_index = value
 
 var banner_stats = UpgradeBannerStats.new()
 
@@ -86,6 +91,9 @@ func disable_price_tag() -> void:
 	price_tag.visible = false
 
 
+func enable_price_tag() -> void:
+	price_tag.visible = true
+
 func set_upgrade_icon(texture: Texture2D) -> void:
 	upgrade_icon.texture = texture
 
@@ -110,8 +118,9 @@ func setup_banner(upgrades:Array, caller:Tower, path_name: String) -> void:
 	current_path_name = path_name
 	
 	current_upgrade_index = current_caller.upgrades_manager.upgrades_amount_per_path[current_path_name]
-	current_upgrade_index = clamp(current_upgrade_index,0,4)
 	var current_upgrade = current_upgrades[current_upgrade_index]
+	
+	enable_tower_panel()
 	
 	# setup banner data
 	change_inner_bg_color(current_upgrade_index)
@@ -119,19 +128,26 @@ func setup_banner(upgrades:Array, caller:Tower, path_name: String) -> void:
 	if current_caller.upgrades_manager.upgrades_amount_per_path[current_path_name] == 5:
 		set_upgrade_name("Max upgrades")
 		set_maxed_icon()
+		disable_price_tag()
+		is_disabled = true
 	elif current_caller.upgrades_manager.upgrades_count == 7:
 		set_upgrade_name("Max upgrades")
 		set_blocked_icon()
+		disable_price_tag()
+		is_disabled = true
 	else:
+		enable_price_tag()
 		set_upgrade_icon(current_upgrade.icon)
 		set_upgrade_name(current_upgrade.name)
 	
-	enable_tower_panel()
+	
 	update_upgrade_banner_display(int(upgrade_menu.resources_panel.money_count.text))
 
 
 func load_next_upgrade() -> void:
-	if current_upgrade_index == 5:
+	var current_upgrade = current_upgrades[current_upgrade_index]
+	change_inner_bg_color(current_upgrade_index)
+	if current_caller.upgrades_manager.upgrades_amount_per_path[current_path_name] == 5:
 		is_disabled = true
 		set_maxed_icon()
 		disable_price_tag()
@@ -142,10 +158,8 @@ func load_next_upgrade() -> void:
 		disable_price_tag()
 		set_upgrade_name("Max upgrades")
 	else:
-		var current_upgrade = current_upgrades[current_upgrade_index]
-		
 		# setup banner data
-		change_inner_bg_color(current_upgrade_index)
+		enable_price_tag()
 		set_price(current_upgrade.cost)
 		set_upgrade_name(current_upgrade.name)
 		set_upgrade_icon(current_upgrade.icon)

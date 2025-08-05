@@ -1770,7 +1770,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "debug"
 
-[node name="TowerUpgradeMenuWrapper" type="MarginContainer" parent="UIContainer/UI"]
+[node name="TowerUpgradeMenuWrapperDEPRECATED" type="MarginContainer" parent="UIContainer/UI"]
 visible = false
 layout_mode = 1
 anchors_preset = 4
@@ -1782,31 +1782,31 @@ offset_bottom = 150.0
 grow_vertical = 2
 script = ExtResource("6_vnqvi")
 
-[node name="TowerUpgradeMenu" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper"]
+[node name="TowerUpgradeMenu" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("14_fv78h")
 
-[node name="TowerUpgradeMenuItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu"]
+[node name="TowerUpgradeMenuItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TowerUpgradeMenuItmesInnerBg" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper"]
+[node name="TowerUpgradeMenuItmesInnerBg" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("16_o71gb")
 
-[node name="TowerUpgradeMenuItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg"]
+[node name="TowerUpgradeMenuItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg"]
 layout_mode = 2
 
-[node name="TowerUpgradeTabContainer" type="TabContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems"]
+[node name="TowerUpgradeTabContainer" type="TabContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems"]
 layout_mode = 2
 current_tab = 0
 clip_tabs = false
 tab_focus_mode = 1
 
-[node name="Upgrades" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer"]
+[node name="Upgrades" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -1814,43 +1814,43 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="UpgradeBannersContainer" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades"]
+[node name="UpgradeBannersContainer" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades"]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="UpgradeBannerPath1" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer"]
+[node name="UpgradeBannerPath1" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer"]
 layout_mode = 2
 
-[node name="UpgradeBannerBorder" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1"]
+[node name="UpgradeBannerBorder" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pa3n2")
 
-[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder"]
+[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="UpgradeBanner" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper"]
+[node name="UpgradeBanner" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper"]
 material = SubResource("ShaderMaterial_7ygsn")
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_y0kyo")
 
-[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner"]
+[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="UpgradeBannerItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper"]
+[node name="UpgradeBannerItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="UpgradeName" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+[node name="UpgradeName" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
 custom_minimum_size = Vector2(130, 50)
 layout_mode = 2
 text = "Gun blazing"
@@ -1859,66 +1859,66 @@ vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
-[node name="UpgradeIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+[node name="UpgradeIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 texture = ExtResource("9_vnqvi")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="PriceTag" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+[node name="PriceTag" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
 layout_mode = 2
 
-[node name="CoinIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+[node name="CoinIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
 layout_mode = 2
 texture = ExtResource("5_0dwhk")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Price" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+[node name="Price" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
 layout_mode = 2
 text = "250"
 
-[node name="UIButtonText" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1" instance=ExtResource("14_hc5d0")]
+[node name="UIButtonText" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath1" instance=ExtResource("14_hc5d0")]
 custom_minimum_size = Vector2(140, 35)
 layout_mode = 2
 btn_text = "Details"
 font_size = 16
 btn_style = ExtResource("15_n3vwu")
 
-[node name="UpgradeBannerPath2" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer"]
+[node name="UpgradeBannerPath2" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer"]
 layout_mode = 2
 
-[node name="UpgradeBannerBorder" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2"]
+[node name="UpgradeBannerBorder" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pa3n2")
 
-[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder"]
+[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="UpgradeBanner" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper"]
+[node name="UpgradeBanner" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper"]
 material = SubResource("ShaderMaterial_7ygsn")
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_y0kyo")
 
-[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner"]
+[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="UpgradeBannerItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper"]
+[node name="UpgradeBannerItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="UpgradeName" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+[node name="UpgradeName" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
 custom_minimum_size = Vector2(130, 50)
 layout_mode = 2
 text = "Gun blazing"
@@ -1927,66 +1927,66 @@ vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
-[node name="UpgradeIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+[node name="UpgradeIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 texture = ExtResource("9_vnqvi")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="PriceTag" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+[node name="PriceTag" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
 layout_mode = 2
 
-[node name="CoinIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+[node name="CoinIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
 layout_mode = 2
 texture = ExtResource("5_0dwhk")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Price" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+[node name="Price" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
 layout_mode = 2
 text = "250"
 
-[node name="UIButtonText" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2" instance=ExtResource("14_hc5d0")]
+[node name="UIButtonText" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath2" instance=ExtResource("14_hc5d0")]
 custom_minimum_size = Vector2(140, 35)
 layout_mode = 2
 btn_text = "Details"
 font_size = 16
 btn_style = ExtResource("15_n3vwu")
 
-[node name="UpgradeBannerPath3" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer"]
+[node name="UpgradeBannerPath3" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer"]
 layout_mode = 2
 
-[node name="UpgradeBannerBorder" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3"]
+[node name="UpgradeBannerBorder" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pa3n2")
 
-[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder"]
+[node name="UpgradeBannerWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="UpgradeBanner" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper"]
+[node name="UpgradeBanner" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper"]
 material = SubResource("ShaderMaterial_7ygsn")
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_y0kyo")
 
-[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner"]
+[node name="UpgradeBannerItemsWrapper" type="MarginContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="UpgradeBannerItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper"]
+[node name="UpgradeBannerItems" type="VBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="UpgradeName" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+[node name="UpgradeName" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
 custom_minimum_size = Vector2(130, 50)
 layout_mode = 2
 text = "Gun blazing"
@@ -1995,39 +1995,39 @@ vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
-[node name="UpgradeIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+[node name="UpgradeIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 texture = ExtResource("9_vnqvi")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="PriceTag" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
+[node name="PriceTag" type="HBoxContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems"]
 layout_mode = 2
 
-[node name="CoinIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+[node name="CoinIcon" type="TextureRect" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
 layout_mode = 2
 texture = ExtResource("5_0dwhk")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Price" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
+[node name="Price" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3/UpgradeBannerBorder/UpgradeBannerWrapper/UpgradeBanner/UpgradeBannerItemsWrapper/UpgradeBannerItems/PriceTag"]
 layout_mode = 2
 text = "250"
 
-[node name="UIButtonText" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3" instance=ExtResource("14_hc5d0")]
+[node name="UIButtonText" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Upgrades/UpgradeBannersContainer/UpgradeBannerPath3" instance=ExtResource("14_hc5d0")]
 custom_minimum_size = Vector2(140, 35)
 layout_mode = 2
 btn_text = "Details"
 font_size = 16
 btn_style = ExtResource("15_n3vwu")
 
-[node name="Stats" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer"]
+[node name="Stats" type="PanelContainer" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Label" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapper/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Stats"]
+[node name="Label" type="Label" parent="UIContainer/UI/TowerUpgradeMenuWrapperDEPRECATED/TowerUpgradeMenu/TowerUpgradeMenuItemsWrapper/TowerUpgradeMenuItmesInnerBg/TowerUpgradeMenuItems/TowerUpgradeTabContainer/Stats"]
 layout_mode = 2
 text = "lol2"
 
@@ -2530,13 +2530,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_qhbcy")
 }
 
-[node name="UpgradeMenu" parent="UIContainer/UI" instance=ExtResource("31_7ygsn")]
-layout_mode = 0
-offset_right = 450.0
-offset_bottom = 300.0
+[node name="UpgradeMenuWrapper" type="MarginContainer" parent="UIContainer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="UpgradeMenu" parent="UIContainer/UI/UpgradeMenuWrapper" instance=ExtResource("31_7ygsn")]
+z_index = 3
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [connection signal="available_money_changed" from="UIContainer/UI/ResourcesPanel" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_available_money_changed"]
-[connection signal="available_money_changed" from="UIContainer/UI/ResourcesPanel" to="UIContainer/UI/UpgradeMenu" method="_on_available_money_changed"]
+[connection signal="available_money_changed" from="UIContainer/UI/ResourcesPanel" to="UIContainer/UI/UpgradeMenuWrapper/UpgradeMenu" method="_on_available_money_changed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/ToggleTowerBuyMenuBtn" to="UIContainer/UI/TowerBuyMenuWrapper" method="_on_toggle_tower_buy_menu_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/TowerBuyMenuWrapper/RightMenuBtnContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
@@ -2551,4 +2561,4 @@ offset_bottom = 300.0
 [connection signal="popup_opened" from="UIContainer/UI/PopupMenu" to="." method="_on_popup_menu_popup_opened"]
 [connection signal="pressed" from="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons/CancelBtn" to="UIContainer/UI/PopupMenu" method="_on_cancel_btn_pressed"]
 [connection signal="pressed" from="UIContainer/UI/PopupMenu/PopupMenuContentsWrapper/PopupMenuContents/PopupMenuItems/PopupButtonsWrapper/PopupButtons/OKBtn" to="UIContainer/UI/PopupMenu" method="_on_ok_btn_pressed"]
-[connection signal="upgrade_purchased" from="UIContainer/UI/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_purchased"]
+[connection signal="upgrade_purchased" from="UIContainer/UI/UpgradeMenuWrapper/UpgradeMenu" to="." method="_on_upgrade_menu_upgrade_purchased"]

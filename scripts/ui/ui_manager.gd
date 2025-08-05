@@ -18,7 +18,7 @@ signal upgrade_purchased(upgrade_cost:int)
 @onready var popup_menu = $UIContainer/UI/PopupMenu
 @onready var popup_menu_background_overlay = $PopupMenuBackgroundOverlay
 @onready var game_over_panel: GameOverPanel = $UIContainer/UI/GameOverPanelWrapper
-@onready var tower_upgrade_menu = $UIContainer/UI/UpgradeMenu
+@onready var tower_upgrade_menu: TowerUpgradeMenu = $UIContainer/UI/UpgradeMenuWrapper/UpgradeMenu
 
 
 
